@@ -16,7 +16,9 @@
 		<table>
 			<tr>
 				<td>Select Algo</td>
-				<td><form:select path="algo" items="${algos}" /></td>
+				<td><form:select path="algo">
+						<form:options items="${algos}" itemValue="id" itemLabel="name" />
+					</form:select></td>
 			</tr>
 			<tr>
 				<td></td>

@@ -30,10 +30,10 @@ public class ConsoleController {
 	public ModelAndView calculate() {
 		ConsoleModel consoleModel = new ConsoleModel();
 		consoleModel.setAlgos(new ArrayList<IAlgorithme>());
-		consoleModel.getAlgos().add(new HeapSortAlgo());
-		consoleModel.getAlgos().add(new InsertionSortAlgo());
-		consoleModel.getAlgos().add(new MergeSortAlgo());
-		consoleModel.getAlgos().add(new SelectionSortAlgo());
+		consoleModel.getAlgos().add(new HeapSortAlgo("1", "HeapSort"));
+		consoleModel.getAlgos().add(new InsertionSortAlgo("2", "InsertionSort"));
+		consoleModel.getAlgos().add(new MergeSortAlgo("3", "MergeSort"));
+		consoleModel.getAlgos().add(new SelectionSortAlgo("4", "SelectionSort"));
 		return new ModelAndView("console", "consoleModel", consoleModel);
 	}
 	
