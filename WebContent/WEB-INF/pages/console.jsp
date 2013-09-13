@@ -17,7 +17,7 @@
 			<tr>
 				<td>Select Algo</td>
 				<td><form:select path="algo">
-						<form:options items="${algos}" itemValue="id" itemLabel="name" />
+						<form:options items="${consoleModel.algos}" itemValue="id" itemLabel="name" />
 					</form:select></td>
 			</tr>
 			<tr>

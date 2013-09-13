@@ -1,6 +1,7 @@
 package org.calculator.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.calculator.models.IAlgorithme;
@@ -29,11 +30,12 @@ public class ConsoleController {
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
 	public ModelAndView calculate() {
 		ConsoleModel consoleModel = new ConsoleModel();
-		consoleModel.setAlgos(new ArrayList<IAlgorithme>());
-		consoleModel.getAlgos().add(new HeapSortAlgo("1", "HeapSort"));
-		consoleModel.getAlgos().add(new InsertionSortAlgo("2", "InsertionSort"));
-		consoleModel.getAlgos().add(new MergeSortAlgo("3", "MergeSort"));
-		consoleModel.getAlgos().add(new SelectionSortAlgo("4", "SelectionSort"));
+		List<IAlgorithme> algos = new ArrayList<IAlgorithme>();
+		algos.add(new HeapSortAlgo("1", "HeapSort"));
+		algos.add(new InsertionSortAlgo("2", "InsertionSort"));
+		algos.add(new MergeSortAlgo("3", "MergeSort"));
+		algos.add(new SelectionSortAlgo("4", "SelectionSort"));
+		consoleModel.setAlgos(algos);
 		return new ModelAndView("console", "consoleModel", consoleModel);
 	}
 	
