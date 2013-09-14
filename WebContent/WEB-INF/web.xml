@@ -21,13 +21,13 @@
  
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
+		<param-value>/WEB-INF/mvc-dispatcher-servlet.xml;/WEB-INF/businessContext.xml</param-value>
 	</context-param>
  
 	<listener>
 		<listener-class>
                       org.springframework.web.context.ContextLoaderListener
-                </listener-class>
+		</listener-class>
 	</listener>
  
 </web-app>

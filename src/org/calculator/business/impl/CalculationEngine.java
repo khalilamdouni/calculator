@@ -11,7 +11,6 @@ public class CalculationEngine implements ICalculationEngine {
 
 	@Override
 	public List<Result> calculate(IAlgorithme algo, IDataGenerator dataGenerator) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.calculator.business.ICalculationEngine;
+import org.calculator.business.generators.impl.DataGenerator;
 import org.calculator.models.IAlgorithme;
 import org.calculator.models.impl.ConsoleModel;
 import org.calculator.models.impl.HeapSortAlgo;
@@ -11,6 +13,8 @@ import org.calculator.models.impl.InsertionSortAlgo;
 import org.calculator.models.impl.MergeSortAlgo;
 import org.calculator.models.impl.Result;
 import org.calculator.models.impl.SelectionSortAlgo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +30,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class ConsoleController {
+	
+	private ICalculationEngine calculationEngine;
 	
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
 	public ModelAndView calculate() {
@@ -54,5 +60,17 @@ public class ConsoleController {
 		consoleModel.getResults().add(new Result(90, rand.nextInt(90)));
 		return new ModelAndView("console", "consoleModel", consoleModel);
 	}
+
+	public ICalculationEngine getCalculationEngine() {
+		return calculationEngine;
+	}
+
+	@Autowired 
+	@Qualifier(value = "calculationEngine")
+	public void setCalculationEngine(ICalculationEngine calculationEngine) {
+		this.calculationEngine = calculationEngine;
+	}
+	
+	
 	
 }
