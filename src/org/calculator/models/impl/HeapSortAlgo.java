@@ -7,7 +7,8 @@ public class HeapSortAlgo implements IAlgorithme {
 	private String id;
 	private String name;
 
-	
+	private Object[] data;
+	private double[] sortData;
 	
 	public HeapSortAlgo(String id, String name) {
 		super();
@@ -18,6 +19,18 @@ public class HeapSortAlgo implements IAlgorithme {
 	public HeapSortAlgo() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void transformData() {
+		
+	}
+
+	public Object[] getData() {
+		return data;
+	}
+
+	public void setData(Object[] data) {
+		this.data = data;
 	}
 
 	public String getId() {
