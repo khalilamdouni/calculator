@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
 import org.calculator.business.ICalculationEngine;
-import org.calculator.business.generators.impl.DataGenerator;
 import org.calculator.models.IAlgorithme;
 import org.calculator.models.impl.ConsoleModel;
 import org.calculator.models.impl.HeapSortAlgo;
@@ -33,8 +33,11 @@ public class ConsoleController {
 	
 	private ICalculationEngine calculationEngine;
 	
+	private static final Logger logger = Logger.getLogger(ConsoleController.class);
+	
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
 	public ModelAndView calculate() {
+		logger.info("Hello logger ");
 		ConsoleModel consoleModel = new ConsoleModel();
 		List<IAlgorithme> algos = new ArrayList<IAlgorithme>();
 		algos.add(new HeapSortAlgo("1", "HeapSort"));
