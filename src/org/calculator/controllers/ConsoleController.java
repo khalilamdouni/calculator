@@ -37,7 +37,6 @@ public class ConsoleController {
 	
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
 	public ModelAndView calculate() {
-		logger.info("Hello logger ");
 		ConsoleModel consoleModel = new ConsoleModel();
 		List<IAlgorithme> algos = new ArrayList<IAlgorithme>();
 		algos.add(new HeapSortAlgo("1", "HeapSort"));
