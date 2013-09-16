@@ -4,13 +4,12 @@ import org.calculator.models.IAlgorithme;
 
 public class MergeSortAlgo implements IAlgorithme {
 
-	
 	private String id;
 	private String name;
 
 	private Object[] data;
 	private double[] sortData;
-	
+
 	public MergeSortAlgo(String id, String name) {
 		super();
 		this.id = id;
@@ -28,7 +27,7 @@ public class MergeSortAlgo implements IAlgorithme {
 			this.sortData[i] = (Double) this.data[i];
 		}
 	}
-	
+
 	public Object[] getData() {
 		return data;
 	}
@@ -52,10 +51,9 @@ public class MergeSortAlgo implements IAlgorithme {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 	private void merge(double[] data, int first, int n1, int n2) {
-		
+
 		double[] temp = new double[n1 + n2];
 		int copied = 0;
 		int copied1 = 0;
@@ -97,7 +95,7 @@ public class MergeSortAlgo implements IAlgorithme {
 	public void run() {
 		mergesort(this.sortData, 0, this.sortData.length);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "MergeSort";

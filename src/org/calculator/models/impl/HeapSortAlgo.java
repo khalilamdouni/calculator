@@ -3,13 +3,13 @@ package org.calculator.models.impl;
 import org.calculator.models.IAlgorithme;
 
 public class HeapSortAlgo implements IAlgorithme {
-	
+
 	private String id;
 	private String name;
 
 	private Object[] data;
 	private double[] sortData;
-	
+
 	public HeapSortAlgo(String id, String name) {
 		super();
 		this.id = id;
@@ -20,7 +20,7 @@ public class HeapSortAlgo implements IAlgorithme {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public void transformData() {
 		this.sortData = new double[this.data.length];
 		for (int i = 0; i < this.sortData.length; i++) {
@@ -52,9 +52,8 @@ public class HeapSortAlgo implements IAlgorithme {
 		this.name = name;
 	}
 
-	
 	private void heapify(double[] a, int count) {
-		int start = (count - 2) / 2; 
+		int start = (count - 2) / 2;
 
 		while (start >= 0) {
 
@@ -79,13 +78,13 @@ public class HeapSortAlgo implements IAlgorithme {
 				return;
 		}
 	}
-	
+
 	@Override
 	public void run() {
 		int count = this.sortData.length;
 		heapify(this.sortData, count);
 		int end = count - 1;
-		while(end > 0){
+		while (end > 0) {
 
 			double tmp = this.sortData[end];
 			this.sortData[end] = this.sortData[0];
@@ -93,10 +92,9 @@ public class HeapSortAlgo implements IAlgorithme {
 			siftDown(this.sortData, 0, end - 1);
 			end--;
 		}
-		
 
 	}
-	
+
 	@Override
 	public String toString() {
 		return "HeapSort";
