@@ -22,7 +22,10 @@ public class HeapSortAlgo implements IAlgorithme {
 	}
 	
 	public void transformData() {
-		
+		this.sortData = new double[this.data.length];
+		for (int i = 0; i < this.sortData.length; i++) {
+			this.sortData[i] = (Double) this.data[i];
+		}
 	}
 
 	public Object[] getData() {
@@ -49,9 +52,48 @@ public class HeapSortAlgo implements IAlgorithme {
 		this.name = name;
 	}
 
+	
+	private void heapify(double[] a, int count) {
+		int start = (count - 2) / 2; 
+
+		while (start >= 0) {
+
+			siftDown(a, start, count - 1);
+			start--;
+		}
+	}
+
+	private void siftDown(double[] a, int start, int end) {
+		int root = start;
+
+		while ((root * 2 + 1) <= end) {
+			int child = root * 2 + 1;
+			if (child + 1 <= end && a[child] < a[child + 1])
+				child = child + 1;
+			if (a[root] < a[child]) {
+				double tmp = a[root];
+				a[root] = a[child];
+				a[child] = tmp;
+				root = child;
+			} else
+				return;
+		}
+	}
+	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		int count = this.sortData.length;
+		heapify(this.sortData, count);
+		int end = count - 1;
+		while(end > 0){
+
+			double tmp = this.sortData[end];
+			this.sortData[end] = this.sortData[0];
+			this.sortData[0] = tmp;
+			siftDown(this.sortData, 0, end - 1);
+			end--;
+		}
+		
 
 	}
 	
