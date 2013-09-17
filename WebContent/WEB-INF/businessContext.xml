@@ -10,4 +10,7 @@
 <bean id="calculationEngine" class="org.calculator.business.impl.CalculationEngine">
 </bean>
 
+<bean id="dataGenerator" class="org.calculator.business.generators.impl.DataGenerator">
+</bean>
+
 </beans>

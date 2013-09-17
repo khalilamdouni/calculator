@@ -8,7 +8,7 @@ public class ConsoleModel {
 
 	private List<IAlgorithme> algos;
 
-	private IAlgorithme algo;
+	private String selectedAlgo;
 
 	private List<Result> results;
 
@@ -20,12 +20,12 @@ public class ConsoleModel {
 		this.algos = algos;
 	}
 
-	public IAlgorithme getAlgo() {
-		return algo;
+	public String getSelectedAlgo() {
+		return selectedAlgo;
 	}
 
-	public void setAlgo(IAlgorithme algo) {
-		this.algo = algo;
+	public void setSelectedAlgo(String selectedAlgo) {
+		this.selectedAlgo = selectedAlgo;
 	}
 
 	public List<Result> getResults() {

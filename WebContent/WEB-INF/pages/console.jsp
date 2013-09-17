@@ -16,7 +16,7 @@
 		<table>
 			<tr>
 				<td>Select Algo</td>
-				<td><form:select path="algo">
+				<td><form:select path="selectedAlgo">
 						<form:options items="${consoleModel.algos}" itemValue="id" itemLabel="name" />
 					</form:select></td>
 			</tr>
@@ -31,7 +31,7 @@
 				<th>X</th>
 				<th>Y</th>
 			</tr>
-			<c:forEach items="${results}" var="result" varStatus="status">
+			<c:forEach items="${consoleModel.results}" var="result" varStatus="status">
 				<tr>
 					<td align="center">${result.x}</td>
 					<td align="center">${result.y}</td>
