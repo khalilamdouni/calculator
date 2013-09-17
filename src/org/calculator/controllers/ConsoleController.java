@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,7 +54,7 @@ public class ConsoleController {
 	}
 	
 	@RequestMapping(value = "/calculate", method = RequestMethod.POST)
-	public ModelAndView calculate(ConsoleModel consoleModel, BindingResult result) {
+	public ModelAndView calculate(@ModelAttribute("consoleModel") ConsoleModel consoleModel, BindingResult result) {
 		logger.info("id : " + consoleModel.getSelectedAlgo());
 		logger.info("algos : " + consoleModel.getAlgos());
 		
