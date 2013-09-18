@@ -32,8 +32,13 @@ public class JarManagerController {
 	@RequestMapping(value = "/jarManager", method = RequestMethod.POST)
 	public ModelAndView jarManager(
 			@ModelAttribute("jarManagerModel") JarManagerModel jarManagerModel,
-			BindingResult result) throws IllegalStateException, IOException {
-		this.jarManager.saveJar(jarManagerModel.getJarFile());
+			BindingResult result) throws IllegalStateException, IOException,
+			ClassNotFoundException {
+		
+		jarManagerModel.setCalculatorClasses(this.jarManager
+				.reflectJar(this.jarManager.saveJar(jarManagerModel
+						.getJarFile())));
+		
 		return new ModelAndView("jarManager", "jarManagerModel",
 				jarManagerModel);
 	}
