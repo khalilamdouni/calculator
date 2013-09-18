@@ -7,14 +7,6 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-<bean id="calculationEngine" class="org.calculator.business.impl.CalculationEngine">
-</bean>
-
-<bean id="dataGenerator" class="org.calculator.business.generators.impl.DataGenerator">
-</bean>
-
-<bean id="jarManager" class="org.calculator.business.impl.JarManager">
-    <property name="jarManagerDao" ref="jarManagerDao"></property>
-</bean>
+<bean id="jarManagerDao" class="org.calculator.dao.impl.JarManagerDao"></bean>
 
 </beans>

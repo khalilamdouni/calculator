@@ -21,7 +21,7 @@
  
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/mvc-dispatcher-servlet.xml;/WEB-INF/businessContext.xml;/WEB-INF/aspectContext.xml</param-value>
+		<param-value>/WEB-INF/mvc-dispatcher-servlet.xml;/WEB-INF/businessContext.xml;/WEB-INF/aspectContext.xml;/WEB-INF/daoContext.xml</param-value>
 	</context-param>
  
 	<listener>
