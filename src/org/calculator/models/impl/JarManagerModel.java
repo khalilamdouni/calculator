@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class JarManagerModel {
 
 	private MultipartFile jarFile;
-	private List<Class> calculatorClasses;
+	private List<CalculatorClass> calculatorClasses;
 
 	public MultipartFile getJarFile() {
 		return jarFile;
@@ -17,11 +17,11 @@ public class JarManagerModel {
 		this.jarFile = jarFile;
 	}
 
-	public List<Class> getCalculatorClasses() {
+	public List<CalculatorClass> getCalculatorClasses() {
 		return calculatorClasses;
 	}
 
-	public void setCalculatorClasses(List<Class> calculatorClasses) {
+	public void setCalculatorClasses(List<CalculatorClass> calculatorClasses) {
 		this.calculatorClasses = calculatorClasses;
 	}
 

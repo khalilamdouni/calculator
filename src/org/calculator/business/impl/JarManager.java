@@ -1,22 +1,26 @@
 package org.calculator.business.impl;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.UUID;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import org.apache.log4j.Logger;
 import org.calculator.business.IJarManager;
 import org.calculator.dao.IJarManagerDao;
+import org.calculator.models.impl.CalculatorClass;
 import org.springframework.web.multipart.MultipartFile;
 
 public class JarManager implements IJarManager {
 
 	private IJarManagerDao jarManagerDao;
+	
+	private static final Logger logger = Logger.getLogger(JarManager.class);
 
 	@Override
 	public String saveJar(MultipartFile jarFile) throws IllegalStateException,
@@ -25,11 +29,10 @@ public class JarManager implements IJarManager {
 	}
 	
 	@Override
-	public List<Class> reflectJar(String jarFileName) throws IOException,
+	public List<CalculatorClass> reflectJar(String jarFileName) throws IOException,
 			ClassNotFoundException {
-
 		String jarPath = "/home/khalil/work/spring/jartest/" + jarFileName;
-		List<Class> jarClasses = new ArrayList<Class>();
+		List<CalculatorClass> jarClasses = new ArrayList<CalculatorClass>();
 		JarFile jarFile = new JarFile(jarPath);
 		Enumeration<JarEntry> e = jarFile.entries();
 		URL[] urls = { new URL("jar:file:" + jarPath + "!/") };
@@ -43,11 +46,18 @@ public class JarManager implements IJarManager {
 					je.getName().length() - 6);
 			className = className.replace('/', '.');
 			Class c = cl.loadClass(className);
-			jarClasses.add(c);
+			jarClasses.add(new CalculatorClass(jarFileName.substring(0, jarFileName.indexOf('.')), c.getCanonicalName()));
 		}
 		return jarClasses;
 	}
-
+	
+	@Override
+	public void saveCalculatorClasses(List<CalculatorClass> calculatorClasses) {
+		for (CalculatorClass calculatorClass : calculatorClasses) {
+			logger.info("Class => " + calculatorClass);
+		}
+	}
+	
 	public IJarManagerDao getJarManagerDao() {
 		return jarManagerDao;
 	}

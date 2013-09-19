@@ -10,22 +10,48 @@
 <title>Jar Manager</title>
 </head>
 <body>
-	<form:form action="jarManager" method="POST"
-		enctype="multipart/form-data" modelAttribute="jarManagerModel">
+	<div>
+		<form:form action="uploadJar" method="POST"
+			enctype="multipart/form-data" modelAttribute="jarManagerModel">
 		Jar file : <input type="file" name="jarFile" />
-		<input type="submit" value="Upload" />
+			<input type="submit" value="Upload" />
 
-		<table>
-			<tr>
-				<th>Classname</th>
-			</tr>
-			<c:forEach items="${jarManagerModel.calculatorClasses}"
-				var="calculatorClass" varStatus="status">
+		</form:form>
+	</div>
+	<div>
+		<form:form action="saveClasses" method="POST"
+			modelAttribute="jarManagerModel">
+
+			<table>
 				<tr>
-					<td align="center">${calculatorClass.canonicalName}</td>
+					<th>Is Algo</th>
+					<th>Classname</th>
+					<th>Description</th>
 				</tr>
-			</c:forEach>
-		</table>
-	</form:form>
+				<c:forEach items="${jarManagerModel.calculatorClasses}"
+					var="calculatorClass" varStatus="status">
+					<tr>
+						<td align="center">
+							<form:checkbox path="calculatorClasses[${status.index}].algo" />
+						</td>
+						<td align="center">${calculatorClass.name} <input
+							type="hidden" name="calculatorClasses[${status.index}].name"
+							value="${calculatorClass.name}"> <input type="hidden"
+							name="calculatorClasses[${status.index}].jarId"
+							value="${calculatorClass.jarId}">
+						</td>
+						<td align="center"><input type="text"
+							name="calculatorClasses[${status.index}].description"
+							value="${calculatorClass.description}"></td>
+					</tr>
+				</c:forEach>
+				<tr>
+					<td align="center"></td>
+					<td align="center"></td>
+					<td align="center"><input type="submit" value="Save" /></td>
+				</tr>
+			</table>
+		</form:form>
+	</div>
 </body>
 </html>
