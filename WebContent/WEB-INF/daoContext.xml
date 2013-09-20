@@ -9,6 +9,8 @@
 
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    
     <bean id="jarManagerDao" class="org.calculator.dao.impl.JarManagerDao"></bean>
+    <bean id="calculatorClassDao" class="org.calculator.dao.impl.CalculatorClassDao"></bean>
 
 </beans>

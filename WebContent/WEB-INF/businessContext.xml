@@ -15,6 +15,7 @@
 
 <bean id="jarManager" class="org.calculator.business.impl.JarManager">
     <property name="jarManagerDao" ref="jarManagerDao"></property>
+    <property name="calculatorClassDao" ref="calculatorClassDao"></property>
 </bean>
 
 </beans>

@@ -1,14 +1,33 @@
 package org.calculator.models.impl;
 
-import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "CALCULATOR_CLASSES")
 public class CalculatorClass {
 
+	@Id
+	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	@Column(name = "JAR_ID")
 	private String jarId;
+
+	@Column(name = "CLASS_NAME")
 	private String name;
+
+	@Column(name = "CLASS_DESC")
 	private String description;
-	private boolean algo = true;
-	
+
+	@Column(name = "IS_ALGO")
+	private boolean algo;
+
 	public CalculatorClass(String jarId, String name) {
 		super();
 		this.jarId = jarId;
@@ -50,11 +69,11 @@ public class CalculatorClass {
 	public void setAlgo(boolean algo) {
 		this.algo = algo;
 	}
-	
+
 	@Override
 	public String toString() {
-		return this.jarId + " | " + this.name + " | " + this.algo
-				+ " | " + this.description;
+		return this.jarId + " | " + this.name + " | " + this.algo + " | "
+				+ this.description;
 	}
 
 }
