@@ -9,9 +9,9 @@ import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
 import org.calculator.dao.IJarManagerDao;
+import org.calculator.models.impl.JarFileModel;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 @Repository("jarManagerDao")
 @Transactional
@@ -21,19 +21,19 @@ public class JarManagerDao implements IJarManagerDao {
 	
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
-	public String saveJar(MultipartFile jarFile) throws IllegalStateException,
+	public String saveJar(JarFileModel jarFile) throws IllegalStateException,
 			IOException {
 
-		for (String key : em.getProperties().keySet()) {
-			logger.info("===> " + key + " : " + em.getProperties().get(key));
-		}
-		
+		String jarId = UUID.randomUUID().toString();
 		File jarLocalFile = new File("/home/khalil/work/spring/jartest/"
-				+ UUID.randomUUID().toString() + ".jar");
-		jarFile.transferTo(jarLocalFile);
-
+				+ jarId + ".jar");
+		jarFile.getJarFile().transferTo(jarLocalFile);
+		jarFile.setJarId(jarId);
+		em.persist(jarFile);
+		em.flush();
+		logger.info("Object persisted");
 		return jarLocalFile.getName();
 	}
 

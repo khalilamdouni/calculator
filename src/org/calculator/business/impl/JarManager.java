@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.calculator.business.IJarManager;
 import org.calculator.dao.IJarManagerDao;
 import org.calculator.models.impl.CalculatorClass;
+import org.calculator.models.impl.JarFileModel;
 import org.springframework.web.multipart.MultipartFile;
 
 public class JarManager implements IJarManager {
@@ -23,7 +24,7 @@ public class JarManager implements IJarManager {
 	private static final Logger logger = Logger.getLogger(JarManager.class);
 
 	@Override
-	public String saveJar(MultipartFile jarFile) throws IllegalStateException,
+	public String saveJar(JarFileModel jarFile) throws IllegalStateException,
 			IOException {
 		return jarManagerDao.saveJar(jarFile);
 	}

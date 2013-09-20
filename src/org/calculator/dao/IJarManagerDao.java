@@ -2,10 +2,10 @@ package org.calculator.dao;
 
 import java.io.IOException;
 
-import org.springframework.web.multipart.MultipartFile;
+import org.calculator.models.impl.JarFileModel;
 
 public interface IJarManagerDao {
 	
-	public String saveJar(MultipartFile jarFile) throws IllegalStateException, IOException;
+	public String saveJar(JarFileModel jarFile) throws IllegalStateException, IOException;
 	
 }

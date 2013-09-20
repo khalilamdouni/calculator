@@ -17,8 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class JarManagerController {
 
-	private static final Logger logger = Logger
-			.getLogger(JarManagerController.class);
+	private static final Logger logger = Logger.getLogger(JarManagerController.class);
 
 	private IJarManager jarManager;
 

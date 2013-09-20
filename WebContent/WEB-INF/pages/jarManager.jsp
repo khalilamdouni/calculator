@@ -13,9 +13,24 @@
 	<div>
 		<form:form action="uploadJar" method="POST"
 			enctype="multipart/form-data" modelAttribute="jarManagerModel">
-		Jar file : <input type="file" name="jarFile" />
-			<input type="submit" value="Upload" />
-
+			<table>
+				<tr>
+					<th>Jar file :</th>
+					<th><input type="file" name="jarFile.jarFile" /></th>
+				</tr>
+				<tr>
+					<th>Title :</th>
+					<th><input type="text" name="jarFile.title" /></th>
+				</tr>
+				<tr>
+					<th>Description :</th>
+					<th><input type="text" name="jarFile.description" /></th>
+				</tr>
+				<tr>
+					<th></th>
+					<th><input type="submit" value="Upload" /></th>
+				</tr>
+			</table>
 		</form:form>
 	</div>
 	<div>

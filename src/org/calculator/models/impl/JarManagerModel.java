@@ -2,18 +2,16 @@ package org.calculator.models.impl;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class JarManagerModel {
 
-	private MultipartFile jarFile;
+	private JarFileModel jarFile;
 	private List<CalculatorClass> calculatorClasses;
 
-	public MultipartFile getJarFile() {
+	public JarFileModel getJarFile() {
 		return jarFile;
 	}
 
-	public void setJarFile(MultipartFile jarFile) {
+	public void setJarFile(JarFileModel jarFile) {
 		this.jarFile = jarFile;
 	}
 
