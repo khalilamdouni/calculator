@@ -2,7 +2,6 @@ package org.calculator.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.calculator.business.ICalculationEngine;
@@ -12,7 +11,6 @@ import org.calculator.models.impl.ConsoleModel;
 import org.calculator.models.impl.HeapSortAlgo;
 import org.calculator.models.impl.InsertionSortAlgo;
 import org.calculator.models.impl.MergeSortAlgo;
-import org.calculator.models.impl.Result;
 import org.calculator.models.impl.SelectionSortAlgo;
 import org.calculator.models.impl.TimSort;
 import org.springframework.beans.factory.annotation.Autowired;

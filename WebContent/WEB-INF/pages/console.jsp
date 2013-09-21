@@ -4,25 +4,18 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link rel="stylesheet" type="text/css" href="css/calculator.css">
-
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/jstree/jquery.jstree.js"></script>   
- 
 <script type="text/javascript">
         $(document).ready(function(){
             $("#algos-treeview").jstree();
         });
 </script>
 
-<title>Console</title>
-</head>
-<body>
-<div id="algos-treeview" class="treeview"> 
+
+
+
+
+<div id="algos-treeview" class="leftpanel"> 
 	<ul>
             <li><a>Team A's Projects</a>
                 <ul>
@@ -42,7 +35,13 @@
             </li>
         </ul>
 </div>
-<div class="bodyview">
+
+
+
+
+
+<div class="rightpanel">
+<div class="rightbody">
 	<form:form method="post" action="calculate"
 		modelAttribute="consoleModel">
 
@@ -73,6 +72,5 @@
 		</table>
 	</form:form>
 </div>
+</div>
 <div class="clear"></div>
-</body>
-</html>
