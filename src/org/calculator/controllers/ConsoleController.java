@@ -11,15 +11,16 @@ import org.calculator.models.impl.ConsoleModel;
 import org.calculator.models.impl.HeapSortAlgo;
 import org.calculator.models.impl.InsertionSortAlgo;
 import org.calculator.models.impl.MergeSortAlgo;
+import org.calculator.models.impl.Result;
 import org.calculator.models.impl.SelectionSortAlgo;
 import org.calculator.models.impl.TimSort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -51,10 +52,10 @@ public class ConsoleController {
 		return new ModelAndView("console", "consoleModel", consoleModel);
 	}
 	
-	@RequestMapping(value = "/calculate", method = RequestMethod.POST)
-	public ModelAndView calculate(@ModelAttribute("consoleModel") ConsoleModel consoleModel, BindingResult result) {
-		logger.info("id : " + consoleModel.getSelectedAlgo());
-		logger.info("algos : " + consoleModel.getAlgos());
+	@RequestMapping(value = "/calculate/{selectedAlgoId}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public @ResponseBody List<Result> calculateResult(@PathVariable("selectedAlgoId") String selectedAlgoId) {
+		
+		logger.info("id : " + selectedAlgoId);
 		
 		List<IAlgorithme> algos = new ArrayList<IAlgorithme>();
 		algos.add(new HeapSortAlgo("1", "HeapSort"));
@@ -62,16 +63,17 @@ public class ConsoleController {
 		algos.add(new MergeSortAlgo("3", "MergeSort"));
 		algos.add(new SelectionSortAlgo("4", "SelectionSort"));
 		algos.add(new TimSort("5", "TimSort"));
-		consoleModel.setAlgos(algos);
+
 		
 		IAlgorithme selectedAlgo = null;
-		for (IAlgorithme algo : consoleModel.getAlgos()) {
-			if (algo.getId().equals(consoleModel.getSelectedAlgo()))
+		for (IAlgorithme algo : algos) {
+			if (algo.getId().equals(selectedAlgoId))
 				selectedAlgo = algo;
 		}
 		
-		consoleModel.setResults(this.calculationEngine.calculate(selectedAlgo, dataGenerator));
-		return new ModelAndView("console", "consoleModel", consoleModel);
+
+		return this.calculationEngine.calculate(selectedAlgo, dataGenerator);
+
 	}
 
 	public ICalculationEngine getCalculationEngine() {

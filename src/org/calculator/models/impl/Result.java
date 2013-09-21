@@ -1,7 +1,11 @@
 package org.calculator.models.impl;
 
-public class Result {
+import java.io.Serializable;
 
+public class Result implements Serializable {
+
+
+	private static final long serialVersionUID = 8375816462845029733L;
 	private long x;
 	private double y;
 
@@ -32,7 +36,7 @@ public class Result {
 
 	@Override
 	public String toString() {
-		return "(" + x + ", " + y + ")";
+		return "[" + x + ", " + y + "]";
 	}
 
 }

@@ -16,6 +16,12 @@
 <link rel="stylesheet" type="text/css" href="css/jqplot/jquery.jqplot.css" />
 <link rel="stylesheet" type="text/css" href="css/jqplot/jquery-ui.css" />
 
+		<script type="text/javascript">
+		    $(document).ready(function(){
+				var resultsData = "${consoleModel.results}";
+				displayChart(resultsData);
+	        });
+		</script>
 
 <div id="algos-treeview" class="leftpanel"> 
 	<ul>
@@ -44,43 +50,34 @@
 
 <div class="rightpanel">
 <div class="rightbody">
-	<form:form method="post" action="calculate"
-		modelAttribute="consoleModel">
+
 
 		<table>
 			<tr>
 				<td>Select Algo</td>
-				<td><form:select path="selectedAlgo">
-						<form:options items="${consoleModel.algos}" itemValue="id" itemLabel="name" />
-					</form:select></td>
+				<td><form:form id="algoform" method="POST"
+						modelAttribute="consoleModel">
+						<form:select path="selectedAlgo">
+							<form:options items="${consoleModel.algos}" itemValue="id"
+								itemLabel="name" />
+						</form:select>
+					</form:form></td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="submit" value="Estimate" /></td>
+				<td>
+				
+				<button onclick="calculate()" value="Estimate" > Estimate </button> 
+				
+				</td>
 			</tr>
 
 		</table>
-		
-		
-		<table>
-			<tr>
-				<th>X</th>
-				<th>Y</th>
-			</tr>
-			<c:forEach items="${consoleModel.results}" var="result" varStatus="status">
-				<tr>
-					<td align="center">${result.x}</td>
-					<td align="center">${result.y}</td>
-				</tr>
-			</c:forEach>
-		</table>
-		
 		
 		<div id="chart1" style="position: relative;" class="jqplot-target">
 		
 		</div>
 		
-	</form:form>
 </div>
 </div>
 <div class="clear"></div>

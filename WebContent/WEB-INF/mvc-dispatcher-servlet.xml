@@ -12,10 +12,12 @@
         http://www.springframework.org/schema/aop 
 		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
+    
+    <mvc:annotation-driven />
+    
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     
 	<context:component-scan base-package="org.calculator.controllers" />
-	<mvc:annotation-driven />
 	
 		<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
