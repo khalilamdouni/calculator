@@ -15,6 +15,9 @@
 
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/jstree/jquery.jstree.js"></script>   
+  
+    <script type="text/javascript" src="js/calculator.js"></script>
+  
  
 </head>
 <body>
@@ -22,7 +25,7 @@
 <div class="page">
 <div class="header">
 <div class="header-img"><img src="img/header.jpg" alt="" height="170"
- width="800"></div>
+ width="1200"></div>
 <div class="topmenu">
 <ul>
   <li><a href="calculate">Console</a></li>

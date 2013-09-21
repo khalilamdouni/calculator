@@ -1,15 +1,5 @@
 @CHARSET "UTF-8";
 
-.treeview {
-	float: left;
-	width: 20%;
-}
-
-.bodyview {
-	float: right;
-	width: 80%;
-}
-
 .clear{
 	clear: both;
 }
@@ -32,18 +22,20 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 }
 .page {
 	background-color: #FFFFFF;
-	width: 800px;
+	width: 1200px;
 	float: left;
 	padding: 0px 20px;
 	margin-bottom: 20px;
+    left: 50%;
+    margin-left: -200px;
 }
 .header, .header-img {
-	width: 800px;
+	width: 1200px;
 	float: left;
 }
 .topmenu {
 	background-color: #000000;
-	width: 800px;
+	width: 1200px;
 	height: 50px;
 	float: left;
 }
@@ -72,7 +64,8 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	color: #23b14d;
 }
 .content {
-	width: 800px;
+	width: 1200px;
+	height: 1000px;
 	float: left;
 }
 .leftpanel {
@@ -137,9 +130,9 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 }
 .footer {
 	background-image: url(../img/footer.jpg);
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 	background-position: left top;
-	width: 800px;
+	width: 1200px;
 	height: 77px;
 	float: left;
 }
