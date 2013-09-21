@@ -7,9 +7,42 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="css/calculator.css">
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jstree/jquery.jstree.js"></script>   
+ 
+<script type="text/javascript">
+        $(document).ready(function(){
+            $("#algos-treeview").jstree();
+        });
+</script>
+
 <title>Console</title>
 </head>
 <body>
+<div id="algos-treeview" class="treeview"> 
+	<ul>
+            <li><a>Team A's Projects</a>
+                <ul>
+                    <li><a>Iteration 1</a>
+                        <ul>
+                            <li><a>Story A</a></li>
+                            <li><a>Story B</a></li>
+                            <li><a>Story C</a></li>
+                        </ul>
+                    </li>
+                    <li><a>Iteration 2</a>
+                        <ul>
+                            <li><a>Story D</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+</div>
+<div class="bodyview">
 	<form:form method="post" action="calculate"
 		modelAttribute="consoleModel">
 
@@ -39,5 +72,7 @@
 			</c:forEach>
 		</table>
 	</form:form>
+</div>
+<div class="clear"></div>
 </body>
 </html>

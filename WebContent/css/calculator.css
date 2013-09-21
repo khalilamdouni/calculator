@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+.treeview {
+	float: left;
+	width: 20%;
+}
+
+.bodyview {
+	float: right;
+	width: 80%;
+}
+
+.clear{
+	clear: both;
+}
