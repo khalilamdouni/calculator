@@ -23,25 +23,22 @@
 	        });
 		</script>
 
-<div id="algos-treeview" class="leftpanel"> 
+<div id="algos-treeview" class="leftpanel">
 	<ul>
-            <li><a>Team A's Projects</a>
-                <ul>
-                    <li><a>Iteration 1</a>
-                        <ul>
-                            <li><a>Story A</a></li>
-                            <li><a>Story B</a></li>
-                            <li><a>Story C</a></li>
-                        </ul>
-                    </li>
-                    <li><a>Iteration 2</a>
-                        <ul>
-                            <li><a>Story D</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+		<li><a>Jars</a>
+			<ul>
+				<c:forEach items="${consoleModel.jarFiles}" var="jarFile"
+					varStatus="jarStatus">
+					<li><a> ${jarFile.title} </a>
+						<ul>
+							<c:forEach items="${jarFile.calculatorClasses}"
+								var="calculatorClass" varStatus="classStatus">
+								<li><a> ${calculatorClass.name} </a></li>
+							</c:forEach>
+						</ul></li>
+				</c:forEach>
+			</ul></li>
+	</ul>
 </div>
 
 

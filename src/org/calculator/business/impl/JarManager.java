@@ -53,9 +53,16 @@ public class JarManager implements IJarManager {
 		return jarClasses;
 	}
 	
+	
+	
 	@Override
 	public void saveCalculatorClasses(List<CalculatorClass> calculatorClasses) {
 		this.calculatorClassDao.saveCalculatorClasses(calculatorClasses);
+	}
+	
+	@Override
+	public List<JarFileModel> loadJars() {
+		return jarManagerDao.getJars();
 	}
 	
 	public IJarManagerDao getJarManagerDao() {

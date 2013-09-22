@@ -2,9 +2,12 @@ package org.calculator.models.impl;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +19,8 @@ public class CalculatorClass {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "JAR_ID")
-	private String jarId;
+	/*@Column(name = "JAR_ID")
+	private String jarId;*/
 
 	@Column(name = "CLASS_NAME")
 	private String name;
@@ -28,22 +31,19 @@ public class CalculatorClass {
 	@Column(name = "IS_ALGO")
 	private boolean algo;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "JAR_ID", nullable = false)
+	private JarFileModel jarFile;
+
 	public CalculatorClass(String jarId, String name) {
 		super();
-		this.jarId = jarId;
+		this.jarFile = new JarFileModel();
+		this.jarFile.setJarId(jarId);
 		this.name = name;
 	}
 
 	public CalculatorClass() {
 		super();
-	}
-
-	public String getJarId() {
-		return jarId;
-	}
-
-	public void setJarId(String jarId) {
-		this.jarId = jarId;
 	}
 
 	public String getName() {
@@ -70,9 +70,25 @@ public class CalculatorClass {
 		this.algo = algo;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public JarFileModel getJarFile() {
+		return jarFile;
+	}
+
+	public void setJarFile(JarFileModel jarFile) {
+		this.jarFile = jarFile;
+	}
+
 	@Override
 	public String toString() {
-		return this.jarId + " | " + this.name + " | " + this.algo + " | "
+		return  " | " + this.name + " | " + this.algo + " | "
 				+ this.description;
 	}
 

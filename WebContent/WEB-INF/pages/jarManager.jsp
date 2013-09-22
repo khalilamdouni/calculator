@@ -52,8 +52,8 @@
 						<td align="center">${calculatorClass.name} <input
 							type="hidden" name="calculatorClasses[${status.index}].name"
 							value="${calculatorClass.name}"> <input type="hidden"
-							name="calculatorClasses[${status.index}].jarId"
-							value="${calculatorClass.jarId}">
+							name="calculatorClasses[${status.index}].jarFile.jarId"
+							value="${calculatorClass.jarFile.jarId}">
 						</td>
 						<td align="center"><input type="text"
 							name="calculatorClasses[${status.index}].description"

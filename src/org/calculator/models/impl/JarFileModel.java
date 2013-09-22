@@ -1,8 +1,14 @@
 package org.calculator.models.impl;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -10,18 +16,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "JARS")
+@NamedQueries({ @NamedQuery(name = "JarFileModel.getJars", query = "SELECT j FROM JarFileModel j") })
 public class JarFileModel {
 
 	@Id
 	@Column(name = "JAR_ID")
 	private String jarId;
-	
+
 	@Column(name = "JAR_TITLE")
 	private String title;
-	
+
 	@Column(name = "JAR_DESC")
 	private String description;
-	
+
+	@OneToMany(mappedBy = "jarFile", fetch = FetchType.EAGER)
+	private List<CalculatorClass> calculatorClasses;
+
 	@Transient
 	private MultipartFile jarFile;
 
@@ -55,6 +65,14 @@ public class JarFileModel {
 
 	public void setJarFile(MultipartFile jarFile) {
 		this.jarFile = jarFile;
+	}
+
+	public List<CalculatorClass> getCalculatorClasses() {
+		return calculatorClasses;
+	}
+
+	public void setCalculatorClasses(List<CalculatorClass> calculatorClasses) {
+		this.calculatorClasses = calculatorClasses;
 	}
 
 }

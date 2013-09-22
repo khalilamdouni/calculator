@@ -11,6 +11,8 @@ public class ConsoleModel {
 	private String selectedAlgo;
 
 	private List<Result> results;
+	
+	private List<JarFileModel> jarFiles;
 
 	public List<IAlgorithme> getAlgos() {
 		return algos;
@@ -34,6 +36,14 @@ public class ConsoleModel {
 
 	public void setResults(List<Result> results) {
 		this.results = results;
+	}
+
+	public List<JarFileModel> getJarFiles() {
+		return jarFiles;
+	}
+
+	public void setJarFiles(List<JarFileModel> jarFiles) {
+		this.jarFiles = jarFiles;
 	}
 
 }
