@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 
 import org.apache.log4j.Logger;
 import org.calculator.dao.IJarManagerDao;
-import org.calculator.models.impl.JarFileModel;
+import org.calculator.models.JarFileModel;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

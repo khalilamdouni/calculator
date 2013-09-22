@@ -6,7 +6,7 @@ import java.util.List;
 import org.calculator.business.ICalculationEngine;
 import org.calculator.business.generators.IDataGenerator;
 import org.calculator.models.IAlgorithme;
-import org.calculator.models.impl.Result;
+import org.calculator.models.Result;
 
 public class CalculationEngine implements ICalculationEngine {
 

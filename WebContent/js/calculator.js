@@ -6,9 +6,8 @@ $(document).ready(function() {
 });
 
 function selectAlgo(algoId, algoName) {
-	selectedAlgoId = algoId;
-	document.getElementById('estimateButton').inmerHTML = 'Estimate: '
-			+ algoName;
+	selectedAlgoId = algoId;	
+	$("#estimateButton").html('Estimate: ' + algoName);
 }
 
 // ********* calculation engine management

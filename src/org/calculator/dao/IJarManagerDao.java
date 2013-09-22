@@ -3,7 +3,7 @@ package org.calculator.dao;
 import java.io.IOException;
 import java.util.List;
 
-import org.calculator.models.impl.JarFileModel;
+import org.calculator.models.JarFileModel;
 
 public interface IJarManagerDao {
 	

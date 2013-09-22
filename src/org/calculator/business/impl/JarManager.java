@@ -13,8 +13,9 @@ import org.apache.log4j.Logger;
 import org.calculator.business.IJarManager;
 import org.calculator.dao.ICalculatorClassDao;
 import org.calculator.dao.IJarManagerDao;
-import org.calculator.models.impl.CalculatorClass;
-import org.calculator.models.impl.JarFileModel;
+import org.calculator.models.CalculatorClass;
+import org.calculator.models.IAlgorithme;
+import org.calculator.models.JarFileModel;
 
 public class JarManager implements IJarManager {
 
@@ -29,16 +30,19 @@ public class JarManager implements IJarManager {
 			IOException {
 		return jarManagerDao.saveJar(jarFile);
 	}
-	
+
 	@Override
-	public List<CalculatorClass> reflectJar(String jarFileName) throws IOException,
-			ClassNotFoundException {
+	public List<CalculatorClass> reflectJar(String jarFileName)
+			throws IOException, ClassNotFoundException {
 		String jarPath = "/home/khalil/work/spring/jartest/" + jarFileName;
 		List<CalculatorClass> jarClasses = new ArrayList<CalculatorClass>();
 		JarFile jarFile = new JarFile(jarPath);
 		Enumeration<JarEntry> e = jarFile.entries();
+		
 		URL[] urls = { new URL("jar:file:" + jarPath + "!/") };
-		URLClassLoader cl = URLClassLoader.newInstance(urls);
+		ClassLoader loader = IAlgorithme.class.getClassLoader();
+		URLClassLoader cl = URLClassLoader.newInstance(urls, loader);
+		
 		while (e.hasMoreElements()) {
 			JarEntry je = (JarEntry) e.nextElement();
 			if (je.isDirectory() || !je.getName().endsWith(".class")) {
@@ -47,12 +51,14 @@ public class JarManager implements IJarManager {
 			String className = je.getName().substring(0,
 					je.getName().length() - 6);
 			className = className.replace('/', '.');
-			Class c = cl.loadClass(className);
-			jarClasses.add(new CalculatorClass(jarFileName.substring(0, jarFileName.indexOf('.')), c.getCanonicalName()));
+			Class<?> c = cl.loadClass(className);
+
+			jarClasses.add(new CalculatorClass(jarFileName.substring(0,
+					jarFileName.indexOf('.')), c.getCanonicalName()));
 		}
+		jarFile.close();
 		return jarClasses;
 	}
-	
 	
 	
 	@Override

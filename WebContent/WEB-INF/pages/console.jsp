@@ -40,21 +40,10 @@
 
 		<table>
 			<tr>
-				<td>Select Algo</td>
-				<td><form:form id="algoform" method="POST"
-						modelAttribute="consoleModel">
-						<form:select path="selectedAlgo">
-							<form:options items="${consoleModel.algos}" itemValue="id"
-								itemLabel="name" />
-						</form:select>
-					</form:form></td>
-			</tr>
-			<tr>
 				<td></td>
 				<td>
 
-					<button id="estimateButton" onclick="calculate()" value="Estimate">
-						Estimate</button>
+					<button id="estimateButton" onclick="calculate()" value="Estimate">Select Algi in the tree</button>
 
 				</td>
 			</tr>

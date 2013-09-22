@@ -1,4 +1,4 @@
-package org.calculator.models.impl;
+package org.calculator.models;
 
 import java.util.List;
 
@@ -6,21 +6,11 @@ import org.calculator.models.IAlgorithme;
 
 public class ConsoleModel {
 
-	private List<IAlgorithme> algos;
-
 	private String selectedAlgo;
 
 	private List<Result> results;
 	
 	private List<JarFileModel> jarFiles;
-
-	public List<IAlgorithme> getAlgos() {
-		return algos;
-	}
-
-	public void setAlgos(List<IAlgorithme> algos) {
-		this.algos = algos;
-	}
 
 	public String getSelectedAlgo() {
 		return selectedAlgo;

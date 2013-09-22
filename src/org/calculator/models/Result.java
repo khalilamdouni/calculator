@@ -1,4 +1,4 @@
-package org.calculator.models.impl;
+package org.calculator.models;
 
 import java.io.Serializable;
 

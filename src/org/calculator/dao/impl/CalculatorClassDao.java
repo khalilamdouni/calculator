@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.calculator.dao.ICalculatorClassDao;
-import org.calculator.models.impl.CalculatorClass;
+import org.calculator.models.CalculatorClass;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +31,7 @@ public class CalculatorClassDao implements ICalculatorClassDao {
 	public CalculatorClass getClassById(long id) {
 		TypedQuery<CalculatorClass> query = em.createNamedQuery(
 				"CalculatorClass.getClassById", CalculatorClass.class);
+		query.setParameter("id", id);
 		return query.getSingleResult();
 	}
 

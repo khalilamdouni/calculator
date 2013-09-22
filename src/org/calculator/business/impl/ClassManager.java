@@ -9,8 +9,8 @@ import java.util.jar.JarFile;
 
 import org.calculator.business.IClassManager;
 import org.calculator.dao.ICalculatorClassDao;
+import org.calculator.models.CalculatorClass;
 import org.calculator.models.IAlgorithme;
-import org.calculator.models.impl.CalculatorClass;
 
 public class ClassManager implements IClassManager {
 
@@ -28,7 +28,8 @@ public class ClassManager implements IClassManager {
 		JarFile jarFile = new JarFile(jarPath);
 		Enumeration<JarEntry> e = jarFile.entries();
 		URL[] urls = { new URL("jar:file:" + jarPath + "!/") };
-		URLClassLoader cl = URLClassLoader.newInstance(urls);
+		ClassLoader loader = IAlgorithme.class.getClassLoader();
+		URLClassLoader cl = URLClassLoader.newInstance(urls, loader);
 		while (e.hasMoreElements()) {
 			JarEntry je = (JarEntry) e.nextElement();
 			if (je.isDirectory() || !je.getName().endsWith(".class")) {
@@ -38,8 +39,8 @@ public class ClassManager implements IClassManager {
 					je.getName().length() - 6);
 			className = className.replace('/', '.');
 			if (calculatorClass.getName().equalsIgnoreCase(className)) {
-				Class c = cl.loadClass(className);
-				return (IAlgorithme) c.newInstance();
+				Class<?> c = cl.loadClass(className);
+				return (IAlgorithme)c.newInstance();
 			}
 		}
 		return null;
@@ -52,7 +53,5 @@ public class ClassManager implements IClassManager {
 	public void setCalculatorClassDao(ICalculatorClassDao calculatorClassDao) {
 		this.calculatorClassDao = calculatorClassDao;
 	}
-	
-	
 
 }

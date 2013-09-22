@@ -1,10 +1,11 @@
 package org.calculator.business;
 
 import java.io.IOException;
+import java.net.URLClassLoader;
 import java.util.List;
 
-import org.calculator.models.impl.CalculatorClass;
-import org.calculator.models.impl.JarFileModel;
+import org.calculator.models.CalculatorClass;
+import org.calculator.models.JarFileModel;
 
 public interface IJarManager {
 	public String saveJar(JarFileModel jarFile) throws IllegalStateException, IOException;
