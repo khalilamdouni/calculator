@@ -6,4 +6,5 @@ import org.calculator.models.impl.CalculatorClass;
 
 public interface ICalculatorClassDao {
 	public void saveCalculatorClasses(List<CalculatorClass> calculatorClasses);
+	public CalculatorClass getClassById(long id);
 }

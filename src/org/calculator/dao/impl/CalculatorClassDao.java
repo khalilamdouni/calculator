@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.calculator.dao.ICalculatorClassDao;
 import org.calculator.models.impl.CalculatorClass;
@@ -24,6 +25,13 @@ public class CalculatorClassDao implements ICalculatorClassDao {
 			em.persist(calculatorClass);
 		}
 		em.flush();
+	}
+
+	@Override
+	public CalculatorClass getClassById(long id) {
+		TypedQuery<CalculatorClass> query = em.createNamedQuery(
+				"CalculatorClass.getClassById", CalculatorClass.class);
+		return query.getSingleResult();
 	}
 
 }

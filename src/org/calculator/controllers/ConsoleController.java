@@ -1,10 +1,12 @@
 package org.calculator.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.calculator.business.ICalculationEngine;
+import org.calculator.business.IClassManager;
 import org.calculator.business.IJarManager;
 import org.calculator.business.generators.IDataGenerator;
 import org.calculator.models.IAlgorithme;
@@ -40,6 +42,8 @@ public class ConsoleController {
 	
 	private IJarManager jarManager;
 	
+	private IClassManager classManager;
+	
 	private static final Logger logger = Logger.getLogger(ConsoleController.class);
 	
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
@@ -57,27 +61,15 @@ public class ConsoleController {
 	}
 	
 	@RequestMapping(value = "/calculate/{selectedAlgoId}", method = RequestMethod.GET, headers = "Accept=application/json")
-	public @ResponseBody List<Result> calculateResult(@PathVariable("selectedAlgoId") String selectedAlgoId) {
-		
-		logger.info("id : " + selectedAlgoId);
-		
-		List<IAlgorithme> algos = new ArrayList<IAlgorithme>();
-		algos.add(new HeapSortAlgo("1", "HeapSort"));
-		algos.add(new InsertionSortAlgo("2", "InsertionSort"));
-		algos.add(new MergeSortAlgo("3", "MergeSort"));
-		algos.add(new SelectionSortAlgo("4", "SelectionSort"));
-		algos.add(new TimSort("5", "TimSort"));
+	public @ResponseBody
+	List<Result> calculateResult(
+			@PathVariable("selectedAlgoId") String selectedAlgoId)
+			throws NumberFormatException, ClassNotFoundException,
+			InstantiationException, IllegalAccessException, IOException {
 
-		
-		IAlgorithme selectedAlgo = null;
-		for (IAlgorithme algo : algos) {
-			if (algo.getId().equals(selectedAlgoId))
-				selectedAlgo = algo;
-		}
-		
-
-		return this.calculationEngine.calculate(selectedAlgo, dataGenerator);
-
+		return this.calculationEngine.calculate(
+				classManager.loadCalculatorClass(Long.valueOf(selectedAlgoId)),
+				dataGenerator);
 	}
 
 	public ICalculationEngine getCalculationEngine() {
@@ -108,6 +100,16 @@ public class ConsoleController {
 	@Qualifier(value = "jarManager")
 	public void setJarManager(IJarManager jarManager) {
 		this.jarManager = jarManager;
+	}
+
+	public IClassManager getClassManager() {
+		return classManager;
+	}
+
+	@Autowired
+	@Qualifier(value = "classManager")
+	public void setClassManager(IClassManager classManager) {
+		this.classManager = classManager;
 	}
 	
 }

@@ -8,19 +8,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "CALCULATOR_CLASSES")
+@NamedQueries({
+	@NamedQuery(name = "CalculatorClass.getClassById", query = "SELECT c FROM CalculatorClass c WHERE c.id = :id")
+})
 public class CalculatorClass {
 
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	/*@Column(name = "JAR_ID")
-	private String jarId;*/
 
 	@Column(name = "CLASS_NAME")
 	private String name;
@@ -88,7 +90,7 @@ public class CalculatorClass {
 
 	@Override
 	public String toString() {
-		return  " | " + this.name + " | " + this.algo + " | "
+		return  this.id + " | " + this.name + " | " + this.algo + " | "
 				+ this.description;
 	}
 

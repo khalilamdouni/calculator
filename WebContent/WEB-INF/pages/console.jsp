@@ -16,13 +16,6 @@
 <link rel="stylesheet" type="text/css" href="css/jqplot/jquery.jqplot.css" />
 <link rel="stylesheet" type="text/css" href="css/jqplot/jquery-ui.css" />
 
-		<script type="text/javascript">
-		    $(document).ready(function(){
-				var resultsData = "${consoleModel.results}";
-				displayChart(resultsData);
-	        });
-		</script>
-
 <div id="algos-treeview" class="leftpanel">
 	<ul>
 		<li><a>Jars</a>
@@ -33,20 +26,16 @@
 						<ul>
 							<c:forEach items="${jarFile.calculatorClasses}"
 								var="calculatorClass" varStatus="classStatus">
-								<li><a> ${calculatorClass.name} </a></li>
+								<li><a onclick="selectAlgo('${calculatorClass.id}', '${calculatorClass.name}');"
+									href="javascript:void(0)"> ${calculatorClass.name} </a></li>
 							</c:forEach>
 						</ul></li>
 				</c:forEach>
 			</ul></li>
 	</ul>
 </div>
-
-
-
-
-
 <div class="rightpanel">
-<div class="rightbody">
+	<div class="rightbody">
 
 
 		<table>
@@ -63,18 +52,19 @@
 			<tr>
 				<td></td>
 				<td>
-				
-				<button onclick="calculate()" value="Estimate" > Estimate </button> 
-				
+
+					<button id="estimateButton" onclick="calculate()" value="Estimate">
+						Estimate</button>
+
 				</td>
 			</tr>
 
 		</table>
-		
+
 		<div id="chart1" style="position: relative;" class="jqplot-target">
-		
+
 		</div>
-		
-</div>
+
+	</div>
 </div>
 <div class="clear"></div>
