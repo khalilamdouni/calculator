@@ -10,6 +10,10 @@ function selectAlgo(algoId, algoName) {
 	$("#estimateButton").html('Estimate: ' + algoName);
 }
 
+// ********* jtable code
+
+
+
 // ********* calculation engine management
 function calculate() {
 	//var url = "calculate/" + $("#selectedAlgo").val(); 

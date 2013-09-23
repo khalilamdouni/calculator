@@ -4,12 +4,46 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Jar Manager</title>
-</head>
-<body>
+
+
+<link href="js/jtable/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+ <script src="js/jquery-ui-1.10.0.min.js" type="text/javascript"></script>
+ 
+<script src="js/jtable/jquery.jtable.js" type="text/javascript"></script>
+<script src="js/jtable/json2.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#jarstable').jtable({
+        title: 'Jars Table',
+        actions: {
+            listAction: 'getJars'
+        },
+        fields: {
+        	jarid: {
+        		title: 'Jar ID',
+                key: true,
+                list: true
+            },
+            title: {
+                title: 'Title',
+                width: '40%'
+            },
+            description: {
+                title: 'Description',
+                width: '60%'
+            }
+        }
+    });
+    $('#jarstable').jtable('load');
+    
+});
+</script>
+
+<div id="jarstable">
+</div>
+
 	<div>
 		<form:form action="uploadJar" method="POST"
 			enctype="multipart/form-data" modelAttribute="jarManagerModel">
@@ -68,5 +102,3 @@
 			</table>
 		</form:form>
 	</div>
-</body>
-</html>

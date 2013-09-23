@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -21,12 +23,15 @@ public class JarFileModel {
 
 	@Id
 	@Column(name = "JAR_ID")
+	@JsonProperty("jarid")
 	private String jarId;
 
 	@Column(name = "JAR_TITLE")
+	@JsonProperty("title")
 	private String title;
 
 	@Column(name = "JAR_DESC")
+	@JsonProperty("description")
 	private String description;
 
 	@OneToMany(mappedBy = "jarFile", fetch = FetchType.EAGER)
@@ -35,6 +40,7 @@ public class JarFileModel {
 	@Transient
 	private MultipartFile jarFile;
 
+	@JsonProperty("jarid")
 	public String getJarId() {
 		return jarId;
 	}
@@ -43,6 +49,7 @@ public class JarFileModel {
 		this.jarId = jarId;
 	}
 
+	@JsonProperty("title")
 	public String getTitle() {
 		return title;
 	}
@@ -51,6 +58,7 @@ public class JarFileModel {
 		this.title = title;
 	}
 
+	@JsonProperty("description")
 	public String getDescription() {
 		return description;
 	}
@@ -67,6 +75,7 @@ public class JarFileModel {
 		this.jarFile = jarFile;
 	}
 
+	@JsonIgnore
 	public List<CalculatorClass> getCalculatorClasses() {
 		return calculatorClasses;
 	}
