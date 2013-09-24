@@ -9,6 +9,7 @@ public interface IJarManagerDao {
 	
 	public String saveJar(JarFileModel jarFile) throws IllegalStateException, IOException;
 	public List<JarFileModel> getJars(int startIndex, int dataCount);
+	public JarFileModel updateJar(JarFileModel jarFile);
 	public int getJarsCount();
 	
 }

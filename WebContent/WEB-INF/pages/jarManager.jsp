@@ -36,10 +36,11 @@ $(document).ready(function () {
             deleteAction: 'deleteJar'
         },
         fields: {
-        	jarid: {
+        	jarId: {
         		title: 'Jar ID',
                 key: true,
-                list: true
+                list: true,
+                edit: false
             },
             title: {
                 title: 'Title',

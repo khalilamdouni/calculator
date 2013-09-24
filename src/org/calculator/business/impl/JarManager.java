@@ -92,4 +92,9 @@ public class JarManager implements IJarManager {
 		return this.jarManagerDao.getJarsCount();
 	}
 
+	@Override
+	public JarFileModel updateJar(JarFileModel jarFile) {
+		return this.jarManagerDao.updateJar(jarFile);
+	}
+
 }

@@ -11,5 +11,6 @@ public interface IJarManager {
 	public List<CalculatorClass> reflectJar(String jarFileName) throws IOException, ClassNotFoundException;
 	public void saveCalculatorClasses(List<CalculatorClass> calculatorClasses);
 	public List<JarFileModel> loadJars(int startIndex, int dataCount);
+	public JarFileModel updateJar(JarFileModel jarFile);
 	public int getJarsCount();
 }

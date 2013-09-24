@@ -57,4 +57,9 @@ public class JarManagerDao implements IJarManagerDao {
 				.getSingleResult()).intValue();
 	}
 
+	@Override
+	public JarFileModel updateJar(JarFileModel jarFile) {
+		return em.merge(jarFile);
+	}
+
 }

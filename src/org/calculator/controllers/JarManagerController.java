@@ -5,9 +5,10 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.calculator.business.IJarManager;
-import org.calculator.models.JSONJTableModel;
 import org.calculator.models.JarFileModel;
 import org.calculator.models.JarManagerModel;
+import org.calculator.models.viewmodels.JSONJTableModel;
+import org.calculator.models.viewmodels.JSONJTableResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -65,6 +66,13 @@ public class JarManagerController {
 				jtPageSize), this.jarManager.getJarsCount());
 	}
 	
+	@RequestMapping(value = "/updateJar", method = RequestMethod.POST, headers = "Accept=application/json")
+	public @ResponseBody
+	JSONJTableResponseModel updateJar(@ModelAttribute JarFileModel jarFile,
+			BindingResult result) {
+		return new JSONJTableResponseModel("OK",
+				this.jarManager.updateJar(jarFile));
+	}
 	
 
 	public IJarManager getJarManager() {

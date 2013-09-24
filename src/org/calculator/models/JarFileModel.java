@@ -25,7 +25,7 @@ public class JarFileModel {
 
 	@Id
 	@Column(name = "JAR_ID")
-	@JsonProperty("jarid")
+	@JsonProperty("jarId")
 	private String jarId;
 
 	@Column(name = "JAR_TITLE")
@@ -42,7 +42,7 @@ public class JarFileModel {
 	@Transient
 	private MultipartFile jarFile;
 
-	@JsonProperty("jarid")
+	@JsonProperty("jarId")
 	public String getJarId() {
 		return jarId;
 	}
@@ -84,6 +84,11 @@ public class JarFileModel {
 
 	public void setCalculatorClasses(List<CalculatorClass> calculatorClasses) {
 		this.calculatorClasses = calculatorClasses;
+	}
+	
+	@Override
+	public String toString() {
+		return this.jarId + " | " + this.title;
 	}
 
 }

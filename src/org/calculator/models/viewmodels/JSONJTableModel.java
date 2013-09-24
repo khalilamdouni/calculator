@@ -1,7 +1,8 @@
-package org.calculator.models;
+package org.calculator.models.viewmodels;
 
 import java.util.List;
 
+import org.calculator.models.JarFileModel;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 public class JSONJTableModel {
