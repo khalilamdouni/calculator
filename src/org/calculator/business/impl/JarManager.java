@@ -67,8 +67,8 @@ public class JarManager implements IJarManager {
 	}
 	
 	@Override
-	public List<JarFileModel> loadJars() {
-		return jarManagerDao.getJars();
+	public List<JarFileModel> loadJars(int startIndex, int dataCount) {
+		return jarManagerDao.getJars(startIndex, dataCount);
 	}
 	
 	public IJarManagerDao getJarManagerDao() {
@@ -85,6 +85,11 @@ public class JarManager implements IJarManager {
 
 	public void setCalculatorClassDao(ICalculatorClassDao calculatorClassDao) {
 		this.calculatorClassDao = calculatorClassDao;
+	}
+
+	@Override
+	public int getJarsCount() {
+		return this.jarManagerDao.getJarsCount();
 	}
 
 }

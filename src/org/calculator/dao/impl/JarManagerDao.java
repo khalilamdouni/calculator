@@ -40,10 +40,21 @@ public class JarManagerDao implements IJarManagerDao {
 	}
 
 	@Override
-	public List<JarFileModel> getJars() {
+	public List<JarFileModel> getJars(int startIndex, int dataCount) {
 		TypedQuery<JarFileModel> query = em.createNamedQuery(
 				"JarFileModel.getJars", JarFileModel.class);
+		
+		if (startIndex >= 0 && dataCount > 0) {
+			query.setFirstResult(startIndex);
+			query.setMaxResults(dataCount);
+		}
 		return query.getResultList();
+	}
+
+	@Override
+	public int getJarsCount() {
+		return ((Number) em.createNamedQuery("JarFileModel.getJarsCount")
+				.getSingleResult()).intValue();
 	}
 
 }

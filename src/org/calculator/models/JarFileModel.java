@@ -18,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "JARS")
-@NamedQueries({ @NamedQuery(name = "JarFileModel.getJars", query = "SELECT j FROM JarFileModel j") })
+@NamedQueries({
+		@NamedQuery(name = "JarFileModel.getJars", query = "SELECT j FROM JarFileModel j"),
+		@NamedQuery(name = "JarFileModel.getJarsCount", query = "SELECT COUNT(j) FROM JarFileModel j") })
 public class JarFileModel {
 
 	@Id

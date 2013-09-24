@@ -42,7 +42,7 @@ public class ConsoleController {
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
 	public ModelAndView calculate() {
 		ConsoleModel consoleModel = new ConsoleModel();
-		consoleModel.setJarFiles(jarManager.loadJars());
+		consoleModel.setJarFiles(jarManager.loadJars(-1, -1));
 		return new ModelAndView("console", "consoleModel", consoleModel);
 	}
 	

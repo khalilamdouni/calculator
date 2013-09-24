@@ -6,19 +6,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 
-<link href="js/jtable/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css" />
- <script src="js/jquery-ui-1.10.0.min.js" type="text/javascript"></script>
- 
+<link href="js/jtable/themes/lightcolor/blue/jtable.css" rel="stylesheet" type="text/css" />
+<link href="js/jqueryUICustom/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
+
+
+<script src="js/jquery-ui-1.10.0.min.js" type="text/javascript"></script> 
 <script src="js/jtable/jquery.jtable.js" type="text/javascript"></script>
 <script src="js/jtable/json2.js" type="text/javascript"></script>
 
 
+
+
+<div id="jarstable">
+</div>
 <script type="text/javascript">
 $(document).ready(function () {
     $('#jarstable').jtable({
-        title: 'Jars Table',
+    	 title: 'List jars',
+         paging: true,
+         pageSize: 10, //Set page size (default: 10)
+         sorting: true,
+         defaultSorting: 'Title ASC',
+         selecting: true, 
+         multiselect: true,
+         selectingCheckboxes: true, 
         actions: {
-            listAction: 'getJars'
+            listAction: 'getJars',
+            updateAction: 'updateJar',
+            deleteAction: 'deleteJar'
         },
         fields: {
         	jarid: {
@@ -40,10 +55,6 @@ $(document).ready(function () {
     
 });
 </script>
-
-<div id="jarstable">
-</div>
-
 	<div>
 		<form:form action="uploadJar" method="POST"
 			enctype="multipart/form-data" modelAttribute="jarManagerModel">

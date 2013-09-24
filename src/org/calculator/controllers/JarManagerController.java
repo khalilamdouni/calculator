@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -57,12 +58,14 @@ public class JarManagerController {
 	}
 	
 	@RequestMapping(value = "/getJars", method = RequestMethod.POST, headers = "Accept=application/json")
-	public @ResponseBody JSONJTableModel getJars() {
-		logger.info("CALLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
-		List<JarFileModel> result = this.jarManager.loadJars();
-		logger.info("*******************************************" + result.size());
-		return new JSONJTableModel("OK", result, result.size());
+	public @ResponseBody
+	JSONJTableModel getJars(@RequestParam int jtStartIndex,
+			@RequestParam int jtPageSize) {
+		return new JSONJTableModel("OK", this.jarManager.loadJars(jtStartIndex,
+				jtPageSize), this.jarManager.getJarsCount());
 	}
+	
+	
 
 	public IJarManager getJarManager() {
 		return jarManager;

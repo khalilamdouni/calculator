@@ -8,6 +8,7 @@ import org.calculator.models.JarFileModel;
 public interface IJarManagerDao {
 	
 	public String saveJar(JarFileModel jarFile) throws IllegalStateException, IOException;
-	public List<JarFileModel> getJars();
+	public List<JarFileModel> getJars(int startIndex, int dataCount);
+	public int getJarsCount();
 	
 }
