@@ -74,6 +74,12 @@ public class JarManagerController {
 				this.jarManager.updateJar(jarFile));
 	}
 	
+	@RequestMapping(value = "/deleteJar", method = RequestMethod.POST, headers = "Accept=application/json")
+	public @ResponseBody
+	JSONJTableResponseModel deleteJar(@RequestParam String jarId) {
+		this.jarManager.deleteJar(jarId);
+		return new JSONJTableResponseModel("OK");
+	}
 
 	public IJarManager getJarManager() {
 		return jarManager;

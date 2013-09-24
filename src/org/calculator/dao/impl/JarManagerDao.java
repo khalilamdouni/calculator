@@ -62,4 +62,9 @@ public class JarManagerDao implements IJarManagerDao {
 		return em.merge(jarFile);
 	}
 
+	@Override
+	public void deleteJar(String jarId) {
+		em.remove(em.find(JarFileModel.class, jarId));
+	}
+
 }

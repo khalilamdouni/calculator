@@ -97,4 +97,9 @@ public class JarManager implements IJarManager {
 		return this.jarManagerDao.updateJar(jarFile);
 	}
 
+	@Override
+	public void deleteJar(String jarId) {
+		this.jarManagerDao.deleteJar(jarId);
+	}
+
 }
