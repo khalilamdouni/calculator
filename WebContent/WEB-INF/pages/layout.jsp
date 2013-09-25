@@ -12,7 +12,10 @@
   
   <link href="css/style.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/calculator.css">
-
+  
+  <link rel="icon" href="img/calculator.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="img/calculator.ico" type="image/x-icon" />
+  
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/jstree/jquery.jstree.js"></script>   
   
