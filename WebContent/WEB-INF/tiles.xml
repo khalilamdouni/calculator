@@ -17,4 +17,10 @@
 		<put-attribute name="title" value="Console" />
 		<put-attribute name="body" value="/WEB-INF/pages/jarManager.jsp" />
 	</definition>
+	
+	<definition name="error" extends="base.definition">
+		<put-attribute name="title" value="Error" />
+		<put-attribute name="body" value="/WEB-INF/pages/error.jsp" />
+	</definition>
+	
 </tiles-definitions>

@@ -146,3 +146,14 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	color:#ffffff; 
 	text-decoration:none; 
 }
+
+.error {
+	border: 1px solid;
+	margin: 20px 0px;
+	padding: 15px 10px 15px 70px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url('../img/error.png');
+}
