@@ -48,7 +48,9 @@
 			<tr>
 				<td></td>
 				<td>
-					<button id="estimateButton" value="Estimate">Select Algi in the tree</button>
+				<div class="estimate-button">
+					<a  href="javascript:void(0)" id="estimateButton" >Select Algo in the tree</a>
+				</div>
 				</td>
 			</tr>
 		</table>
