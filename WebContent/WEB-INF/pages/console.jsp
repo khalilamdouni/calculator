@@ -16,6 +16,14 @@
 <link rel="stylesheet" type="text/css" href="css/jqplot/jquery.jqplot.css" />
 <link rel="stylesheet" type="text/css" href="css/jqplot/jquery-ui.css" />
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#estimateButton").click(function() {
+			calculate();
+		});
+	});
+</script>
+
 <div id="algos-treeview" class="leftpanel">
 	<ul>
 		<li><a>Jars</a>
@@ -36,24 +44,19 @@
 </div>
 <div class="rightpanel">
 	<div class="rightbody">
-
-
 		<table>
 			<tr>
 				<td></td>
 				<td>
-
-					<button id="estimateButton" onclick="calculate()" value="Estimate">Select Algi in the tree</button>
-
+					<button id="estimateButton" value="Estimate">Select Algi in the tree</button>
 				</td>
 			</tr>
-
 		</table>
-
-		<div id="chart1" style="position: relative;" class="jqplot-target">
-
-		</div>
-
+		<table id="charts" style="width: 930px;">
+			<tbody>
+			
+			</tbody>
+		</table>
 	</div>
 </div>
 <div class="clear"></div>
