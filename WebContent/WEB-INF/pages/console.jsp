@@ -56,7 +56,7 @@
 		</table>
 		<table id="charts" style="width: 930px;">
 			<tbody>
-			
+
 			</tbody>
 		</table>
 	</div>

@@ -17,6 +17,8 @@
   <link rel="shortcut icon" href="img/calculator.ico" type="image/x-icon" />
   
   <script type="text/javascript" src="js/jquery.js"></script>
+  <script src="js/jquery-ui-1.10.0.min.js" type="text/javascript"></script> 
+  
   <script type="text/javascript" src="js/jstree/jquery.jstree.js"></script>   
   
     <script type="text/javascript" src="js/calculator.js"></script>

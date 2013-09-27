@@ -10,7 +10,6 @@
 <link href="js/jqueryUICustom/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
 
 
-<script src="js/jquery-ui-1.10.0.min.js" type="text/javascript"></script> 
 <script src="js/jtable/jquery.jtable.js" type="text/javascript"></script>
 <script src="js/jtable/json2.js" type="text/javascript"></script>
 
