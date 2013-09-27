@@ -17,12 +17,12 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	margin: 0px;
 }
 .main {
-	width: 840px;
+	width: 940px;
 	margin: 0px auto;
 }
 .page {
 	background-color: #FFFFFF;
-	width: 1200px;
+	width: 1300px;
 	float: left;
 	padding: 0px 20px;
 	margin-bottom: 20px;
@@ -30,12 +30,12 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
     margin-left: -200px;
 }
 .header, .header-img {
-	width: 1200px;
+	width: 1300px;
 	float: left;
 }
 .topmenu {
 	background-color: #000000;
-	width: 1200px;
+	width: 1300px;
 	height: 50px;
 	float: left;
 }
@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	color: #23b14d;
 }
 .content {
-	width: 1200px;
+	width: 1300px;
 	height: 1000px;
 	float: left;
 }
@@ -135,7 +135,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	background-image: url(../img/footer.jpg);
 	background-repeat: repeat;
 	background-position: left top;
-	width: 1200px;
+	width: 1300px;
 	height: 77px;
 	float: left;
 }
@@ -161,7 +161,10 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	background-image: url('../img/error.png');
 }
 
-
+.chart-conteiner {
+		box-shadow: 0px 9px 0px rgba(11, 91, 177, 1), 0px 9px 25px
+		rgba(0, 0, 0, .7);
+}
 
 
 .estimate-button a {

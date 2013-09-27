@@ -30,7 +30,7 @@
 <div class="page">
 <div class="header">
 <div class="header-img"><img src="img/header.jpg" alt="" height="170"
- width="1200"></div>
+ width="1300"></div>
 <div class="topmenu">
 <ul>
   <li><a href="calculate">Console</a></li>

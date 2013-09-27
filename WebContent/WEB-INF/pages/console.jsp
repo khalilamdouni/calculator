@@ -54,7 +54,7 @@
 				</td>
 			</tr>
 		</table>
-		<table id="charts" style="width: 930px;">
+		<table id="charts" cellspacing="20" style="width: 1000px;">
 			<tbody>
 
 			</tbody>

@@ -46,8 +46,10 @@ function addRowToTable() {
 	var result = "chart" + chartIndex;
 	if (addRowOrNot == 1) {
 		$("#charts > tbody").append(
-				"<tr><td id='chart" + chartTabCount + "'></td><td id='chart"
-						+ (chartTabCount + 1) + "'></td></tr>");
+				"<tr><td><div class='chart-conteiner' id='chart"
+						+ chartTabCount + "'></div></td>"
+						+ "<td><div class='chart-conteiner' id='chart"
+						+ (chartTabCount + 1) + "'></div></td></tr>");
 		chartTabCount = chartTabCount + 2;
 	}
 	addRowOrNot = addRowOrNot * -1;
