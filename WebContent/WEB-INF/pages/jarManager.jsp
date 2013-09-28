@@ -16,8 +16,7 @@
 
 
 
-<div id="jarstable">
-</div>
+
 <script type="text/javascript">
 $(document).ready(function () {
     $('#jarstable').jtable({
@@ -55,29 +54,7 @@ $(document).ready(function () {
     
 });
 </script>
-	<div>
-		<form:form action="uploadJar" method="POST"
-			enctype="multipart/form-data" modelAttribute="jarManagerModel">
-			<table>
-				<tr>
-					<th>Jar file :</th>
-					<th><input type="file" name="jarFile.jarFile" /></th>
-				</tr>
-				<tr>
-					<th>Title :</th>
-					<th><input type="text" name="jarFile.title" /></th>
-				</tr>
-				<tr>
-					<th>Description :</th>
-					<th><input type="text" name="jarFile.description" /></th>
-				</tr>
-				<tr>
-					<th></th>
-					<th><input type="submit" value="Upload" /></th>
-				</tr>
-			</table>
-		</form:form>
-	</div>
+<div class="bordered-box">
 	<div>
 		<form:form action="saveClasses" method="POST"
 			modelAttribute="jarManagerModel">
@@ -113,3 +90,30 @@ $(document).ready(function () {
 			</table>
 		</form:form>
 	</div>
+
+	<div>
+		<form:form action="uploadJar" method="POST"
+			enctype="multipart/form-data" modelAttribute="jarManagerModel">
+			<table>
+				<tr>
+					<th>Jar file :</th>
+					<th><input type="file" name="jarFile.jarFile" /></th>
+				</tr>
+				<tr>
+					<th>Title :</th>
+					<th><input type="text" name="jarFile.title" /></th>
+				</tr>
+				<tr>
+					<th>Description :</th>
+					<th><input type="text" name="jarFile.description" /></th>
+				</tr>
+				<tr>
+					<th></th>
+					<th><input type="submit" value="Upload" /></th>
+				</tr>
+			</table>
+		</form:form>
+	</div>
+</div>
+<div class="shadow-conteiner" id="jarstable">
+</div>
