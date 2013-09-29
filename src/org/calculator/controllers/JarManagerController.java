@@ -36,17 +36,14 @@ public class JarManagerController {
 	}
 
 	@RequestMapping(value = "/uploadJar", method = RequestMethod.POST)
-	public ModelAndView uploadJar(
+	public String uploadJar(
 			@ModelAttribute("jarManagerModel") JarManagerModel jarManagerModel,
 			BindingResult result) throws IllegalStateException, IOException,
 			ClassNotFoundException {
-		
-		jarManagerModel.setCalculatorClasses(this.jarManager
-				.reflectJar(this.jarManager.saveJar(jarManagerModel
-						.getJarFile())));
-		
-		return new ModelAndView("jarManager", "jarManagerModel",
-				jarManagerModel);
+
+		this.jarManager.saveJar(jarManagerModel.getJarFile());
+
+		return "redirect:jarManager";
 	}
 	
 	@RequestMapping(value = "/saveClasses", method = RequestMethod.POST)
