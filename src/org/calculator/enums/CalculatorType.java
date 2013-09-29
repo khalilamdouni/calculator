@@ -12,7 +12,7 @@ public enum CalculatorType {
 	private CalculatorType(String type) {
 		this.name = type;
 	}
-
+	
 	@Override
 	public String toString() {
 		return name;

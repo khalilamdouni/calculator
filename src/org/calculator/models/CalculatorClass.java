@@ -1,5 +1,7 @@
 package org.calculator.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -36,6 +39,9 @@ public class CalculatorClass {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "JAR_ID", nullable = false)
 	private JarFileModel jarFile;
+	
+	@OneToMany(mappedBy = "calculatorClass", fetch = FetchType.LAZY)
+	private List<CalculatorClassMethod> methods;
 
 	public CalculatorClass(String jarId, String name) {
 		super();
@@ -86,6 +92,14 @@ public class CalculatorClass {
 
 	public void setJarFile(JarFileModel jarFile) {
 		this.jarFile = jarFile;
+	}
+	
+	public List<CalculatorClassMethod> getMethods() {
+		return methods;
+	}
+
+	public void setMethods(List<CalculatorClassMethod> methods) {
+		this.methods = methods;
 	}
 
 	@Override
