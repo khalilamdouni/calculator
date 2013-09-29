@@ -1,9 +1,9 @@
 package org.calculator.controllers;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.calculator.business.IClassManager;
 import org.calculator.business.IJarManager;
 import org.calculator.models.JarFileModel;
 import org.calculator.models.JarManagerModel;
@@ -26,6 +26,7 @@ public class JarManagerController {
 	private static final Logger logger = Logger.getLogger(JarManagerController.class);
 
 	private IJarManager jarManager;
+	private IClassManager classManager;
 
 	@RequestMapping(value = "/jarManager", method = RequestMethod.GET)
 	public ModelAndView jarManager() {
@@ -53,7 +54,7 @@ public class JarManagerController {
 			@ModelAttribute("jarManagerModel") JarManagerModel jarManagerModel,
 			BindingResult result) {
 
-		this.jarManager.saveCalculatorClasses(jarManagerModel
+		this.classManager.saveCalculatorClasses(jarManagerModel
 				.getCalculatorClasses());
 		return "redirect:jarManager";
 	}
@@ -89,6 +90,16 @@ public class JarManagerController {
 	@Qualifier("jarManager")
 	public void setJarManager(IJarManager jarManager) {
 		this.jarManager = jarManager;
+	}
+
+	public IClassManager getClassManager() {
+		return classManager;
+	}
+
+	@Autowired
+	@Qualifier("classManager")
+	public void setClassManager(IClassManager classManager) {
+		this.classManager = classManager;
 	}
 
 }

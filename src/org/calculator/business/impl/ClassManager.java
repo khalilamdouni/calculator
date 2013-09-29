@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -46,6 +47,11 @@ public class ClassManager implements IClassManager {
 		return null;
 	}
 
+	@Override
+	public void saveCalculatorClasses(List<CalculatorClass> calculatorClasses) {
+		this.calculatorClassDao.saveCalculatorClasses(calculatorClasses);
+	}
+	
 	public ICalculatorClassDao getCalculatorClassDao() {
 		return calculatorClassDao;
 	}

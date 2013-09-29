@@ -20,9 +20,7 @@ import org.calculator.models.JarFileModel;
 public class JarManager implements IJarManager {
 
 	private IJarManagerDao jarManagerDao;
-	
-	private ICalculatorClassDao calculatorClassDao;
-	
+		
 	private static final Logger logger = Logger.getLogger(JarManager.class);
 
 	@Override
@@ -60,12 +58,6 @@ public class JarManager implements IJarManager {
 		return jarClasses;
 	}
 	
-	
-	@Override
-	public void saveCalculatorClasses(List<CalculatorClass> calculatorClasses) {
-		this.calculatorClassDao.saveCalculatorClasses(calculatorClasses);
-	}
-	
 	@Override
 	public List<JarFileModel> loadJars(int startIndex, int dataCount) {
 		return jarManagerDao.getJars(startIndex, dataCount);
@@ -77,14 +69,6 @@ public class JarManager implements IJarManager {
 
 	public void setJarManagerDao(IJarManagerDao jarManagerDao) {
 		this.jarManagerDao = jarManagerDao;
-	}
-
-	public ICalculatorClassDao getCalculatorClassDao() {
-		return calculatorClassDao;
-	}
-
-	public void setCalculatorClassDao(ICalculatorClassDao calculatorClassDao) {
-		this.calculatorClassDao = calculatorClassDao;
 	}
 
 	@Override
