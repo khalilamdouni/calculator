@@ -1,6 +1,7 @@
 package org.calculator.business.impl;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -13,7 +14,10 @@ import org.apache.log4j.Logger;
 import org.calculator.business.IJarManager;
 import org.calculator.dao.ICalculatorClassDao;
 import org.calculator.dao.IJarManagerDao;
+import org.calculator.enums.CalculatorType;
 import org.calculator.models.CalculatorClass;
+import org.calculator.models.CalculatorClassMethod;
+import org.calculator.models.CalculatorMethodParam;
 import org.calculator.models.IAlgorithme;
 import org.calculator.models.JarFileModel;
 
@@ -29,6 +33,32 @@ public class JarManager implements IJarManager {
 		return jarManagerDao.saveJar(jarFile);
 	}
 
+	private CalculatorClassMethod createCalculatorClassMethod(Method method) {
+		CalculatorClassMethod calculatorClassMethod = null;
+		List<CalculatorMethodParam> calculatorMethodParams = new ArrayList<CalculatorMethodParam>();
+		Class<?>[] paramTypes = method.getParameterTypes();
+		for (int i = 0; i < paramTypes.length; i++) {
+			CalculatorMethodParam calculatorMethodParam = new CalculatorMethodParam(
+					"arg" + i, CalculatorType.STRING);
+			calculatorMethodParams.add(calculatorMethodParam);
+		}
+		calculatorClassMethod = new CalculatorClassMethod(method.getName(),
+				calculatorMethodParams);
+		return calculatorClassMethod;
+	}
+	
+	private CalculatorClass createCalculatorClass(Class<?> c, String jarId) {
+		CalculatorClass result = new CalculatorClass(jarId,
+				c.getCanonicalName());
+
+		List<CalculatorClassMethod> calculatorClassMethods = new ArrayList<CalculatorClassMethod>();
+		for (Method method : c.getMethods()) {
+			calculatorClassMethods.add(createCalculatorClassMethod(method));
+		}
+		result.setMethods(calculatorClassMethods);
+		return result;
+	}
+
 	@Override
 	public List<CalculatorClass> reflectJar(String jarFileName)
 			throws IOException, ClassNotFoundException {
@@ -36,11 +66,11 @@ public class JarManager implements IJarManager {
 		List<CalculatorClass> jarClasses = new ArrayList<CalculatorClass>();
 		JarFile jarFile = new JarFile(jarPath);
 		Enumeration<JarEntry> e = jarFile.entries();
-		
+
 		URL[] urls = { new URL("jar:file:" + jarPath + "!/") };
 		ClassLoader loader = IAlgorithme.class.getClassLoader();
 		URLClassLoader cl = URLClassLoader.newInstance(urls, loader);
-		
+
 		while (e.hasMoreElements()) {
 			JarEntry je = (JarEntry) e.nextElement();
 			if (je.isDirectory() || !je.getName().endsWith(".class")) {
@@ -51,8 +81,8 @@ public class JarManager implements IJarManager {
 			className = className.replace('/', '.');
 			Class<?> c = cl.loadClass(className);
 
-			jarClasses.add(new CalculatorClass(jarFileName.substring(0,
-					jarFileName.indexOf('.')), c.getCanonicalName()));
+			jarClasses.add(createCalculatorClass(c,
+					jarFileName.substring(0, jarFileName.indexOf('.'))));
 		}
 		jarFile.close();
 		return jarClasses;

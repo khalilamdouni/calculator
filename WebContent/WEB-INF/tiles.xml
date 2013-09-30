@@ -18,6 +18,11 @@
 		<put-attribute name="body" value="/WEB-INF/pages/jarManager.jsp" />
 	</definition>
 	
+	<definition name="reflector" extends="base.definition">
+		<put-attribute name="title" value="Reflector" />
+		<put-attribute name="body" value="/WEB-INF/pages/jarManager.jsp" />
+	</definition>
+	
 	<definition name="error" extends="base.definition">
 		<put-attribute name="title" value="Error" />
 		<put-attribute name="body" value="/WEB-INF/pages/error.jsp" />
