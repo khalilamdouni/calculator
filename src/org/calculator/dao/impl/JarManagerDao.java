@@ -42,7 +42,7 @@ public class JarManagerDao implements IJarManagerDao {
 	@Override
 	public List<JarFileModel> getJars(int startIndex, int dataCount) {
 		TypedQuery<JarFileModel> query = em.createNamedQuery(
-				"JarFileModel.getJars", JarFileModel.class);
+				"JarFileModel.getAllJars", JarFileModel.class);
 		
 		if (startIndex >= 0 && dataCount > 0) {
 			query.setFirstResult(startIndex);
@@ -65,6 +65,13 @@ public class JarManagerDao implements IJarManagerDao {
 	@Override
 	public void deleteJar(String jarId) {
 		em.remove(em.find(JarFileModel.class, jarId));
+	}
+	
+	public List<JarFileModel> getUnreflectedJars() {
+		TypedQuery<JarFileModel> query = em.createNamedQuery(
+				"JarFileModel.getJars", JarFileModel.class);
+		query.setParameter("reflected", true);
+		return query.getResultList();
 	}
 
 }

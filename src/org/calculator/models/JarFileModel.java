@@ -19,8 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table(name = "JARS")
 @NamedQueries({
-		@NamedQuery(name = "JarFileModel.getJars", query = "SELECT j FROM JarFileModel j"),
-		@NamedQuery(name = "JarFileModel.getJarsCount", query = "SELECT COUNT(j) FROM JarFileModel j") })
+		@NamedQuery(name = "JarFileModel.getAllJars", query = "SELECT j FROM JarFileModel j"),
+		@NamedQuery(name = "JarFileModel.getJarsCount", query = "SELECT COUNT(j) FROM JarFileModel j"),
+		@NamedQuery(name = "JarFileModel.getJars", query = "SELECT j FROM JarFileModel j=:reflected")})
 public class JarFileModel {
 
 	@Id
@@ -39,6 +40,9 @@ public class JarFileModel {
 	@OneToMany(mappedBy = "jarFile", fetch = FetchType.EAGER)
 	private List<CalculatorClass> calculatorClasses;
 
+	@Column(name = "REFLECTED")
+	private boolean reflected;
+	
 	@Transient
 	private MultipartFile jarFile;
 
@@ -86,6 +90,14 @@ public class JarFileModel {
 		this.calculatorClasses = calculatorClasses;
 	}
 	
+	public boolean isReflected() {
+		return reflected;
+	}
+
+	public void setReflected(boolean reflected) {
+		this.reflected = reflected;
+	}
+
 	@Override
 	public String toString() {
 		return this.jarId + " | " + this.title;
