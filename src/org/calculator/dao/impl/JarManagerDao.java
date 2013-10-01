@@ -70,7 +70,7 @@ public class JarManagerDao implements IJarManagerDao {
 	public List<JarFileModel> getUnreflectedJars() {
 		TypedQuery<JarFileModel> query = em.createNamedQuery(
 				"JarFileModel.getJars", JarFileModel.class);
-		query.setParameter("reflected", true);
+		query.setParameter("reflected", false);
 		return query.getResultList();
 	}
 

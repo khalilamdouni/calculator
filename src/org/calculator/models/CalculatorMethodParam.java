@@ -23,7 +23,7 @@ public class CalculatorMethodParam {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "NQME")
+	@Column(name = "NAME")
 	private String name;
 
 	@Column(name = "TYPE")

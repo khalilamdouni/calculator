@@ -35,6 +35,7 @@
 <ul>
   <li><a href="calculate">Console</a></li>
   <li><a href="jarManager">Jar manager</a></li>
+  <li><a href="reflector">Reflector</a></li>
   <li><a href="#">About Us</a></li>
 </ul>
 </div>

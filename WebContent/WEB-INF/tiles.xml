@@ -20,7 +20,7 @@
 	
 	<definition name="reflector" extends="base.definition">
 		<put-attribute name="title" value="Reflector" />
-		<put-attribute name="body" value="/WEB-INF/pages/jarManager.jsp" />
+		<put-attribute name="body" value="/WEB-INF/pages/reflector.jsp" />
 	</definition>
 	
 	<definition name="error" extends="base.definition">

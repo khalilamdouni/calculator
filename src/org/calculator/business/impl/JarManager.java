@@ -24,6 +24,7 @@ import org.calculator.models.JarFileModel;
 public class JarManager implements IJarManager {
 
 	private IJarManagerDao jarManagerDao;
+	private ICalculatorClassDao calculatorClassDao;
 		
 	private static final Logger logger = Logger.getLogger(JarManager.class);
 
@@ -34,16 +35,17 @@ public class JarManager implements IJarManager {
 	}
 
 	private CalculatorClassMethod createCalculatorClassMethod(Method method) {
-		CalculatorClassMethod calculatorClassMethod = null;
+		CalculatorClassMethod calculatorClassMethod = new CalculatorClassMethod();
 		List<CalculatorMethodParam> calculatorMethodParams = new ArrayList<CalculatorMethodParam>();
 		Class<?>[] paramTypes = method.getParameterTypes();
 		for (int i = 0; i < paramTypes.length; i++) {
 			CalculatorMethodParam calculatorMethodParam = new CalculatorMethodParam(
 					"arg" + i, CalculatorType.STRING);
+			calculatorMethodParam.setMethod(calculatorClassMethod);
 			calculatorMethodParams.add(calculatorMethodParam);
 		}
-		calculatorClassMethod = new CalculatorClassMethod(method.getName(),
-				calculatorMethodParams);
+		calculatorClassMethod.setName(method.getName());
+		calculatorClassMethod.setParams(calculatorMethodParams);
 		return calculatorClassMethod;
 	}
 	
@@ -53,16 +55,18 @@ public class JarManager implements IJarManager {
 
 		List<CalculatorClassMethod> calculatorClassMethods = new ArrayList<CalculatorClassMethod>();
 		for (Method method : c.getMethods()) {
-			calculatorClassMethods.add(createCalculatorClassMethod(method));
+			CalculatorClassMethod calculatorClassMethod = createCalculatorClassMethod(method);
+			calculatorClassMethod.setCalculatorClass(result);
+			calculatorClassMethods.add(calculatorClassMethod);
 		}
 		result.setMethods(calculatorClassMethods);
 		return result;
 	}
 
 	@Override
-	public List<CalculatorClass> reflectJar(String jarFileName)
-			throws IOException, ClassNotFoundException {
-		String jarPath = "/home/khalil/work/spring/jartest/" + jarFileName;
+	public List<CalculatorClass> reflectJar(String jarId) throws IOException,
+			ClassNotFoundException {
+		String jarPath = "/home/khalil/work/spring/jartest/" + jarId + ".jar";
 		List<CalculatorClass> jarClasses = new ArrayList<CalculatorClass>();
 		JarFile jarFile = new JarFile(jarPath);
 		Enumeration<JarEntry> e = jarFile.entries();
@@ -81,8 +85,7 @@ public class JarManager implements IJarManager {
 			className = className.replace('/', '.');
 			Class<?> c = cl.loadClass(className);
 
-			jarClasses.add(createCalculatorClass(c,
-					jarFileName.substring(0, jarFileName.indexOf('.'))));
+			jarClasses.add(createCalculatorClass(c, jarId));
 		}
 		jarFile.close();
 		return jarClasses;
@@ -114,6 +117,25 @@ public class JarManager implements IJarManager {
 	@Override
 	public void deleteJar(String jarId) {
 		this.jarManagerDao.deleteJar(jarId);
+	}
+
+	@Override
+	public void reflectJars() throws IOException, ClassNotFoundException {
+		List<JarFileModel> unreflectedJars = jarManagerDao.getUnreflectedJars();
+		for (JarFileModel jarFileModel : unreflectedJars) {
+			calculatorClassDao.saveCalculatorClasses(reflectJar(jarFileModel
+					.getJarId()));
+			jarFileModel.setReflected(true);
+			jarManagerDao.updateJar(jarFileModel);
+		}
+	}
+
+	public ICalculatorClassDao getCalculatorClassDao() {
+		return calculatorClassDao;
+	}
+
+	public void setCalculatorClassDao(ICalculatorClassDao calculatorClassDao) {
+		this.calculatorClassDao = calculatorClassDao;
 	}
 
 }

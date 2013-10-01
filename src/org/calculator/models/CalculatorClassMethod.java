@@ -2,6 +2,7 @@ package org.calculator.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +30,8 @@ public class CalculatorClassMethod {
 	@JoinColumn(name = "CLASS_ID")
 	private CalculatorClass calculatorClass;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "method")
+	@OneToMany(mappedBy = "method", cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	private List<CalculatorMethodParam> params;
 
 	public CalculatorClassMethod() {

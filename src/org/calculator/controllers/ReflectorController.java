@@ -1,5 +1,7 @@
 package org.calculator.controllers;
 
+import java.io.IOException;
+
 import org.calculator.business.IJarManager;
 import org.calculator.models.ReflectorModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +13,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ReflectorController {
-	
+
 	private IJarManager jarManager;
-	
+
 	@RequestMapping(value = "/reflector", method = RequestMethod.GET)
-	public ModelAndView reflectJars() {
+	public ModelAndView getReflector() {
 		ReflectorModel reflectorModel = new ReflectorModel();
 		return new ModelAndView("reflector", "reflectorModel", reflectorModel);
 	}
-	
+
+	@RequestMapping(value = "/reflectJars", method = RequestMethod.GET)
+	public String reflectJars() throws ClassNotFoundException, IOException {
+		jarManager.reflectJars();
+		return "redirect:reflector";
+	}
+
 	public IJarManager getJarManager() {
 		return jarManager;
 	}
@@ -29,5 +37,5 @@ public class ReflectorController {
 	public void setJarManager(IJarManager jarManager) {
 		this.jarManager = jarManager;
 	}
-	
+
 }

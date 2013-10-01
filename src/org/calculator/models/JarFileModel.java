@@ -2,6 +2,7 @@ package org.calculator.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 @NamedQueries({
 		@NamedQuery(name = "JarFileModel.getAllJars", query = "SELECT j FROM JarFileModel j"),
 		@NamedQuery(name = "JarFileModel.getJarsCount", query = "SELECT COUNT(j) FROM JarFileModel j"),
-		@NamedQuery(name = "JarFileModel.getJars", query = "SELECT j FROM JarFileModel j=:reflected")})
+		@NamedQuery(name = "JarFileModel.getJars", query = "SELECT j FROM JarFileModel j WHERE j.reflected=:reflected")})
 public class JarFileModel {
 
 	@Id
@@ -37,7 +38,8 @@ public class JarFileModel {
 	@JsonProperty("description")
 	private String description;
 
-	@OneToMany(mappedBy = "jarFile", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "jarFile", cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.EAGER)
 	private List<CalculatorClass> calculatorClasses;
 
 	@Column(name = "REFLECTED")

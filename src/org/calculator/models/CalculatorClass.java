@@ -2,6 +2,7 @@ package org.calculator.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +41,7 @@ public class CalculatorClass {
 	@JoinColumn(name = "JAR_ID", nullable = false)
 	private JarFileModel jarFile;
 	
-	@OneToMany(mappedBy = "calculatorClass", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "calculatorClass", cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	private List<CalculatorClassMethod> methods;
 
 	public CalculatorClass(String jarId, String name) {
