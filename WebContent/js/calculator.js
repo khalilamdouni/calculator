@@ -130,6 +130,24 @@ function displayChart(resultsData) {
 		}
 	});
 
-	$('.jqplot-highlighter-tooltip').addClass('ui-corner-all')
+	$('.jqplot-highlighter-tooltip').addClass('ui-corner-all');
 
+}
+
+
+
+
+// jars and classes forms management 
+
+function getClassForm(classId) {
+	var url = "getClassForm/" + classId;
+	$.ajax({
+		type : "GET",
+		url : url,
+		contentType : 'application/html',
+		success : function(response) {
+			$("#element-form").html(response);
+		}
+	});
+	return false;
 }

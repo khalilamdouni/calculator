@@ -16,6 +16,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table(name = "CALCULATOR_CLASSES")
 @NamedQueries({
@@ -37,10 +39,12 @@ public class CalculatorClass {
 	@Column(name = "IS_ALGO")
 	private boolean algo;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "JAR_ID", nullable = false)
 	private JarFileModel jarFile;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "calculatorClass", cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	private List<CalculatorClassMethod> methods;
 

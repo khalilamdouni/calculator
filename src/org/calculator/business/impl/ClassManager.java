@@ -60,4 +60,9 @@ public class ClassManager implements IClassManager {
 		this.calculatorClassDao = calculatorClassDao;
 	}
 
+	@Override
+	public CalculatorClass getCalculatorClass(long id) {
+		return calculatorClassDao.getClassById(id);
+	}
+
 }

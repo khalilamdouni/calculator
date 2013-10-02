@@ -32,7 +32,7 @@
 						<ul>
 							<c:forEach items="${jarFile.calculatorClasses}"
 								var="calculatorClass" varStatus="classStatus">
-								<li><a href="javascript:void(0)">
+								<li><a onclick="getClassForm('${calculatorClass.id}');" href="javascript:void(0)">
 										${calculatorClass.name} </a>
 									<ul>
 										<c:forEach items="${calculatorClass.methods}"
@@ -57,6 +57,8 @@
 	<div class="rightbody">
 		<div class="estimate-button">
 			<a href="reflectJars" id="reflectButton">Reflect All Jars</a>
+		</div>
+		<div id="element-form">
 		</div>
 	</div>
 </div>
