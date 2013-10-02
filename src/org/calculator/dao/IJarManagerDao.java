@@ -13,5 +13,5 @@ public interface IJarManagerDao {
 	public void deleteJar(String jarId);
 	public int getJarsCount();
 	public List<JarFileModel> getUnreflectedJars();
-	
+	public List<JarFileModel> getReflectedJars();
 }

@@ -138,4 +138,10 @@ public class JarManager implements IJarManager {
 		this.calculatorClassDao = calculatorClassDao;
 	}
 
+	@Override
+	public List<JarFileModel> getReflectedJars() {
+		return jarManagerDao.getReflectedJars();
+		
+	}
+
 }

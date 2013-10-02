@@ -4,6 +4,7 @@ var selectedAlgoName;
 // ********* treeview management 
 $(document).ready(function() {
 	$("#algos-treeview").jstree();
+	$("#jars-treeview").jstree();
 });
 
 function selectAlgo(algoId, algoName) {

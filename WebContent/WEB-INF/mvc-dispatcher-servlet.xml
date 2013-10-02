@@ -14,6 +14,13 @@
 
     
     <mvc:annotation-driven />
+
+	<mvc:interceptors>
+		<bean
+			class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
+			<property name="entityManagerFactory" ref="emf" />
+		</bean>
+	</mvc:interceptors>
     
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     

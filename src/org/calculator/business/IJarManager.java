@@ -14,4 +14,5 @@ public interface IJarManager {
 	public void deleteJar(String jarId);
 	public int getJarsCount();
 	public void reflectJars() throws IOException, ClassNotFoundException;
+	public List<JarFileModel> getReflectedJars();
 }

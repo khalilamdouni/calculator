@@ -74,4 +74,13 @@ public class JarManagerDao implements IJarManagerDao {
 		return query.getResultList();
 	}
 
+	@Override
+	public List<JarFileModel> getReflectedJars() {
+		TypedQuery<JarFileModel> query = em.createNamedQuery(
+				"JarFileModel.getJars", JarFileModel.class);
+		query.setParameter("reflected", true);
+		return query.getResultList();
+		
+	}
+
 }

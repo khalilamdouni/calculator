@@ -19,6 +19,7 @@ public class ReflectorController {
 	@RequestMapping(value = "/reflector", method = RequestMethod.GET)
 	public ModelAndView getReflector() {
 		ReflectorModel reflectorModel = new ReflectorModel();
+		reflectorModel.setJarFiles(jarManager.getReflectedJars());
 		return new ModelAndView("reflector", "reflectorModel", reflectorModel);
 	}
 
