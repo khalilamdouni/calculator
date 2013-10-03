@@ -65,4 +65,9 @@ public class ClassManager implements IClassManager {
 		return calculatorClassDao.getClassById(id);
 	}
 
+	@Override
+	public CalculatorClass saveCalculatorClass(CalculatorClass calculatorClass) {
+		return calculatorClassDao.saveCalculatorClass(calculatorClass);
+	}
+
 }

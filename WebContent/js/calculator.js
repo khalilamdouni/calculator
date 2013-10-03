@@ -151,3 +151,31 @@ function getClassForm(classId) {
 	});
 	return false;
 }
+
+
+function saveClass() {
+	var id = $('#class-id').val();
+	var name = $('#class-name').val();
+	var description = $('#class-description').val();
+	var algo = $('#algo').is(':checked');
+	var json = {
+		"id" : id,
+		"name" : name,
+		"description" : description,
+		"algo" : algo
+	};
+
+	$.ajax({
+		url : 'saveClass',
+		data : JSON.stringify(json),
+		type : "POST",
+
+		beforeSend : function(xhr) {
+			xhr.setRequestHeader("Accept", "application/json");
+			xhr.setRequestHeader("Content-Type", "application/json");
+		},
+		success : function(response) {
+			$("#element-form").html(response);
+		}
+	});
+}

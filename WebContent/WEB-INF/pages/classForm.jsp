@@ -4,20 +4,21 @@
 	<table>
 		<tr>
 			<td>Name :</td>
-			<td><input type="hidden" name="classModel.id" value="${classModel.id}" />
+			<td><input id="class-id" type="hidden" name="classModel.id"
+				value="${classModel.id}" /> <input id="class-name" type="hidden"
+				name="classModel.name" value="${classModel.name}" />
 				${classModel.name}</td>
 		</tr>
 		<tr>
 			<td>Description :</td>
-			<td><input type="text" name="classModel.description" value="${classModel.description}" /></td>
+			<td><input id="class-description" type="text"
+				name="classModel.description" value="${classModel.description}" /></td>
 		</tr>
 		<tr>
 			<td>Is Algo :</td>
-			<td><form:checkbox path="algo"/></td>
+			<td><form:checkbox id="algo" path="algo" /></td>
 		</tr>
-		<tr>
-			<th></th>
-			<th><input type="submit" value="Save" /></th>
-		</tr>
+
 	</table>
 </form:form>
+<a href="javascript:saveClass()">Save Class</a>

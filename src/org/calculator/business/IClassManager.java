@@ -10,4 +10,5 @@ public interface IClassManager {
 	public IAlgorithme loadCalculatorClass(long id) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException;
 	public void saveCalculatorClasses(List<CalculatorClass> calculatorClasses);
 	public CalculatorClass getCalculatorClass(long id);
+	public CalculatorClass saveCalculatorClass(CalculatorClass calculatorClass);
 }

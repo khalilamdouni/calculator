@@ -41,7 +41,7 @@ public class CalculatorClass {
 
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "JAR_ID", nullable = false)
+	@JoinColumn(name = "JAR_ID", nullable = false, updatable = false)
 	private JarFileModel jarFile;
 	
 	@JsonIgnore

@@ -35,4 +35,9 @@ public class CalculatorClassDao implements ICalculatorClassDao {
 		return query.getSingleResult();
 	}
 
+	@Override
+	public CalculatorClass saveCalculatorClass(CalculatorClass calculatorClass) {
+		return em.merge(calculatorClass);
+	}
+
 }
