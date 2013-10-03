@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.calculator.enums.CalculatorType;
@@ -16,6 +18,9 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "METHOD_PARAMS")
+@NamedQueries({
+	@NamedQuery(name = "CalculatorMethodParam.getParamById", query = "SELECT p FROM CalculatorMethodParam p WHERE id=:id")
+})
 public class CalculatorMethodParam {
 
 	@Id
@@ -34,7 +39,7 @@ public class CalculatorMethodParam {
 	private CalculatorType type;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "METHOD_ID")
+	@JoinColumn(name = "METHOD_ID", nullable = false, updatable = false)
 	private CalculatorClassMethod method;
 
 	public CalculatorMethodParam(String name, CalculatorType type) {

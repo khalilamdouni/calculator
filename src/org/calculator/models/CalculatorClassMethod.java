@@ -11,11 +11,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "CLASS_METHODS")
+@NamedQueries({
+	@NamedQuery(name = "CalculatorClassMethod.getMethodById", query = "SELECT m FROM CalculatorClassMethod m WHERE id=:id")
+})
 public class CalculatorClassMethod {
 
 	@Id
@@ -27,7 +32,7 @@ public class CalculatorClassMethod {
 	private String name;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "CLASS_ID")
+	@JoinColumn(name = "CLASS_ID", nullable = false, updatable = false)
 	private CalculatorClass calculatorClass;
 
 	@OneToMany(mappedBy = "method", cascade = { CascadeType.PERSIST,

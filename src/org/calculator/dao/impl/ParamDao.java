@@ -2,6 +2,7 @@ package org.calculator.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.calculator.dao.IParamDao;
 import org.calculator.models.CalculatorMethodParam;
@@ -17,15 +18,18 @@ public class ParamDao implements IParamDao {
 	
 	@Override
 	public CalculatorMethodParam getParam(long paramId) {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<CalculatorMethodParam> query = em.createNamedQuery(
+				"CalculatorMethodParam.getParamById",
+				CalculatorMethodParam.class);
+		query.setParameter("id", paramId);
+		return query.getSingleResult();
 	}
 
 	@Override
 	public CalculatorMethodParam saveParam(
 			CalculatorMethodParam calculatorMethodParam) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return em.merge(calculatorMethodParam);
 	}
 
 }

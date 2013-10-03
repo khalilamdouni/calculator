@@ -2,6 +2,7 @@ package org.calculator.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.calculator.dao.IMethodDao;
 import org.calculator.models.CalculatorClassMethod;
@@ -17,14 +18,17 @@ public class MethodDao implements IMethodDao {
 	
 	@Override
 	public CalculatorClassMethod getMethod(long methodId) {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<CalculatorClassMethod> query = em.createNamedQuery(
+				"CalculatorClassMethod.getMethodById",
+				CalculatorClassMethod.class);
+		query.setParameter("id", methodId);
+		return query.getSingleResult();
 	}
 
 	@Override
 	public CalculatorClassMethod saveMethod(CalculatorClassMethod method) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return em.merge(method);
 	}
 
 }
