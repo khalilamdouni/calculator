@@ -7,19 +7,27 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-<bean id="calculationEngine" class="org.calculator.business.impl.CalculationEngine">
-</bean>
+	<bean id="calculationEngine" class="org.calculator.business.impl.CalculationEngine">
+	</bean>
 
-<bean id="dataGenerator" class="org.calculator.business.generators.impl.DataGenerator">
-</bean>
+	<bean id="dataGenerator" class="org.calculator.business.generators.impl.DataGenerator">
+	</bean>
 
-<bean id="jarManager" class="org.calculator.business.impl.JarManager">
-    <property name="jarManagerDao" ref="jarManagerDao"></property>
-    <property name="calculatorClassDao" ref="calculatorClassDao"></property>
-</bean>
+	<bean id="jarManager" class="org.calculator.business.impl.JarManager">
+		<property name="jarManagerDao" ref="jarManagerDao"></property>
+		<property name="calculatorClassDao" ref="calculatorClassDao"></property>
+	</bean>
 
-<bean id="classManager" class="org.calculator.business.impl.ClassManager">
-    <property name="calculatorClassDao" ref="calculatorClassDao"></property>
-</bean>
+	<bean id="classManager" class="org.calculator.business.impl.ClassManager">
+		<property name="calculatorClassDao" ref="calculatorClassDao"></property>
+	</bean>
+
+	<bean id="methodManager" class="org.calculator.business.impl.MethodManager">
+		<property name="methodDao" ref="methodDao"></property>
+	</bean>
+	<bean id="paramManager" class="org.calculator.business.impl.ParamManager">
+		<property name="methodDao" ref="methodDao"></property>
+	</bean>
+
 
 </beans>
