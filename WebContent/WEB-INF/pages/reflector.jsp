@@ -37,11 +37,11 @@
 									<ul>
 										<c:forEach items="${calculatorClass.methods}"
 											var="classMethod" varStatus="methodStatus">
-											<li><a href="javascript:void(0)"> ${classMethod.name} </a>
+											<li><a onclick="getMethodForm('${classMethod.id}');" href="javascript:void(0)"> ${classMethod.name} </a>
 												<ul>
 													<c:forEach items="${classMethod.params}"
 														var="methodParam" varStatus="paramStatus">
-														<li><a href="javascript:void(0)"> ${methodParam.name}
+														<li><a onclick="getParamForm('${methodParam.id}');" href="javascript:void(0)"> ${methodParam.name}
 														</a></li>
 													</c:forEach>
 												</ul></li>

@@ -139,19 +139,32 @@ function displayChart(resultsData) {
 
 // jars and classes forms management 
 
-function getClassForm(classId) {
-	var url = "getClassForm/" + classId;
+function getAjaxForm(url, targetDiv) {
 	$.ajax({
 		type : "GET",
 		url : url,
 		contentType : 'application/html',
 		success : function(response) {
-			$("#element-form").html(response);
+			$("#" + targetDiv).html(response);
 		}
 	});
 	return false;
 }
 
+function getClassForm(classId) {
+	return getAjaxForm("getClassForm/" + classId, 'element-form');
+}
+
+
+function getMethodForm(methodId) {
+	return 	getAjaxForm("getMethodForm/" + methodId, 'element-form');
+
+}
+
+function getParamForm(paramId) {
+	return 	getAjaxForm("getParamForm/" + paramId, 'element-form');
+
+}
 
 function saveClass() {
 	var id = $('#class-id').val();

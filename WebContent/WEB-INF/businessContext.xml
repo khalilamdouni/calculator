@@ -26,7 +26,7 @@
 		<property name="methodDao" ref="methodDao"></property>
 	</bean>
 	<bean id="paramManager" class="org.calculator.business.impl.ParamManager">
-		<property name="methodDao" ref="methodDao"></property>
+		<property name="paramDao" ref="paramDao"></property>
 	</bean>
 
 

@@ -121,7 +121,7 @@ public class ReflectorController {
 	}
 
 	@Autowired
-	@Qualifier(value = "paeamManager")
+	@Qualifier(value = "paramManager")
 	public void setParamManager(IParamManager paramManager) {
 		this.paramManager = paramManager;
 	}
