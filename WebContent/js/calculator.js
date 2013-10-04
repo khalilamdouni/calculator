@@ -151,6 +151,22 @@ function getAjaxForm(url, targetDiv) {
 	return false;
 }
 
+function postAjaxForm(url, targetDiv, json) {
+	$.ajax({
+		url : url,
+		data : JSON.stringify(json),
+		type : "POST",
+
+		beforeSend : function(xhr) {
+			xhr.setRequestHeader("Accept", "application/json");
+			xhr.setRequestHeader("Content-Type", "application/json");
+		},
+		success : function(response) {
+			$("#" + targetDiv).html(response);
+		}
+	});
+}
+
 function getClassForm(classId) {
 	return getAjaxForm("getClassForm/" + classId, 'element-form');
 }
@@ -177,18 +193,32 @@ function saveClass() {
 		"description" : description,
 		"algo" : algo
 	};
+	postAjaxForm('saveClass', 'element-form', json);
 
-	$.ajax({
-		url : 'saveClass',
-		data : JSON.stringify(json),
-		type : "POST",
+}
 
-		beforeSend : function(xhr) {
-			xhr.setRequestHeader("Accept", "application/json");
-			xhr.setRequestHeader("Content-Type", "application/json");
-		},
-		success : function(response) {
-			$("#element-form").html(response);
-		}
-	});
+function saveMethod() {
+	var id = $('#method-id').val();
+	var name = $('#method-name').val();
+	var description = $('#method-description').val();
+	var json = {
+		"id" : id,
+		"name" : name,
+		"description" : description
+	};
+	postAjaxForm('saveMethod', 'element-form', json);
+}
+
+function saveParam() {
+	var id = $('#param-id').val();
+	var name = $('#param-name').val();
+	var description = $('#param-description').val();
+	var type = $('#param-type').find(":selected").val();
+	var json = {
+		"id" : id,
+		"name" : name,
+		"description" : description,
+		"type" : type
+	};
+	postAjaxForm('saveParam', 'element-form', json);
 }

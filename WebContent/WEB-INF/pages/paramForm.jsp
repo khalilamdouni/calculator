@@ -17,7 +17,7 @@
 		<tr>
 			<td>Type :</td>
 			<td>
-				<form:select path="type">
+				<form:select id="param-type" path="type">
 					<form:options items="${paramModel.types}" />
 				</form:select>
 			</td>
