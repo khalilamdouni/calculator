@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.calculator.enums.CalculatorType;
 import org.hibernate.annotations.Parameter;
@@ -30,6 +31,9 @@ public class CalculatorMethodParam {
 
 	@Column(name = "NAME")
 	private String name;
+	
+	@Column(name = "DESCRIPTION")
+	private String description;
 
 	@Column(name = "TYPE")
 	@Type(type = "org.calculator.models.usertypes.GenericEnumUserType", parameters = {
@@ -41,7 +45,7 @@ public class CalculatorMethodParam {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "METHOD_ID", nullable = false, updatable = false)
 	private CalculatorClassMethod method;
-
+	
 	public CalculatorMethodParam(String name, CalculatorType type) {
 		super();
 		this.name = name;
@@ -83,6 +87,18 @@ public class CalculatorMethodParam {
 
 	public void setMethod(CalculatorClassMethod method) {
 		this.method = method;
+	}
+	
+	public CalculatorType[] getTypes() {
+		return CalculatorType.values();
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

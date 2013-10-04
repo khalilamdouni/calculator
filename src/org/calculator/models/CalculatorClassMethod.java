@@ -31,6 +31,9 @@ public class CalculatorClassMethod {
 	@Column(name = "NAME")
 	private String name;
 
+	@Column(name = "DESCRIPTION")
+	private String description;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CLASS_ID", nullable = false, updatable = false)
 	private CalculatorClass calculatorClass;
@@ -71,6 +74,14 @@ public class CalculatorClassMethod {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public CalculatorClass getCalculatorClass() {
