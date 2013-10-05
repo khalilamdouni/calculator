@@ -28,6 +28,8 @@
 	<bean id="paramManager" class="org.calculator.business.impl.ParamManager">
 		<property name="paramDao" ref="paramDao"></property>
 	</bean>
-
+		<bean id="configManager" class="org.calculator.business.impl.ConfigManager">
+		<property name="paramConfigDao" ref="paramConfigDao"></property>
+	</bean>
 
 </beans>

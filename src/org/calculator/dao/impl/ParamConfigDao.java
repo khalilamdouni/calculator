@@ -32,7 +32,7 @@ public class ParamConfigDao implements IParamConfigDao {
 	}
 
 	@Override
-	public ParamConfig updateParamConfig(ParamConfig paramConfig) {
+	public ParamConfig saveParamConfig(ParamConfig paramConfig) {
 		return em.merge(paramConfig);
 	}
 

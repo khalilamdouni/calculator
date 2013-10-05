@@ -1,11 +1,11 @@
-package org.calculator.dao;
+package org.calculator.business;
 
 import java.util.List;
 
 import org.calculator.models.ParamConfig;
 
-public interface IParamConfigDao {
-
+public interface IConfigManager {
+	
 	public List<ParamConfig> getParamConfigs(long classId, int startIndex, int dataCount);
 
 	public ParamConfig saveParamConfig(ParamConfig paramConfig);
@@ -13,5 +13,5 @@ public interface IParamConfigDao {
 	public void deleteParamConfig(String paramConfigId);
 
 	public int getParamConfigsCount(long classId);
-
+	
 }
