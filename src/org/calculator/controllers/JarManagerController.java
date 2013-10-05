@@ -58,25 +58,25 @@ public class JarManagerController {
 	
 	@RequestMapping(value = "/getJars", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
-	JSONJTableModel getJars(@RequestParam int jtStartIndex,
+	JSONJTableModel<JarFileModel> getJars(@RequestParam int jtStartIndex,
 			@RequestParam int jtPageSize) {
-		return new JSONJTableModel("OK", this.jarManager.loadJars(jtStartIndex,
+		return new JSONJTableModel<JarFileModel>("OK", this.jarManager.loadJars(jtStartIndex,
 				jtPageSize), this.jarManager.getJarsCount());
 	}
 	
 	@RequestMapping(value = "/updateJar", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
-	JSONJTableResponseModel updateJar(@ModelAttribute JarFileModel jarFile,
+	JSONJTableResponseModel<JarFileModel> updateJar(@ModelAttribute JarFileModel jarFile,
 			BindingResult result) {
-		return new JSONJTableResponseModel("OK",
+		return new JSONJTableResponseModel<JarFileModel>("OK",
 				this.jarManager.updateJar(jarFile));
 	}
 	
 	@RequestMapping(value = "/deleteJar", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
-	JSONJTableResponseModel deleteJar(@RequestParam String jarId) {
+	JSONJTableResponseModel<JarFileModel> deleteJar(@RequestParam String jarId) {
 		this.jarManager.deleteJar(jarId);
-		return new JSONJTableResponseModel("OK");
+		return new JSONJTableResponseModel<JarFileModel>("OK");
 	}
 
 	public IJarManager getJarManager() {

@@ -1,5 +1,8 @@
 package org.calculator.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -46,6 +50,10 @@ public class CalculatorMethodParam {
 	@JoinColumn(name = "METHOD_ID", nullable = false, updatable = false)
 	private CalculatorClassMethod method;
 	
+	@OneToMany(mappedBy = "param", cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	private List<ParamConfig> configs;
+
 	public CalculatorMethodParam(String name, CalculatorType type) {
 		super();
 		this.name = name;
@@ -99,6 +107,14 @@ public class CalculatorMethodParam {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<ParamConfig> getConfigs() {
+		return configs;
+	}
+
+	public void setConfigs(List<ParamConfig> configs) {
+		this.configs = configs;
 	}
 
 }

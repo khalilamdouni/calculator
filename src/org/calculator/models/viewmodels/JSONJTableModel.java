@@ -5,16 +5,16 @@ import java.util.List;
 import org.calculator.models.JarFileModel;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class JSONJTableModel {
+public class JSONJTableModel<T> {
 	private String Result;
 
-	private List<JarFileModel> Records;
+	private List<T> Records;
 
 	private int TotalRecordCount;
 
 	private String Message;
 
-	public JSONJTableModel(String Result, List<JarFileModel> Records,
+	public JSONJTableModel(String Result, List<T> Records,
 			int TotalRecordCount) {
 		this.Result = Result;
 		this.Records = Records;
@@ -36,11 +36,11 @@ public class JSONJTableModel {
 	}
 
 	@JsonProperty("Records")
-	public List<JarFileModel> getRecords() {
+	public List<T> getRecords() {
 		return Records;
 	}
 
-	public void setRecords(List<JarFileModel> Records) {
+	public void setRecords(List<T> Records) {
 		this.Records = Records;
 	}
 

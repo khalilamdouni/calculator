@@ -3,10 +3,10 @@ package org.calculator.models.viewmodels;
 import org.calculator.models.JarFileModel;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class JSONJTableResponseModel {
+public class JSONJTableResponseModel<T> {
 	private String result;
 
-	private JarFileModel record;
+	private T record;
 
 	private String message;
 
@@ -17,7 +17,7 @@ public class JSONJTableResponseModel {
 		this.result = result;
 	}
 
-	public JSONJTableResponseModel(String result, JarFileModel record) {
+	public JSONJTableResponseModel(String result, T record) {
 		this.result = result;
 		this.record = record;
 	}
@@ -32,11 +32,11 @@ public class JSONJTableResponseModel {
 	}
 
 	@JsonProperty("Record")
-	public JarFileModel getRecord() {
+	public T getRecord() {
 		return record;
 	}
 
-	public void setRecord(JarFileModel record) {
+	public void setRecord(T record) {
 		this.record = record;
 	}
 
