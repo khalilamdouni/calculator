@@ -14,6 +14,7 @@
     <bean id="calculatorClassDao" class="org.calculator.dao.impl.CalculatorClassDao"></bean>
     <bean id="methodDao" class="org.calculator.dao.impl.MethodDao"></bean>
     <bean id="paramDao" class="org.calculator.dao.impl.ParamDao"></bean>
+    <bean id="paramConfigDao" class="org.calculator.dao.impl.ParamConfigDao"></bean>
         
 
 </beans>

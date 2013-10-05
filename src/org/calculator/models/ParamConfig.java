@@ -6,10 +6,18 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @Table(name = "PARAM_CONFIG")
+@NamedQueries({
+	@NamedQuery(name = "ParamConfig.getAllParamConfigs", query = "SELECT pc FROM ParamConfig pc WHERE param.id=:id"),
+	@NamedQuery(name = "ParamConfig.getParamConfigsCount", query = "SELECT COUNT(pc) FROM ParamConfig pc WHERE param.id=:id")
+})
 public class ParamConfig {
 	
 	@Id
@@ -31,9 +39,20 @@ public class ParamConfig {
 	@Column(name = "ACTIVE")
 	private boolean active;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "PARAM_ID", nullable = false, updatable = false)
 	private CalculatorMethodParam param;
+	
+	public ParamConfig() {
+		super();
+	}
+	
+	public ParamConfig(long paramId) {
+		super();
+		this.param = new CalculatorMethodParam();
+		this.param.setId(id);
+	}
 
 	public long getId() {
 		return id;
