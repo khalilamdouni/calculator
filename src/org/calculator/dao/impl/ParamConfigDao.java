@@ -20,10 +20,10 @@ public class ParamConfigDao implements IParamConfigDao {
 	private EntityManager em;
 	
 	@Override
-	public List<ParamConfig> getParamConfigs(long classId, int startIndex, int dataCount) {
+	public List<ParamConfig> getParamConfigs(long paramId, int startIndex, int dataCount) {
 		TypedQuery<ParamConfig> query = em.createNamedQuery(
 				"ParamConfig.getAllParamConfigs", ParamConfig.class);
-		query.setParameter("id", classId);
+		query.setParameter("id", paramId);
 		if (startIndex >= 0 && dataCount > 0) {
 			query.setFirstResult(startIndex);
 			query.setMaxResults(dataCount);
@@ -37,15 +37,15 @@ public class ParamConfigDao implements IParamConfigDao {
 	}
 
 	@Override
-	public void deleteParamConfig(String paramConfigId) {
+	public void deleteParamConfig(long paramConfigId) {
 		em.remove(em.find(ParamConfig.class, paramConfigId));
 	}
 
 	@Override
-	public int getParamConfigsCount(long classId) {
+	public int getParamConfigsCount(long paramId) {
 
 		Query query = em.createNamedQuery("ParamConfig.getParamConfigsCount");
-		query.setParameter("id", classId);
+		query.setParameter("id", paramId);
 		return ((Number) query.getSingleResult()).intValue();
 	}
 

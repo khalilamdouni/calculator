@@ -11,9 +11,9 @@ public class ConfigManager implements IConfigManager {
 	private IParamConfigDao paramConfigDao;
 
 	@Override
-	public List<ParamConfig> getParamConfigs(long classId, int startIndex,
+	public List<ParamConfig> getParamConfigs(long paramId, int startIndex,
 			int dataCount) {
-		return paramConfigDao.getParamConfigs(classId, startIndex, dataCount);
+		return paramConfigDao.getParamConfigs(paramId, startIndex, dataCount);
 	}
 
 	@Override
@@ -22,13 +22,13 @@ public class ConfigManager implements IConfigManager {
 	}
 
 	@Override
-	public void deleteParamConfig(String paramConfigId) {
+	public void deleteParamConfig(long paramConfigId) {
 		paramConfigDao.deleteParamConfig(paramConfigId);
 	}
 
 	@Override
-	public int getParamConfigsCount(long classId) {
-		return paramConfigDao.getParamConfigsCount(classId);
+	public int getParamConfigsCount(long paramId) {
+		return paramConfigDao.getParamConfigsCount(paramId);
 	}
 
 	public IParamConfigDao getParamConfigDao() {

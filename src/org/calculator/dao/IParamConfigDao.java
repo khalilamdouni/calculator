@@ -6,12 +6,12 @@ import org.calculator.models.ParamConfig;
 
 public interface IParamConfigDao {
 
-	public List<ParamConfig> getParamConfigs(long classId, int startIndex, int dataCount);
+	public List<ParamConfig> getParamConfigs(long paramId, int startIndex, int dataCount);
 
 	public ParamConfig saveParamConfig(ParamConfig paramConfig);
 
-	public void deleteParamConfig(String paramConfigId);
+	public void deleteParamConfig(long paramConfigId);
 
-	public int getParamConfigsCount(long classId);
+	public int getParamConfigsCount(long paramId);
 
 }
