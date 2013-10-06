@@ -49,7 +49,10 @@ $(document).ready(function () {
             },
             active: {
                 title: 'Active',
-                width: '15%'
+                width: '15%',
+                type: 'checkbox',
+                values: { 'false': 'Disabled', 'true': 'Enabled' },
+                defaultValue: 'false'
             }
         }
     });
