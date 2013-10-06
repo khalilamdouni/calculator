@@ -30,7 +30,7 @@ public class CalculationEngine implements ICalculationEngine {
 		CalculatorSecurityManager csm = new CalculatorSecurityManager();
 		List<Result> results = new ArrayList<Result>();
 		for (int dataSize = 1000; dataSize < 30000; dataSize += 1000) {
-			algo.setData((Object[]) dataGenerator.generateData(dataSize, 0, 0));
+			algo.setData((Object[]) dataGenerator.generateData(dataSize, 0, 0, false));
 			algo.transformData();
 
 			logger.info("Installing the calculator securityManager");
