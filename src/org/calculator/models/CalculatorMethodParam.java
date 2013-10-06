@@ -1,6 +1,7 @@
 package org.calculator.models;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -51,9 +52,15 @@ public class CalculatorMethodParam {
 	private CalculatorClassMethod method;
 	
 	@OneToMany(mappedBy = "param", cascade = { CascadeType.PERSIST,
-			CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+			CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.EAGER)
 	private List<ParamConfig> configs;
 
+	@Transient
+	private Map<Integer, Object> generatedDatas;
+	
+	@Transient
+	private Class<?> paramType;
+	
 	public CalculatorMethodParam(String name, CalculatorType type) {
 		super();
 		this.name = name;
@@ -63,6 +70,15 @@ public class CalculatorMethodParam {
 	public CalculatorMethodParam() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public ParamConfig getActiveConfig(){
+		for (ParamConfig paramConfig : this.getConfigs()) {
+			if (paramConfig.isActive()) {
+				return paramConfig;
+			}
+		}
+		return null;
 	}
 
 	public String getName() {
@@ -115,6 +131,22 @@ public class CalculatorMethodParam {
 
 	public void setConfigs(List<ParamConfig> configs) {
 		this.configs = configs;
+	}
+
+	public Map<Integer, Object> getGeneratedDatas() {
+		return generatedDatas;
+	}
+
+	public void setGeneratedDatas(Map<Integer, Object> generatedDatas) {
+		this.generatedDatas = generatedDatas;
+	}
+
+	public Class<?> getParamType() {
+		return paramType;
+	}
+
+	public void setParamType(Class<?> paramType) {
+		this.paramType = paramType;
 	}
 
 }

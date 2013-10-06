@@ -25,7 +25,7 @@ public class JarManager implements IJarManager {
 
 	private IJarManagerDao jarManagerDao;
 	private ICalculatorClassDao calculatorClassDao;
-		
+
 	private static final Logger logger = Logger.getLogger(JarManager.class);
 
 	@Override
@@ -48,7 +48,7 @@ public class JarManager implements IJarManager {
 		calculatorClassMethod.setParams(calculatorMethodParams);
 		return calculatorClassMethod;
 	}
-	
+
 	private CalculatorClass createCalculatorClass(Class<?> c, String jarId) {
 		CalculatorClass result = new CalculatorClass(jarId,
 				c.getCanonicalName());
@@ -90,12 +90,12 @@ public class JarManager implements IJarManager {
 		jarFile.close();
 		return jarClasses;
 	}
-	
+
 	@Override
 	public List<JarFileModel> loadJars(int startIndex, int dataCount) {
 		return jarManagerDao.getJars(startIndex, dataCount);
 	}
-	
+
 	public IJarManagerDao getJarManagerDao() {
 		return jarManagerDao;
 	}
@@ -141,7 +141,37 @@ public class JarManager implements IJarManager {
 	@Override
 	public List<JarFileModel> getReflectedJars() {
 		return jarManagerDao.getReflectedJars();
-		
+
+	}
+
+	@Override
+	public Class<?> loadClassesAndGetInstance(String jarId, String className)
+			throws IOException, ClassNotFoundException, InstantiationException,
+			IllegalAccessException {
+		String jarPath = "/home/khalil/work/spring/jartest/" + jarId + ".jar";
+		JarFile jarFile = new JarFile(jarPath);
+		Enumeration<JarEntry> e = jarFile.entries();
+		Class<?> objectClass = null;
+		URL[] urls = { new URL("jar:file:" + jarPath + "!/") };
+		ClassLoader loader = IAlgorithme.class.getClassLoader();
+		URLClassLoader cl = URLClassLoader.newInstance(urls, loader);
+
+		while (e.hasMoreElements()) {
+			JarEntry je = (JarEntry) e.nextElement();
+			if (je.isDirectory() || !je.getName().endsWith(".class")) {
+				continue;
+			}
+			String currentClassName = je.getName().substring(0,
+					je.getName().length() - 6);
+			currentClassName = currentClassName.replace('/', '.');
+			Class<?> c = cl.loadClass(currentClassName);
+
+			if (currentClassName.equalsIgnoreCase(className)) {
+				objectClass = c;
+			}
+		}
+		jarFile.close();
+		return objectClass;
 	}
 
 }
