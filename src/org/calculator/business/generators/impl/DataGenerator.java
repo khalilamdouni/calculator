@@ -30,30 +30,11 @@ public class DataGenerator implements IDataGenerator {
 		return result;
 	}
 
-	private Class<?> getClassType(CalculatorType type) {
-		if (type == CalculatorType.NUMBER)
-			return Long.class;
-		if (type == CalculatorType.STRING)
-			return String.class;
-		if (type == CalculatorType.TAB_NUMBER)
-			return Long[].class;
-		if (type == CalculatorType.TAB_STRING)
-			return String[].class;
-		if (type == CalculatorType.TAB_TAB_NUMBER)
-			return Long[][].class;
-		if (type == CalculatorType.TAB_TAB_STRING)
-			return String[][].class;
-		if (type == CalculatorType.TAB_TAB_TAB_NUMBER)
-			return Long[][][].class;
-		return String[][][].class;
-	}
-
 	@Override
 	public void generateDataForParam(CalculatorMethodParam param) {
 
 		ParamConfig activeConfig = param.getActiveConfig();
 		param.setGeneratedDatas(new LinkedHashMap<Integer, Object>());
-		param.setParamType(getClassType(param.getType()));
 		for (int i = activeConfig.getMin(); i < activeConfig.getMax(); i += activeConfig
 				.getStep()) {
 			param.getGeneratedDatas()
