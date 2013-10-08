@@ -137,18 +137,16 @@ public class CalculationEngine implements ICalculationEngine {
 			long execTime = 0;
 			long beginTime = System.currentTimeMillis();
 
-			logger.info("RUUUUUNNN off : " + method.getName());
-			logger.info("CLASSSSSSS : " + iterationDatas[0].getClass().getName());
+			/*logger.info("RUUUUUNNN off : " + method.getName());
+			logger.info("CLASSSSSSS : " + iterationDatas[0].getClass().getName());*/
 
-			double[] testDatas = new double[((Object[])iterationDatas[0]).length];
+			/*double[] testDatas = new double[((Object[])iterationDatas[0]).length];
 			for (int k = 0; k < testDatas.length; k++) {
 				testDatas[k] = (Double)((Object[])iterationDatas[0])[k];
 			}
+			Object[] execData = {testDatas};*/
 			
-			logger.info("Data off : " + testDatas.length);
-			
-			Object[] execData = {testDatas};
-			reflectedMethod.invoke(instance, execData);
+			reflectedMethod.invoke(instance, typesManager.transformData(params, iterationDatas));
 
 			execTime = System.currentTimeMillis() - beginTime;
 			//System.setSecurityManager(old);
