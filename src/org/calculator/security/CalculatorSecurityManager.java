@@ -20,7 +20,6 @@ public class CalculatorSecurityManager extends SecurityManager {
 				|| perm instanceof AWTPermission
 				|| perm instanceof SQLPermission
 				|| perm instanceof SecurityPermission
-				|| perm instanceof ReflectPermission
 				|| perm instanceof SocketPermission
 				|| perm instanceof LoggingPermission) {
 			throw new AccessControlException(

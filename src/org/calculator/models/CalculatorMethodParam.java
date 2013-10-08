@@ -56,7 +56,7 @@ public class CalculatorMethodParam {
 	private List<ParamConfig> configs;
 
 	@Transient
-	private Map<Integer, Object> generatedDatas;
+	private Map generatedDatas;
 	
 	@Transient
 	private Class<?> paramType;
@@ -133,11 +133,11 @@ public class CalculatorMethodParam {
 		this.configs = configs;
 	}
 
-	public Map<Integer, Object> getGeneratedDatas() {
+	public Map getGeneratedDatas() {
 		return generatedDatas;
 	}
 
-	public void setGeneratedDatas(Map<Integer, Object> generatedDatas) {
+	public void setGeneratedDatas(Map generatedDatas) {
 		this.generatedDatas = generatedDatas;
 	}
 

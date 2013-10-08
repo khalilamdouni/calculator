@@ -34,7 +34,7 @@ public class DataGenerator implements IDataGenerator {
 	public void generateDataForParam(CalculatorMethodParam param) {
 
 		ParamConfig activeConfig = param.getActiveConfig();
-		param.setGeneratedDatas(new LinkedHashMap<Integer, Object>());
+		param.setGeneratedDatas(new LinkedHashMap());
 		for (int i = activeConfig.getMin(); i < activeConfig.getMax(); i += activeConfig
 				.getStep()) {
 			param.getGeneratedDatas()

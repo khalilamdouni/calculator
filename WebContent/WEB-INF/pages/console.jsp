@@ -34,8 +34,17 @@
 						<ul>
 							<c:forEach items="${jarFile.calculatorClasses}"
 								var="calculatorClass" varStatus="classStatus">
-								<li><a onclick="selectAlgo('${calculatorClass.id}', '${calculatorClass.name}');"
-									href="javascript:void(0)"> ${calculatorClass.name} </a></li>
+								<li><a
+									onclick="selectItem('${calculatorClass.id}', '${calculatorClass.name}', 0);"
+									href="javascript:void(0)"> ${calculatorClass.name} </a>
+
+									<ul>
+										<c:forEach items="${calculatorClass.methods}"
+											var="classMethod" varStatus="methodStatus">
+											<li><a onclick="selectItem('${classMethod.id}', '${classMethod.name}', 1);"
+												href="javascript:void(0)"> ${classMethod.name} </a></li>
+										</c:forEach>
+									</ul></li>
 							</c:forEach>
 						</ul></li>
 				</c:forEach>

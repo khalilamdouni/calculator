@@ -1,6 +1,7 @@
 package org.calculator.controllers;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -56,6 +57,18 @@ public class ConsoleController {
 		return this.calculationEngine.calculate(
 				classManager.loadCalculatorClass(Long.valueOf(selectedAlgoId)),
 				dataGenerator);
+	}
+	
+	@RequestMapping(value = "/calculateMethod/{selectedMethod}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public @ResponseBody
+	List<Result> calculateMethod(
+			@PathVariable("selectedMethod") long selectedMethod)
+			throws ClassNotFoundException, InstantiationException,
+			IllegalAccessException, IOException, NoSuchMethodException,
+			SecurityException, IllegalArgumentException,
+			InvocationTargetException {
+
+		return this.calculationEngine.calculate(selectedMethod);
 	}
 
 	public ICalculationEngine getCalculationEngine() {

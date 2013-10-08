@@ -75,7 +75,9 @@ public class CalculationEngine implements ICalculationEngine {
 		long sum = 0;
 		int i = 0;
 		for (Map<Integer, Object> map : datas) {
-			sum = sum + (Long) map.keySet().toArray()[indexes[i] - 1];
+			sum = sum
+					+ ((Integer) map.keySet().toArray()[indexes[i] - 1])
+							.longValue();
 			i++;
 		}
 		return (long) (sum / datas.length);
@@ -100,7 +102,7 @@ public class CalculationEngine implements ICalculationEngine {
 		// generating data
 
 		Class<?>[] paramTypes = new Class<?>[params.size()];
-		Map<Integer, Object>[] datas = (Map<Integer, Object>[]) new Map[params
+		Map[] datas = (Map[]) new Map[params
 				.size()];
 
 		// preparing params
@@ -130,15 +132,26 @@ public class CalculationEngine implements ICalculationEngine {
 			Method reflectedMethod = classInstance.getDeclaredMethod(
 					method.getName(), paramTypes);
 			logger.info("Installing the calculator securityManager");
-			SecurityManager old = System.getSecurityManager();
-			System.setSecurityManager(csm);
+			/*SecurityManager old = System.getSecurityManager();
+			System.setSecurityManager(csm);*/
 			long execTime = 0;
 			long beginTime = System.currentTimeMillis();
 
-			reflectedMethod.invoke(instance, iterationDatas);
+			logger.info("RUUUUUNNN off : " + method.getName());
+			logger.info("CLASSSSSSS : " + iterationDatas[0].getClass().getName());
+
+			double[] testDatas = new double[((Object[])iterationDatas[0]).length];
+			for (int k = 0; k < testDatas.length; k++) {
+				testDatas[k] = (Double)((Object[])iterationDatas[0])[k];
+			}
+			
+			logger.info("Data off : " + testDatas.length);
+			
+			Object[] execData = {testDatas};
+			reflectedMethod.invoke(instance, execData);
 
 			execTime = System.currentTimeMillis() - beginTime;
-			System.setSecurityManager(old);
+			//System.setSecurityManager(old);
 			logger.info("Closing the calculator securityManager");
 			results.add(new Result(dataSizeAvg(datas, dataSizes), execTime));
 		}

@@ -1,5 +1,8 @@
-var selectedAlgoId;
-var selectedAlgoName;
+
+
+var selectedItemId = -1;
+var selectedItemName;
+var calculationURL;
 
 // ********* treeview management 
 $(document).ready(function() {
@@ -7,11 +10,13 @@ $(document).ready(function() {
 	$("#jars-treeview").jstree();
 });
 
-function selectAlgo(algoId, algoName) {
-	selectedAlgoId = algoId;	
-	selectedAlgoName = algoName;
-	$("#estimateButton").html('Estimate: ' + algoName);
+function selectItem(itemId, itemName, target) {
+	selectedItemId = itemId;
+	selectedItemName = itemName;
+	calculationURL = (target == 0) ? "calculate" : "calculateMethod";
+	$("#estimateButton").html('Estimate: ' + itemName);
 }
+
 
 // ********* jtable code
 
@@ -19,8 +24,9 @@ function selectAlgo(algoId, algoName) {
 
 // ********* calculation engine management
 function calculate() {
-	//var url = "calculate/" + $("#selectedAlgo").val(); 
-	var url = "calculate/" + selectedAlgoId;
+	if (selectedItemId == -1)
+		return false;
+	var url = calculationURL + "/" + selectedItemId;
 	$.ajax({
 		type : "GET",
 		url : url,
@@ -65,7 +71,7 @@ function displayChart(resultsData) {
 	var prevYear = resultsData;
 	var plot1 = $.jqplot(addRowToTable(), [ prevYear ], {
 		seriesColors : [ "rgba(78, 135, 194, 0.7)", "rgb(211, 235, 59)" ],
-		title : selectedAlgoName,
+		title : selectedItemName,
 		highlighter : {
 			show : true,
 			sizeAdjust : 1,

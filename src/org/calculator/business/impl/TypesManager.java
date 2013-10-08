@@ -10,19 +10,19 @@ public class TypesManager implements ITypesManager {
 	
 	private Class<?> getClassType(CalculatorType type) {
 		if (type == CalculatorType.NUMBER)
-			return Long.class;
+			return double.class;
 		if (type == CalculatorType.STRING)
 			return String.class;
 		if (type == CalculatorType.TAB_NUMBER)
-			return Long[].class;
+			return double[].class;
 		if (type == CalculatorType.TAB_STRING)
 			return String[].class;
 		if (type == CalculatorType.TAB_TAB_NUMBER)
-			return Long[][].class;
+			return double[][].class;
 		if (type == CalculatorType.TAB_TAB_STRING)
 			return String[][].class;
 		if (type == CalculatorType.TAB_TAB_TAB_NUMBER)
-			return Long[][][].class;
+			return double[][][].class;
 		return String[][][].class;
 	}
 	
