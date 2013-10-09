@@ -6,13 +6,15 @@ import org.calculator.models.CalculatorMethodParam;
 
 public interface ITypesManager {
 	public void detectType(CalculatorMethodParam param);
-	public Object[] transformData(List<CalculatorMethodParam> params, Object[] datas);
-	public double transformToNumber(Object data);
-	public double[] transformToTabNumber(Object data);
-	public double[][] transformToTabTabNumber(Object data);
-	public double[][][] transformToTabTabTabNumber(Object data);
-	public String transformToString(Object data);
-	public String[] transformToTabString(Object data);
-	public String[][] transformToTabTabString(Object data);
-	public String[][][] transformToTabTabTabString(Object data);
+
+	public Object[] transformData(List<CalculatorMethodParam> params,
+			Object[] datas);
+
+	public <T> T transform(Object data, Class<T> classType);
+
+	public <T> T[] transformToTab(Object data, Class<T> classType);
+
+	public <T> T[][] transformToTabTab(Object data, Class<T> classType);
+
+	public <T> T[][][] transformToTabTabTab(Object data, Class<T> classType);
 }
