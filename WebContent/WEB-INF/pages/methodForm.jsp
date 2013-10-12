@@ -19,5 +19,5 @@
 </form:form>
 <a href="javascript:saveMethod()">Save Method</a>
 |
-<a href="javascript:addMethodToExecutionPlan()">Save Method To
+<a href="javascript:addMethodToExecutionPlan('${methodModel.id}', '${methodModel.name}')">Save Method To
 	Exection Plan</a>

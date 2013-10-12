@@ -76,8 +76,8 @@
 		<div>
 			<table>
 				<tr>
-					<td> <a href="javascript:deletePlan()"></a> </td>
-					<td> <a href="javascript:savePlan()"></a></td>
+					<td> <a href="javascript:deletePlan()"> Delete Plan</a> </td>
+					<td> <a href="javascript:savePlan()"></a> Save Plan</td>
 				</tr>
 				<tr>
 					<td>Plan Name</td>

@@ -28,6 +28,9 @@ public class ExecutionPlan {
 	
 	@Column(name = "SEQUENCE")
 	private String sequence;
+	
+	@Column(name = "NAMES_SEQUENCE")
+	private String namesSequence;
 
 	public long getId() {
 		return id;
@@ -59,6 +62,14 @@ public class ExecutionPlan {
 
 	public void setSequence(String sequence) {
 		this.sequence = sequence;
+	}
+
+	public String getNamesSequence() {
+		return namesSequence;
+	}
+
+	public void setNamesSequence(String namesSequence) {
+		this.namesSequence = namesSequence;
 	}
 	
 }

@@ -235,11 +235,12 @@ function saveParam() {
 var selectedPlanId = -1;
 var selectedPlanName;
 
-function addMethodToExecutionPlan() {
+function addMethodToExecutionPlan(methodId, methodName) {
 	$("#sequence").append(
-			"<li class='ui-state-default' id=" + selectedItemId
+			"<li class='ui-state-default' id=" + methodId + " name="
+					+ methodName
 					+ "><span class='ui-icon ui-icon-arrowthick-2-n-s'></span>"
-					+ selectedItemName + "</li>");
+					+ methodName + "</li>");
 }
 
 function selectPlan(executionPlanId, executionPlanName) {
@@ -248,13 +249,26 @@ function selectPlan(executionPlanId, executionPlanName) {
 }
 
 function serializeSequence() {
-	// construct sequence from LIs
-	return "";
+
+	var methodIds = $("#sequence li[id]").map(function() {
+		return this.id;
+	}).get();
+	return methodIds.join("-");
 }
 
-function deserializeSequence(sequence) {
-	// construct LIs from sequence
-	return "";
+function serializeNamesSequence() {
+	var methodNamess = $("#sequence li[name]").map(function() {
+		return this.name;
+	}).get();
+	return methodNamess.join("-");
+}
+
+function deserializeSequence(sequence, namesSequence) {
+	var methodIds = sequence.split("-");
+	var methodNames = namesSequence.split("-");
+	for ( var i = 0; i < methodIds.length; i++) {
+		addMethodToExecutionPlan(methodIds[i], methodNames[i]);
+	}
 }
 
 function savePlan() {
@@ -265,11 +279,13 @@ function savePlan() {
 	var name = $("#plan-name").val();
 	var description = $("#plan-description").val();
 	var sequence = serializeSequence();
+	var namesSequence = serializeNamesSequence();
 	var json = {
 		"id" : id,
 		"name" : name,
 		"description" : description,
-		"sequence" : sequence
+		"sequence" : sequence,
+		"namesSequence" : namesSequence
 	};
 	postAjaxForm('saveExecutionPlan', 'plans-tree', json);
 }
@@ -295,7 +311,7 @@ function getPlan() {
 			$("#plan-id").val(data.id);
 			$("#plan-name").val(data.name);
 			$("#plan-description").val(data.description);
-			deserializeSequence(data.sequence);
+			deserializeSequence(data.sequence, data.namesSequence);
 		}
 	});
 	return false;
