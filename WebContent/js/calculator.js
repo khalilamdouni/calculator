@@ -5,10 +5,7 @@ var selectedItemName;
 var calculationURL;
 
 // ********* treeview management 
-$(document).ready(function() {
-	$("#algos-treeview").jstree();
-	$("#jars-treeview").jstree();
-});
+
 
 function selectItem(itemId, itemName, target) {
 	selectedItemId = itemId;
@@ -143,7 +140,7 @@ function displayChart(resultsData) {
 
 
 
-// jars and classes forms management 
+// jars, classes forms management 
 
 function getAjaxForm(url, targetDiv) {
 	$.ajax({
@@ -227,4 +224,76 @@ function saveParam() {
 		"type" : type
 	};
 	postAjaxForm('saveParam', 'element-form', json);
+}
+
+
+
+/* Execution plan management */
+
+var selectedPlanId = -1;
+var selectedPlanName;
+
+function serializeSequence() {
+	// construct sequence from LIs
+	return "";
+}
+
+function deserializeSequence(sequence) {
+	// construct LIs from sequence
+	return "";
+}
+
+function savePlan() {
+	var id = null;
+	if (selectedPlanId > 0) {
+		id = $("#plan-id").val();
+	}
+	var name = $("#plan-name").val();
+	var description = $("#plan-description").val();
+	var sequence = serializeSequence();
+	var json = {
+		"id" : id,
+		"name" : name,
+		"description" : description,
+		"sequence" : sequence
+	};
+	postAjaxForm('saveExecutionPlan', 'plans-tree', json);
+}
+
+function getPlans() {
+	$.ajax({
+		type : "GET",
+		url : 'getExecutionPlans',
+		success : function(data) {
+			$("#plans-tree").html(response);
+		}
+	});
+	return false;
+}
+
+function getPlan() {
+	$.ajax({
+		type : "GET",
+		url : 'getExecutionPlan/' + selectedPlanId,
+		dataType : "json",
+		contentType : 'application/json',
+		success : function(data) {
+			$("#plan-id").val(data.id);
+			$("#plan-name").val(data.name);
+			$("#plan-description").val(data.description);
+			deserializeSequence(data.sequence);
+		}
+	});
+	return false;
+}
+
+function deletePlan() {
+	$.ajax({
+		type : "GET",
+		url : 'deleteExecutionPlan/' + selectedPlanId,
+		success : function(data) {
+			$("#plans-tree").html(response);
+		}
+	});
+	return false;
 }

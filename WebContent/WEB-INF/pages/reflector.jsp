@@ -22,6 +22,13 @@
 	href="css/jqplot/jquery.jqplot.css" />
 <link rel="stylesheet" type="text/css" href="css/jqplot/jquery-ui.css" />
 
+<<script type="text/javascript">
+$(document).ready(function() {
+	getPlans();
+	$("#jars-treeview").jstree();
+});
+</script>
+
 <div id="jars-treeview" class="leftpanel">
 	<ul>
 		<li><a>Jars</a>
@@ -52,6 +59,8 @@
 				</c:forEach>
 			</ul></li>
 	</ul>
+	<ul id="plans-tree">
+	</ul>
 </div>
 <div class="rightpanel">
 	<div class="rightbody">
@@ -59,6 +68,23 @@
 			<a href="reflectJars" id="reflectButton">Reflect All Jars</a>
 		</div>
 		<div id="element-form">
+		</div>
+		<div>
+			<table>
+				<tr>
+					<td> <a href="javascript:deletePlan()"></a> </td>
+					<td> <a href="javascript:savePlan()"></a></td>
+				</tr>
+				<tr>
+					<td>Plan Name</td>
+					<td> <input id="plan-name" name="name" type="text"/> 
+					 <input id="plan-id" name="id" type="hidden"/> </td>
+				</tr>
+				<tr>
+					<td>Plan Description</td>
+					<td> <textarea name="description" id="plan-description" rows="5" cols="30"></textarea> </td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </div>

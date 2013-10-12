@@ -18,6 +18,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		$("#algos-treeview").jstree();
 		$("#estimateButton").click(function() {
 			calculate();
 		});
