@@ -18,3 +18,6 @@
 	</table>
 </form:form>
 <a href="javascript:saveMethod()">Save Method</a>
+|
+<a href="javascript:addMethodToExecutionPlan()">Save Method To
+	Exection Plan</a>

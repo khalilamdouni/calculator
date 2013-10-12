@@ -215,3 +215,23 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	position: relative;
 	top: 6px;
 }
+
+#sequence {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 60%;
+}
+
+#sequence li {
+	margin: 0 3px 3px 3px;
+	padding: 0.4em;
+	padding-left: 1.5em;
+	font-size: 1.4em;
+	height: 18px;
+}
+
+#sequence li span {
+	position: absolute;
+	margin-left: -1.3em;
+}

@@ -175,7 +175,9 @@ function getClassForm(classId) {
 }
 
 
-function getMethodForm(methodId) {
+function getMethodForm(methodId, methodName) {
+	selectedItemId = methodId;
+	selectedItemName = methodName;
 	return 	getAjaxForm("getMethodForm/" + methodId, 'element-form');
 
 }
@@ -233,6 +235,18 @@ function saveParam() {
 var selectedPlanId = -1;
 var selectedPlanName;
 
+function addMethodToExecutionPlan() {
+	$("#sequence").append(
+			"<li class='ui-state-default' id=" + selectedItemId
+					+ "><span class='ui-icon ui-icon-arrowthick-2-n-s'></span>"
+					+ selectedItemName + "</li>");
+}
+
+function selectPlan(executionPlanId, executionPlanName) {
+	selectedPlanId = executionPlanId;
+	selectedPlanName = executionPlanName;
+}
+
 function serializeSequence() {
 	// construct sequence from LIs
 	return "";
@@ -264,7 +278,7 @@ function getPlans() {
 	$.ajax({
 		type : "GET",
 		url : 'getExecutionPlans',
-		success : function(data) {
+		success : function(response) {
 			$("#plans-tree").html(response);
 		}
 	});
@@ -291,7 +305,7 @@ function deletePlan() {
 	$.ajax({
 		type : "GET",
 		url : 'deleteExecutionPlan/' + selectedPlanId,
-		success : function(data) {
+		success : function(response) {
 			$("#plans-tree").html(response);
 		}
 	});

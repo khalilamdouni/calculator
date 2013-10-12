@@ -36,5 +36,9 @@
 		<property name="paramConfigDao" ref="paramConfigDao"></property>
 	</bean>
 	<bean id="typesManager" class="org.calculator.business.impl.TypesManager"></bean>
+	
+	<bean id="executionPlanManager" class="org.calculator.business.impl.ExecutionPlanManager">
+	    <property name="executionPlanDao" ref="executionPlanDao"></property>
+	</bean>
 
 </beans>

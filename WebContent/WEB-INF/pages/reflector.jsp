@@ -20,13 +20,17 @@
 	src="js/jqplot/plugins/jqplot.highlighter.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="css/jqplot/jquery.jqplot.css" />
-<link rel="stylesheet" type="text/css" href="css/jqplot/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 
-<<script type="text/javascript">
-$(document).ready(function() {
-	getPlans();
-	$("#jars-treeview").jstree();
-});
+<script type="text/javascript">
+
+	$(document).ready(
+			function() {
+				getPlans();
+				$("#jars-treeview").jstree();
+				$("#sequence").sortable();						
+
+			});
 </script>
 
 <div id="jars-treeview" class="leftpanel">
@@ -44,7 +48,7 @@ $(document).ready(function() {
 									<ul>
 										<c:forEach items="${calculatorClass.methods}"
 											var="classMethod" varStatus="methodStatus">
-											<li><a onclick="getMethodForm('${classMethod.id}');" href="javascript:void(0)"> ${classMethod.name} </a>
+											<li><a onclick="getMethodForm('${classMethod.id}', '${classMethod.name}');" href="javascript:void(0)"> ${classMethod.name} </a>
 												<ul>
 													<c:forEach items="${classMethod.params}"
 														var="methodParam" varStatus="paramStatus">
@@ -84,7 +88,16 @@ $(document).ready(function() {
 					<td>Plan Description</td>
 					<td> <textarea name="description" id="plan-description" rows="5" cols="30"></textarea> </td>
 				</tr>
+				<tr>
+					<td colspan="2">
+						<ul id="sequence">
+							
+						</ul>
+					
+					</td>
+				</tr>
 			</table>
+			
 		</div>
 	</div>
 </div>
