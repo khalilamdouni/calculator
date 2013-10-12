@@ -30,6 +30,7 @@ public class ExecutionPlanDao implements IExecutionPlanDao {
 	public ExecutionPlan getExecutionPlan(long id) {
 		TypedQuery<ExecutionPlan> query = em.createNamedQuery(
 				"ExecutionPlan.getExecutionPlanById", ExecutionPlan.class);
+		query.setParameter("id", id);
 		return query.getSingleResult();
 	}
 

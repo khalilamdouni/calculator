@@ -27,7 +27,6 @@
 	$(document).ready(
 			function() {
 				getPlans();
-				$("#jars-treeview").jstree();
 				$("#sequence").sortable();						
 
 			});
@@ -62,8 +61,7 @@
 						</ul></li>
 				</c:forEach>
 			</ul></li>
-	</ul>
-	<ul id="plans-tree">
+			<li id="plans-tree"></li>
 	</ul>
 </div>
 <div class="rightpanel">
@@ -77,7 +75,7 @@
 			<table>
 				<tr>
 					<td> <a href="javascript:deletePlan()"> Delete Plan</a> </td>
-					<td> <a href="javascript:savePlan()"></a> Save Plan</td>
+					<td> <a href="javascript:savePlan()">Save Plan</a></td>
 				</tr>
 				<tr>
 					<td>Plan Name</td>
@@ -97,7 +95,6 @@
 					</td>
 				</tr>
 			</table>
-			
 		</div>
 	</div>
 </div>

@@ -31,7 +31,7 @@ public class ExecutionPlanController {
 		return executionPlanManager.getExecutionPlan(executionPlanId);
 	}
 
-	@RequestMapping(value = "/saveExecutionPlan", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/saveExecutionPlan", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String saveExecutionPlan(@RequestBody ExecutionPlan executionPlan) {
 		executionPlanManager.saveExecutionPlan(executionPlan);
 		return "redirect:getExecutionPlans";
