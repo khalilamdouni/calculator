@@ -38,10 +38,10 @@ public class ExecutionPlanController {
 	}
 
 	@RequestMapping(value = "/deleteExecutionPlan/{executionPlanId}", method = RequestMethod.GET)
-	public String deleteExecutionPlan(
+	public ModelAndView deleteExecutionPlan(
 			@PathVariable("executionPlanId") long executionPlanId) {
 		executionPlanManager.delete(executionPlanId);
-		return "getExecutionPlans";
+		return getExecutionPlans();
 	}
 
 	public IExecutionPlanManager getExecutionPlanManager() {

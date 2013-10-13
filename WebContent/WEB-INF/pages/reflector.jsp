@@ -71,10 +71,11 @@
 		</div>
 		<div style="height: 300px" id="element-form">
 		</div>
-		<div style="height: 300px" class="shadow-conteiner">
+		<a href="javascript:newExecutionPlan()">New Execution Plan</a>
+		<div id="plan-form" style="display: none; height: 400px; overflow: scroll;" class="shadow-conteiner">
 			<table>
 				<tr>
-					<td> <a href="javascript:deletePlan()"> Delete Plan</a> </td>
+					<td> <a id="delete-plan-link" style="display: none;" href="javascript:deletePlan()"> Delete Plan</a> </td>
 					<td> <a href="javascript:savePlan()">Save Plan</a></td>
 				</tr>
 				<tr>
@@ -87,7 +88,7 @@
 					<td> <textarea name="description" id="plan-description" rows="5" cols="30"></textarea> </td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td align="center" colspan="2">
 						<ul id="sequence">
 							
 						</ul>

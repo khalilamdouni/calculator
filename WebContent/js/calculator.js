@@ -268,6 +268,7 @@ function serializeNamesSequence() {
 function deserializeSequence(sequence, namesSequence) {
 	var methodIds = sequence.split("-");
 	var methodNames = namesSequence.split("-");
+	$("#sequence").html("");
 	for ( var i = 0; i < methodIds.length; i++) {
 		addMethodToExecutionPlan(methodIds[i], methodNames[i]);
 	}
@@ -290,6 +291,8 @@ function savePlan() {
 		"namesSequence" : namesSequence
 	};
 	postAjaxForm('saveExecutionPlan', 'plans-tree', json);
+	resetPlanForm();
+	hideExecPlanForm();
 }
 
 function getPlans() {
@@ -310,6 +313,8 @@ function getPlan() {
 		dataType : "json",
 		contentType : 'application/json',
 		success : function(data) {
+			displayExecPlanForm();
+			$("#delete-plan-link").css("display", "block");
 			$("#plan-id").val(data.id);
 			$("#plan-name").val(data.name);
 			$("#plan-description").val(data.description);
@@ -325,7 +330,30 @@ function deletePlan() {
 		url : 'deleteExecutionPlan/' + selectedPlanId,
 		success : function(response) {
 			$("#plans-tree").html(response);
+			resetPlanForm();
+			hideExecPlanForm();
 		}
 	});
 	return false;
+}
+
+function newExecutionPlan() {
+	displayExecPlanForm();
+	resetPlanForm();
+}
+
+function hideExecPlanForm(){
+	$("#plan-form").css("display", "none");
+}
+
+function displayExecPlanForm(){
+	$("#plan-form").css("display", "block");
+}
+
+function resetPlanForm() {
+	$("#delete-plan-link").css("display", "none");
+	$("#plan-id").val("");
+	$("#plan-name").val("");
+	$("#plan-description").val("");
+	$("#sequence").html("");
 }
