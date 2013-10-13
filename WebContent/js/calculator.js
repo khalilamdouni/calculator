@@ -6,7 +6,6 @@ var calculationURL;
 
 // ********* treeview management 
 
-
 function selectItem(itemId, itemName, target) {
 	selectedItemId = itemId;
 	selectedItemName = itemName;

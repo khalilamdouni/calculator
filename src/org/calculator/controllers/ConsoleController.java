@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.calculator.business.ICalculationEngine;
 import org.calculator.business.IClassManager;
+import org.calculator.business.IExecutionPlanManager;
 import org.calculator.business.IJarManager;
 import org.calculator.business.generators.IDataGenerator;
 import org.calculator.models.ConsoleModel;
@@ -38,12 +39,15 @@ public class ConsoleController {
 	
 	private IClassManager classManager;
 	
+	private IExecutionPlanManager executionPlanManager;
+	
 	private static final Logger logger = Logger.getLogger(ConsoleController.class);
 	
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
 	public ModelAndView calculate() {
 		ConsoleModel consoleModel = new ConsoleModel();
 		consoleModel.setJarFiles(jarManager.loadJars(-1, -1));
+		consoleModel.setExecutionPlans(executionPlanManager.getExecutionPlans());
 		return new ModelAndView("console", "consoleModel", consoleModel);
 	}
 	
@@ -69,6 +73,17 @@ public class ConsoleController {
 			InvocationTargetException {
 
 		return this.calculationEngine.calculate(selectedMethod);
+	}
+
+	@RequestMapping(value = "/calculateExecutionPlan/{selectedMethod}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public @ResponseBody
+	List<Result> calculateExecutionPlan(
+			@PathVariable("executionPlanId") long executionPlanId)
+			throws ClassNotFoundException, InstantiationException,
+			IllegalAccessException, IOException, NoSuchMethodException,
+			SecurityException, IllegalArgumentException,
+			InvocationTargetException {
+		return calculationEngine.calculatePlan(executionPlanId);
 	}
 
 	public ICalculationEngine getCalculationEngine() {
@@ -110,5 +125,15 @@ public class ConsoleController {
 	public void setClassManager(IClassManager classManager) {
 		this.classManager = classManager;
 	}
-	
+
+	public IExecutionPlanManager getExecutionPlanManager() {
+		return executionPlanManager;
+	}
+
+	@Autowired
+	@Qualifier(value = "executionPlanManager")
+	public void setExecutionPlanManager(IExecutionPlanManager executionPlanManager) {
+		this.executionPlanManager = executionPlanManager;
+	}
+
 }

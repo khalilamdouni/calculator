@@ -2,23 +2,13 @@ package org.calculator.models;
 
 import java.util.List;
 
-import org.calculator.models.IAlgorithme;
-
 public class ConsoleModel {
-
-	private String selectedAlgo;
 
 	private List<Result> results;
 	
 	private List<JarFileModel> jarFiles;
-
-	public String getSelectedAlgo() {
-		return selectedAlgo;
-	}
-
-	public void setSelectedAlgo(String selectedAlgo) {
-		this.selectedAlgo = selectedAlgo;
-	}
+	
+	private List<ExecutionPlan> executionPlans;
 
 	public List<Result> getResults() {
 		return results;
@@ -34,6 +24,14 @@ public class ConsoleModel {
 
 	public void setJarFiles(List<JarFileModel> jarFiles) {
 		this.jarFiles = jarFiles;
+	}
+
+	public List<ExecutionPlan> getExecutionPlans() {
+		return executionPlans;
+	}
+
+	public void setExecutionPlans(List<ExecutionPlan> executionPlans) {
+		this.executionPlans = executionPlans;
 	}
 
 }

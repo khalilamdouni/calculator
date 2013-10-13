@@ -15,4 +15,8 @@ public interface ICalculationEngine {
 			InstantiationException, IllegalAccessException, IOException,
 			NoSuchMethodException, SecurityException, IllegalArgumentException,
 			InvocationTargetException;
+	public List<Result> calculatePlan(long planId) throws ClassNotFoundException,
+	InstantiationException, IllegalAccessException, IOException,
+	NoSuchMethodException, SecurityException, IllegalArgumentException,
+	InvocationTargetException;
 }

@@ -12,9 +12,11 @@ import org.calculator.business.ICalculationEngine;
 import org.calculator.business.IJarManager;
 import org.calculator.business.ITypesManager;
 import org.calculator.business.generators.IDataGenerator;
+import org.calculator.dao.IExecutionPlanDao;
 import org.calculator.dao.IMethodDao;
 import org.calculator.models.CalculatorClassMethod;
 import org.calculator.models.CalculatorMethodParam;
+import org.calculator.models.ExecutionPlan;
 import org.calculator.models.IAlgorithme;
 import org.calculator.models.Result;
 import org.calculator.security.CalculatorSecurityManager;
@@ -28,6 +30,7 @@ public class CalculationEngine implements ICalculationEngine {
 	private IMethodDao methodDao;
 	private IJarManager jarManager;
 	private ITypesManager typesManager;
+	private IExecutionPlanDao executionPlanDao;
 
 	@Override
 	public List<Result> calculate(IAlgorithme algo, IDataGenerator dataGenerator) {
@@ -147,6 +150,56 @@ public class CalculationEngine implements ICalculationEngine {
 
 		return results;
 	}
+	
+	private int maxResultsSize(List<List<Result>> reults) {
+		int max = 0;
+		for (List<Result> list : reults) {
+			if (list.size() > max) {
+				max = list.size();
+			}
+		}
+		return max;
+	}
+
+	private List<Result> mergeResults(List<List<Result>> results) {
+
+		List<Result> avgResults = new ArrayList<Result>();
+		int maxSize = maxResultsSize(results);
+		int n = 0;
+		long x = 0;
+		double y = 0;
+		for (int i = 0; i < maxSize; i++) {
+			n = 0;
+			x = 0;
+			y = 0;
+			for (List<Result> list : results) {
+				if (i < list.size()) {
+					n++;
+					x += list.get(i).getX();
+					y += list.get(i).getY();
+				}
+			}
+			assert n > 0;
+			avgResults.add(new Result((long) x / n, (double) y / n));
+		}
+		return avgResults;
+	}
+	
+	@Override
+	public List<Result> calculatePlan(long planId)
+			throws ClassNotFoundException, InstantiationException,
+			IllegalAccessException, IOException, NoSuchMethodException,
+			SecurityException, IllegalArgumentException,
+			InvocationTargetException {
+		List<List<Result>> results = new ArrayList<List<Result>>();
+
+		ExecutionPlan executionPlan = executionPlanDao.getExecutionPlan(planId);
+		String[] methodIds = executionPlan.getSequence().split("-");
+		for (int i = 0; i < methodIds.length; i++) {
+			results.add(calculate(Long.valueOf(methodIds[i])));
+		}
+		return mergeResults(results);
+	}
 
 	public IDataGenerator getDataGenerator() {
 		return dataGenerator;
@@ -178,6 +231,14 @@ public class CalculationEngine implements ICalculationEngine {
 
 	public void setTypesManager(ITypesManager typesManager) {
 		this.typesManager = typesManager;
+	}
+
+	public IExecutionPlanDao getExecutionPlanDao() {
+		return executionPlanDao;
+	}
+
+	public void setExecutionPlanDao(IExecutionPlanDao executionPlanDao) {
+		this.executionPlanDao = executionPlanDao;
 	}
 
 }
