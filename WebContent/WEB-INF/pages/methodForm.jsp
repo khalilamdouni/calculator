@@ -1,4 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<div  class="bordered-box">
 <form:form action="saveClass" method="POST"
 	enctype="multipart/form-data" modelAttribute="methodModel">
 	<table>
@@ -21,3 +22,5 @@
 |
 <a href="javascript:addMethodToExecutionPlan('${methodModel.id}', '${methodModel.name}')">Add To
 	Exection Plan</a>
+	
+</div>

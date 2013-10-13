@@ -69,9 +69,9 @@
 		<div class="estimate-button">
 			<a href="reflectJars" id="reflectButton">Reflect All Jars</a>
 		</div>
-		<div id="element-form">
+		<div style="height: 300px" id="element-form">
 		</div>
-		<div>
+		<div style="height: 300px" class="shadow-conteiner">
 			<table>
 				<tr>
 					<td> <a href="javascript:deletePlan()"> Delete Plan</a> </td>

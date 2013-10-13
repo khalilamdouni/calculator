@@ -37,11 +37,11 @@ public class ExecutionPlanController {
 		return "redirect:getExecutionPlans";
 	}
 
-	@RequestMapping(value = "deleteExecutionPlan/{executionPlanId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteExecutionPlan/{executionPlanId}", method = RequestMethod.GET)
 	public String deleteExecutionPlan(
 			@PathVariable("executionPlanId") long executionPlanId) {
 		executionPlanManager.delete(executionPlanId);
-		return "redirect:getExecutionPlans";
+		return "getExecutionPlans";
 	}
 
 	public IExecutionPlanManager getExecutionPlanManager() {

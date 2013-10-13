@@ -244,7 +244,6 @@ function addMethodToExecutionPlan(methodId, methodName) {
 }
 
 function selectPlan(executionPlanId, executionPlanName) {
-	alert('name :' + executionPlanName);
 	selectedPlanId = executionPlanId;
 	selectedPlanName = executionPlanName;
 	getPlan();
@@ -260,7 +259,7 @@ function serializeSequence() {
 
 function serializeNamesSequence() {
 	var methodNamess = $("#sequence li[name]").map(function() {
-		return this.name;
+		return $(this).attr("name");
 	}).get();
 	alert("names : " + methodNamess.join("-"));
 	return methodNamess.join("-");
@@ -299,7 +298,6 @@ function getPlans() {
 		url : 'getExecutionPlans',
 		success : function(response) {
 			$("#plans-tree").html(response);
-			$("#jars-treeview").jstree();
 		}
 	});
 	return false;
@@ -327,7 +325,6 @@ function deletePlan() {
 		url : 'deleteExecutionPlan/' + selectedPlanId,
 		success : function(response) {
 			$("#plans-tree").html(response);
-			$("#jars-treeview").jstree();
 		}
 	});
 	return false;
