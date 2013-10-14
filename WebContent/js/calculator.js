@@ -9,7 +9,8 @@ var calculationURL;
 function selectItem(itemId, itemName, target) {
 	selectedItemId = itemId;
 	selectedItemName = itemName;
-	calculationURL = (target == 0) ? "calculate" : "calculateMethod";
+	calculationURL = (target == 0) ? "calculate"
+			: ((target == 1) ? "calculateMethod" : "calculateExecutionPlan");
 	$("#estimateButton").html('Estimate: ' + itemName);
 }
 

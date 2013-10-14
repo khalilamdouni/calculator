@@ -8,12 +8,18 @@
 
 
 <script type="text/javascript" src="js/jqplot/jquery.jqplot.js"></script>
-<script type="text/javascript" src="js/jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
-<script type="text/javascript" src="js/jqplot/plugins/jqplot.logAxisRenderer.min.js"></script>
-<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
-<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
-<script type="text/javascript" src="js/jqplot/plugins/jqplot.highlighter.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/jqplot/jquery.jqplot.css" />
+<script type="text/javascript"
+	src="js/jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
+<script type="text/javascript"
+	src="js/jqplot/plugins/jqplot.logAxisRenderer.min.js"></script>
+<script type="text/javascript"
+	src="js/jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
+<script type="text/javascript"
+	src="js/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script type="text/javascript"
+	src="js/jqplot/plugins/jqplot.highlighter.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="css/jqplot/jquery.jqplot.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 
 <script type="text/javascript">
@@ -42,12 +48,22 @@
 									<ul>
 										<c:forEach items="${calculatorClass.methods}"
 											var="classMethod" varStatus="methodStatus">
-											<li><a onclick="selectItem('${classMethod.id}', '${classMethod.name}', 1);"
+											<li><a
+												onclick="selectItem('${classMethod.id}', '${classMethod.name}', 1);"
 												href="javascript:void(0)"> ${classMethod.name} </a></li>
 										</c:forEach>
 									</ul></li>
 							</c:forEach>
 						</ul></li>
+				</c:forEach>
+			</ul></li>
+		<li><a>Execution plans</a>
+			<ul>
+				<c:forEach items="${consoleModel.executionPlans}"
+					var="executionPlan" varStatus="jarStatus">
+					<li><a
+						onclick="selectItem('${executionPlan.id}', '${executionPlan.name}', 2);"
+						href="javascript:void(0)"> ${executionPlan.name} </a></li>
 				</c:forEach>
 			</ul></li>
 	</ul>
@@ -58,9 +74,10 @@
 			<tr>
 				<td></td>
 				<td>
-				<div class="estimate-button">
-					<a  href="javascript:void(0)" id="estimateButton" >Select Algo in the tree</a>
-				</div>
+					<div class="estimate-button">
+						<a href="javascript:void(0)" id="estimateButton">Select Algo
+							in the tree</a>
+					</div>
 				</td>
 			</tr>
 		</table>
