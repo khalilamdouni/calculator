@@ -180,7 +180,7 @@ public class CalculationEngine implements ICalculationEngine {
 				}
 			}
 			assert n > 0;
-			avgResults.add(new Result((long) x / n, (double) y / n));
+			avgResults.add(new Result((long) x / n, y));
 		}
 		return avgResults;
 	}

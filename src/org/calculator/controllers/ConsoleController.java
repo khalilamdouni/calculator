@@ -75,7 +75,7 @@ public class ConsoleController {
 		return this.calculationEngine.calculate(selectedMethod);
 	}
 
-	@RequestMapping(value = "/calculateExecutionPlan/{selectedMethod}", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "/calculateExecutionPlan/{executionPlanId}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
 	List<Result> calculateExecutionPlan(
 			@PathVariable("executionPlanId") long executionPlanId)

@@ -12,6 +12,7 @@
 		<property name="methodDao" ref="methodDao"></property>
 		<property name="jarManager" ref="jarManager"></property>
 		<property name="typesManager" ref="typesManager"></property>
+		<property name="executionPlanDao" ref="executionPlanDao"></property>
 	</bean>
 
 	<bean id="dataGenerator" class="org.calculator.business.generators.impl.DataGenerator">

@@ -60,7 +60,7 @@
 		<li><a>Execution plans</a>
 			<ul>
 				<c:forEach items="${consoleModel.executionPlans}"
-					var="executionPlan" varStatus="jarStatus">
+					var="executionPlan" varStatus="executionPlanStatus">
 					<li><a
 						onclick="selectItem('${executionPlan.id}', '${executionPlan.name}', 2);"
 						href="javascript:void(0)"> ${executionPlan.name} </a></li>
