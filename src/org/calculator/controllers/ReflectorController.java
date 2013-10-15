@@ -21,6 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Jar classes, methods and params management and configuration
+ * 
+ * @author khalil.amdouni
+ *
+ */
 @Controller
 public class ReflectorController {
 
@@ -32,6 +38,11 @@ public class ReflectorController {
 	private static final Logger logger = Logger
 			.getLogger(ReflectorController.class);
 
+	/**
+	 * Getting the reflector view
+	 * 
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value = "/reflector", method = RequestMethod.GET)
 	public ModelAndView getReflector() {
 		ReflectorModel reflectorModel = new ReflectorModel();
@@ -39,18 +50,37 @@ public class ReflectorController {
 		return new ModelAndView("reflector", "reflectorModel", reflectorModel);
 	}
 
+	/**
+	 * Store all Classes, methods and params of jar files in the database
+	 * 
+	 * @return String; view name
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/reflectJars", method = RequestMethod.GET)
 	public String reflectJars() throws ClassNotFoundException, IOException {
 		jarManager.reflectJars();
 		return "redirect:reflector";
 	}
 
+	/**
+	 * Getting class edition form
+	 * 
+	 * @param classId
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value = "/getClassForm/{classId}")
 	public ModelAndView getClassForm(@PathVariable("classId") long classId) {
 		return new ModelAndView("classForm", "classModel",
 				classManager.getCalculatorClass(classId));
 	}
 
+	/**
+	 * Saving class infos
+	 * 
+	 * @param claculatorClass as JSON
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value = "/saveClass", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ModelAndView saveClass(@RequestBody CalculatorClass claculatorClass) {
 		logger.info("Save off : " + claculatorClass);
@@ -58,12 +88,24 @@ public class ReflectorController {
 				this.classManager.saveCalculatorClass(claculatorClass));
 	}
 
+	/**
+	 * Getting method edition form
+	 * 
+	 * @param methodId
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value = "/getMethodForm/{methodId}")
 	public ModelAndView getMethodForm(@PathVariable("methodId") long methodId) {
 		return new ModelAndView("methodForm", "methodModel",
 				this.methodManager.getMethod(methodId));
 	}
 
+	/**
+	 * Saving method infos
+	 * 
+	 * @param calculatorClassMethod as JSON
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value = "/saveMethod", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ModelAndView saveMethod(
 			@RequestBody CalculatorClassMethod calculatorClassMethod) {
@@ -72,12 +114,24 @@ public class ReflectorController {
 				this.methodManager.saveMethod(calculatorClassMethod));
 	}
 
+	/**
+	 * Getting param edition form
+	 * 
+	 * @param paramId
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value = "/getParamForm/{paramId}")
 	public ModelAndView getParamForm(@PathVariable("paramId") long paramId) {
 		return new ModelAndView("paramForm", "paramModel",
 				this.paramManager.getParam(paramId));
 	}
 
+	/**
+	 * Saving param info
+	 * 
+	 * @param calculatorMethodParam
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value = "/saveParam", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ModelAndView saveParam(
 			@RequestBody CalculatorMethodParam calculatorMethodParam) {

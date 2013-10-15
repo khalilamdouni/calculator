@@ -8,6 +8,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Controller use to handle all exceptions thrown by the system (using the
+ * ControllerAdvice aspect)
+ * 
+ * @author khalil.amdouni
+ * 
+ */
 @ControllerAdvice
 public class ExceptionHandlerController {
 

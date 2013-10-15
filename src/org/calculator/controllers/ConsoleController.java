@@ -21,36 +21,55 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
 /**
- * The Controller of the principal functionality of the calculator
+ * The Controller of the principal functionality of the calculator; handles all
+ * requests to the calculation engine
  * 
- * @author khalil AMDOUNI
- *
+ * @author khalil.amdouni
+ * 
  */
 @Controller
 public class ConsoleController {
-	
+
 	private ICalculationEngine calculationEngine;
-	
+
 	private IDataGenerator dataGenerator;
-	
+
 	private IJarManager jarManager;
-	
+
 	private IClassManager classManager;
-	
+
 	private IExecutionPlanManager executionPlanManager;
-	
-	private static final Logger logger = Logger.getLogger(ConsoleController.class);
-	
+
+	private static final Logger logger = Logger
+			.getLogger(ConsoleController.class);
+
+	/**
+	 * Handles the query gettin the Console view
+	 * 
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
 	public ModelAndView calculate() {
 		ConsoleModel consoleModel = new ConsoleModel();
 		consoleModel.setJarFiles(jarManager.loadJars(-1, -1));
-		consoleModel.setExecutionPlans(executionPlanManager.getExecutionPlans());
+		consoleModel
+				.setExecutionPlans(executionPlanManager.getExecutionPlans());
 		return new ModelAndView("console", "consoleModel", consoleModel);
 	}
-	
+
+	/**
+	 * Handles the calculation query of a class that implements IAlgorithme
+	 * interface
+	 * 
+	 * @param selectedAlgoId
+	 * @return List of Result as JSON
+	 * @throws NumberFormatException
+	 * @throws ClassNotFoundException
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/calculate/{selectedAlgoId}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
 	List<Result> calculateResult(
@@ -62,7 +81,21 @@ public class ConsoleController {
 				classManager.loadCalculatorClass(Long.valueOf(selectedAlgoId)),
 				dataGenerator);
 	}
-	
+
+	/**
+	 * Handles the calculation query of a method stored in the database
+	 * 
+	 * @param selectedMethod
+	 * @return List of Result as JSON
+	 * @throws ClassNotFoundException
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IOException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
 	@RequestMapping(value = "/calculateMethod/{selectedMethod}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
 	List<Result> calculateMethod(
@@ -75,6 +108,21 @@ public class ConsoleController {
 		return this.calculationEngine.calculate(selectedMethod);
 	}
 
+	/**
+	 * Handles the calculation query of an execution plan (a scenarios of
+	 * methods)
+	 * 
+	 * @param executionPlanId
+	 * @return List of Result as JSON
+	 * @throws ClassNotFoundException
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IOException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
 	@RequestMapping(value = "/calculateExecutionPlan/{executionPlanId}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
 	List<Result> calculateExecutionPlan(
@@ -90,7 +138,7 @@ public class ConsoleController {
 		return calculationEngine;
 	}
 
-	@Autowired 
+	@Autowired
 	@Qualifier(value = "calculationEngine")
 	public void setCalculationEngine(ICalculationEngine calculationEngine) {
 		this.calculationEngine = calculationEngine;
@@ -132,7 +180,8 @@ public class ConsoleController {
 
 	@Autowired
 	@Qualifier(value = "executionPlanManager")
-	public void setExecutionPlanManager(IExecutionPlanManager executionPlanManager) {
+	public void setExecutionPlanManager(
+			IExecutionPlanManager executionPlanManager) {
 		this.executionPlanManager = executionPlanManager;
 	}
 

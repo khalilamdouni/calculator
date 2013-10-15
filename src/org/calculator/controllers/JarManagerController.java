@@ -20,14 +20,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Controller to handle Jar files management operations
+ * 
+ * @author khalil.amdouni
+ * 
+ */
 @Controller
 public class JarManagerController {
 
-	private static final Logger logger = Logger.getLogger(JarManagerController.class);
+	private static final Logger logger = Logger
+			.getLogger(JarManagerController.class);
 
 	private IJarManager jarManager;
 	private IClassManager classManager;
 
+	/**
+	 * Getting the jar manager view
+	 * 
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value = "/jarManager", method = RequestMethod.GET)
 	public ModelAndView jarManager() {
 		JarManagerModel jarManagerModel = new JarManagerModel();
@@ -35,6 +47,16 @@ public class JarManagerController {
 				jarManagerModel);
 	}
 
+	/**
+	 * Handle upload jar file query
+	 * 
+	 * @param jarManagerModel
+	 * @param result
+	 * @return String; the vies name
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	@RequestMapping(value = "/uploadJar", method = RequestMethod.POST)
 	public String uploadJar(
 			@ModelAttribute("jarManagerModel") JarManagerModel jarManagerModel,
@@ -45,33 +67,46 @@ public class JarManagerController {
 
 		return "redirect:jarManager";
 	}
-	
-	@RequestMapping(value = "/saveClasses", method = RequestMethod.POST)
-	public String saveCalculatorClasses(
-			@ModelAttribute("jarManagerModel") JarManagerModel jarManagerModel,
-			BindingResult result) {
 
-		this.classManager.saveCalculatorClasses(jarManagerModel
-				.getCalculatorClasses());
-		return "redirect:jarManager";
-	}
-	
+	/**
+	 * Getting all jar files stored in the database
+	 * 
+	 * @param jtStartIndex
+	 * @param jtPageSize
+	 * @return JSONJTableModel; a model adapted to the JTable framework as JSON
+	 */
 	@RequestMapping(value = "/getJars", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
 	JSONJTableModel<JarFileModel> getJars(@RequestParam int jtStartIndex,
 			@RequestParam int jtPageSize) {
-		return new JSONJTableModel<JarFileModel>("OK", this.jarManager.loadJars(jtStartIndex,
-				jtPageSize), this.jarManager.getJarsCount());
+		return new JSONJTableModel<JarFileModel>("OK",
+				this.jarManager.loadJars(jtStartIndex, jtPageSize),
+				this.jarManager.getJarsCount());
 	}
-	
+
+	/**
+	 * Updating jar file metadata
+	 * 
+	 * @param jarFile
+	 * @param result
+	 * @return JSONJTableResponseModel; a model adapted to the JTable framework
+	 *         as JSON
+	 */
 	@RequestMapping(value = "/updateJar", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
-	JSONJTableResponseModel<JarFileModel> updateJar(@ModelAttribute JarFileModel jarFile,
-			BindingResult result) {
+	JSONJTableResponseModel<JarFileModel> updateJar(
+			@ModelAttribute JarFileModel jarFile, BindingResult result) {
 		return new JSONJTableResponseModel<JarFileModel>("OK",
 				this.jarManager.updateJar(jarFile));
 	}
-	
+
+	/**
+	 * Delete of jar file
+	 * 
+	 * @param jarId
+	 * @return JSONJTableResponseModel; a model adapted to the JTable framework
+	 *         as JSON
+	 */
 	@RequestMapping(value = "/deleteJar", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
 	JSONJTableResponseModel<JarFileModel> deleteJar(@RequestParam String jarId) {

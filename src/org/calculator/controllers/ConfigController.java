@@ -16,11 +16,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * Handles param configuration operations
+ * 
+ * @author khalil.amdouni
+ * 
+ */
 @Controller
 public class ConfigController {
 
 	private IConfigManager configManager;
 
+	/**
+	 * Getting all configs of a param
+	 * 
+	 * @param jtStartIndex
+	 * @param jtPageSize
+	 * @param paramId
+	 * @return JSONJTableModel; Adapter for JTable framework
+	 */
 	@RequestMapping(value = "/getParamConfigs/{paramId}", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
 	JSONJTableModel<ParamConfig> getParamConfigs(
@@ -32,6 +46,14 @@ public class ConfigController {
 				this.configManager.getParamConfigsCount(paramId));
 	}
 
+	/**
+	 * Adding param config
+	 * 
+	 * @param paramConfig
+	 * @param paramId
+	 * @param result
+	 * @return JSONJTableResponseModel; Adapter for JTable framework
+	 */
 	@RequestMapping(value = "/addParamConfig/{paramId}", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
 	JSONJTableResponseModel<ParamConfig> addParamConfig(
@@ -44,6 +66,13 @@ public class ConfigController {
 				this.configManager.saveParamConfig(paramConfig));
 	}
 
+	/**
+	 * Updating param config
+	 * 
+	 * @param paramConfig
+	 * @param result
+	 * @return JSONJTableResponseModel; Adapter for JTable framework
+	 */
 	@RequestMapping(value = "/updateParamConfig", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
 	JSONJTableResponseModel<ParamConfig> updateParamConfig(
@@ -52,6 +81,12 @@ public class ConfigController {
 				this.configManager.saveParamConfig(paramConfig));
 	}
 
+	/**
+	 * Deleting param config
+	 * 
+	 * @param paramConfigId
+	 * @return JSONJTableResponseModel; Adapter for JTable framework
+	 */
 	@RequestMapping(value = "/deleteParamConfig", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
 	JSONJTableResponseModel<ParamConfig> deleteParamConfig(
