@@ -1,23 +1,32 @@
+/**
+ * All javascript calls of the calculator project
+ * 
+ * @author khalil.amdouni
+ */
 
+/***********************************************************************/
+/***********            Calculation engine calls             ***********/
+/** ******************************************************************** */
 
+// Calculation engine vars
 var selectedItemId = -1;
 var selectedItemName;
 var calculationURL;
+var calculationURLs = [ "calculate", "calculateMethod",
+		"calculateExecutionPlan" ];
 
-// ********* treeview management 
+// Chart management vars
+var chartTabCount = 0;
+var addRowOrNot = 1;
+var chartIndex = 0;
 
+// Javascript call when item is selected in the console tree
 function selectItem(itemId, itemName, target) {
 	selectedItemId = itemId;
 	selectedItemName = itemName;
-	calculationURL = (target == 0) ? "calculate"
-			: ((target == 1) ? "calculateMethod" : "calculateExecutionPlan");
+	calculationURL = calculationURLs[target];
 	$("#estimateButton").html('Estimate: ' + itemName);
 }
-
-
-// ********* jtable code
-
-
 
 // ********* calculation engine management
 function calculate() {
@@ -42,10 +51,7 @@ function calculate() {
 	return false;
 }
 
-var chartTabCount = 0;
-var addRowOrNot = 1;
-var chartIndex = 0;
-
+// Javasript call used to add a new chart container
 function addRowToTable() {
 	var result = "chart" + chartIndex;
 	if (addRowOrNot == 1) {
@@ -61,7 +67,7 @@ function addRowToTable() {
 	return result;
 }
 
-// function used to display the JQPlot chart
+// Javascript call used to display chart using the JQplot framework
 function displayChart(resultsData) {
 
 	$.jqplot._noToImageButton = true;
@@ -137,10 +143,49 @@ function displayChart(resultsData) {
 
 }
 
+/** ******************************************************************** */
+/** ************** Jar management *************** */
+/** ******************************************************************** */
 
+// javascript call to populate the Jars table using the JTable framework
+function populateTable() {
+	$('#jarstable').jtable({
+		title : 'List jars',
+		paging : true,
+		pageSize : 10, // Set page size (default: 10)
+		sorting : true,
+		defaultSorting : 'Title ASC',
+		selecting : true,
+		multiselect : true,
+		selectingCheckboxes : true,
+		actions : {
+			listAction : 'getJars',
+			updateAction : 'updateJar',
+			deleteAction : 'deleteJar'
+		},
+		fields : {
+			jarId : {
+				title : 'Jar ID',
+				key : true,
+				list : true,
+				edit : false
+			},
+			title : {
+				title : 'Title',
+				width : '40%'
+			},
+			description : {
+				title : 'Description',
+				width : '60%'
+			}
+		}
+	});
+	$('#jarstable').jtable('load');
+}
 
-
-// jars, classes forms management 
+/** ******************************************************************** */
+/** ************* Reflector calls *************** */
+/** ******************************************************************** */
 
 function getAjaxForm(url, targetDiv) {
 	$.ajax({
@@ -174,16 +219,15 @@ function getClassForm(classId) {
 	return getAjaxForm("getClassForm/" + classId, 'element-form');
 }
 
-
 function getMethodForm(methodId, methodName) {
 	selectedItemId = methodId;
 	selectedItemName = methodName;
-	return 	getAjaxForm("getMethodForm/" + methodId, 'element-form');
+	return getAjaxForm("getMethodForm/" + methodId, 'element-form');
 
 }
 
 function getParamForm(paramId) {
-	return 	getAjaxForm("getParamForm/" + paramId, 'element-form');
+	return getAjaxForm("getParamForm/" + paramId, 'element-form');
 
 }
 
@@ -228,13 +272,22 @@ function saveParam() {
 	postAjaxForm('saveParam', 'element-form', json);
 }
 
-
-
-/* Execution plan management */
+/** ******************************************************************** */
+/** *********** Execution Plan calls ************ */
+/** ******************************************************************** */
 
 var selectedPlanId = -1;
 var selectedPlanName;
 
+// Javascript call used to select execution plan in the tree
+function selectPlan(executionPlanId, executionPlanName) {
+	selectedPlanId = executionPlanId;
+	selectedPlanName = executionPlanName;
+	getPlan();
+}
+
+// Javascript call used to add a method to the sortable list of the execution
+// plan
 function addMethodToExecutionPlan(methodId, methodName) {
 	$("#sequence").append(
 			"<li class='ui-state-default' id=" + methodId + " name="
@@ -243,12 +296,9 @@ function addMethodToExecutionPlan(methodId, methodName) {
 					+ methodName + "</li>");
 }
 
-function selectPlan(executionPlanId, executionPlanName) {
-	selectedPlanId = executionPlanId;
-	selectedPlanName = executionPlanName;
-	getPlan();
-}
-
+// serializeSequence, serializeNamesSequence and deserializeSequence:
+// javascript calls used to construct and serialize the sortable methods list of
+// the execution plam
 function serializeSequence() {
 
 	var methodIds = $("#sequence li[id]").map(function() {
@@ -256,7 +306,6 @@ function serializeSequence() {
 	}).get();
 	return methodIds.join("-");
 }
-
 function serializeNamesSequence() {
 	var methodNamess = $("#sequence li[name]").map(function() {
 		return $(this).attr("name");
@@ -264,7 +313,6 @@ function serializeNamesSequence() {
 	alert("names : " + methodNamess.join("-"));
 	return methodNamess.join("-");
 }
-
 function deserializeSequence(sequence, namesSequence) {
 	var methodIds = sequence.split("-");
 	var methodNames = namesSequence.split("-");
@@ -274,6 +322,8 @@ function deserializeSequence(sequence, namesSequence) {
 	}
 }
 
+// savePlan, getPlans, getPlan, deletePlan:
+// Javascript calls for the CRUD operations on the execution plan management
 function savePlan() {
 	var id = null;
 	if (selectedPlanId > 0) {
@@ -294,7 +344,6 @@ function savePlan() {
 	resetPlanForm();
 	hideExecPlanForm();
 }
-
 function getPlans() {
 	$.ajax({
 		type : "GET",
@@ -305,7 +354,6 @@ function getPlans() {
 	});
 	return false;
 }
-
 function getPlan() {
 	$.ajax({
 		type : "GET",
@@ -323,7 +371,6 @@ function getPlan() {
 	});
 	return false;
 }
-
 function deletePlan() {
 	$.ajax({
 		type : "GET",
@@ -337,19 +384,18 @@ function deletePlan() {
 	return false;
 }
 
+// newExecutionPlan, hideExecPlanForm, displayExecPlanForm and resetPlanForm:
+// javascript calls used to manipulate the execution plan form
 function newExecutionPlan() {
 	displayExecPlanForm();
 	resetPlanForm();
 }
-
-function hideExecPlanForm(){
+function hideExecPlanForm() {
 	$("#plan-form").css("display", "none");
 }
-
-function displayExecPlanForm(){
+function displayExecPlanForm() {
 	$("#plan-form").css("display", "block");
 }
-
 function resetPlanForm() {
 	$("#delete-plan-link").css("display", "none");
 	$("#plan-id").val("");

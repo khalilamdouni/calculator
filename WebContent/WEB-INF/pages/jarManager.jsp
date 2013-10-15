@@ -19,39 +19,7 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-    $('#jarstable').jtable({
-    	 title: 'List jars',
-         paging: true,
-         pageSize: 10, //Set page size (default: 10)
-         sorting: true,
-         defaultSorting: 'Title ASC',
-         selecting: true, 
-         multiselect: true,
-         selectingCheckboxes: true, 
-        actions: {
-            listAction: 'getJars',
-            updateAction: 'updateJar',
-            deleteAction: 'deleteJar'
-        },
-        fields: {
-        	jarId: {
-        		title: 'Jar ID',
-                key: true,
-                list: true,
-                edit: false
-            },
-            title: {
-                title: 'Title',
-                width: '40%'
-            },
-            description: {
-                title: 'Description',
-                width: '60%'
-            }
-        }
-    });
-    $('#jarstable').jtable('load');
-    
+	populateTable();
 });
 </script>
 <div class="bordered-box">
