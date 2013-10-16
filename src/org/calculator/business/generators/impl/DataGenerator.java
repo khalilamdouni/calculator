@@ -9,6 +9,12 @@ import org.calculator.enums.CalculatorType;
 import org.calculator.models.CalculatorMethodParam;
 import org.calculator.models.ParamConfig;
 
+/**
+ * @see org.calculator.business.generators.IDataGenerator
+ * 
+ * @author khalil.amdouni
+ * 
+ */
 public class DataGenerator implements IDataGenerator {
 
 	private Double randomDouble(double min, double max) {

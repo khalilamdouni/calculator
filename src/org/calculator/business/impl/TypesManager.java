@@ -7,6 +7,12 @@ import org.calculator.business.ITypesManager;
 import org.calculator.enums.CalculatorType;
 import org.calculator.models.CalculatorMethodParam;
 
+/**
+ * @see org.calculator.business.ITypesManager
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public class TypesManager implements ITypesManager {
 
 	private Class<?> getClassType(CalculatorType type) {

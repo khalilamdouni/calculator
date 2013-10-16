@@ -21,6 +21,12 @@ import org.calculator.models.IAlgorithme;
 import org.calculator.models.Result;
 import org.calculator.security.CalculatorSecurityManager;
 
+/**
+ * @see org.calculator.business.ICalculationEngine
+ * 
+ * @author khalil.amdouni
+ * 
+ */
 public class CalculationEngine implements ICalculationEngine {
 
 	private static final Logger logger = Logger
@@ -105,8 +111,7 @@ public class CalculationEngine implements ICalculationEngine {
 		// generating data
 
 		Class<?>[] paramTypes = new Class<?>[params.size()];
-		Map[] datas = (Map[]) new Map[params
-				.size()];
+		Map[] datas = (Map[]) new Map[params.size()];
 
 		// preparing params
 		int i = 0;
@@ -135,22 +140,25 @@ public class CalculationEngine implements ICalculationEngine {
 			Method reflectedMethod = classInstance.getDeclaredMethod(
 					method.getName(), paramTypes);
 			logger.info("Installing the calculator securityManager");
-			/*SecurityManager old = System.getSecurityManager();
-			System.setSecurityManager(csm);*/
+			/*
+			 * SecurityManager old = System.getSecurityManager();
+			 * System.setSecurityManager(csm);
+			 */
 			long execTime = 0;
 			long beginTime = System.currentTimeMillis();
-			
-			reflectedMethod.invoke(instance, typesManager.transformData(params, iterationDatas));
+
+			reflectedMethod.invoke(instance,
+					typesManager.transformData(params, iterationDatas));
 
 			execTime = System.currentTimeMillis() - beginTime;
-			//System.setSecurityManager(old);
+			// System.setSecurityManager(old);
 			logger.info("Closing the calculator securityManager");
 			results.add(new Result(dataSizeAvg(datas, dataSizes), execTime));
 		}
 
 		return results;
 	}
-	
+
 	private int maxResultsSize(List<List<Result>> reults) {
 		int max = 0;
 		for (List<Result> list : reults) {
@@ -184,7 +192,7 @@ public class CalculationEngine implements ICalculationEngine {
 		}
 		return avgResults;
 	}
-	
+
 	@Override
 	public List<Result> calculatePlan(long planId)
 			throws ClassNotFoundException, InstantiationException,

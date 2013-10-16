@@ -13,6 +13,12 @@ import org.calculator.dao.ICalculatorClassDao;
 import org.calculator.models.CalculatorClass;
 import org.calculator.models.IAlgorithme;
 
+/**
+ * @see org.calculator.business.IClassManager
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public class ClassManager implements IClassManager {
 
 	private ICalculatorClassDao calculatorClassDao;

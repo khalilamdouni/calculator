@@ -6,6 +6,12 @@ import org.calculator.business.IConfigManager;
 import org.calculator.dao.IParamConfigDao;
 import org.calculator.models.ParamConfig;
 
+/**
+ * @see  org.calculator.business.IConfigManager
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public class ConfigManager implements IConfigManager {
 
 	private IParamConfigDao paramConfigDao;

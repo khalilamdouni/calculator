@@ -21,6 +21,12 @@ import org.calculator.models.CalculatorMethodParam;
 import org.calculator.models.IAlgorithme;
 import org.calculator.models.JarFileModel;
 
+/**
+ * @see org.calculator.business.IJarManager
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public class JarManager implements IJarManager {
 
 	private IJarManagerDao jarManagerDao;

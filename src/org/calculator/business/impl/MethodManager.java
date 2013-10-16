@@ -4,6 +4,12 @@ import org.calculator.business.IMethodManager;
 import org.calculator.dao.IMethodDao;
 import org.calculator.models.CalculatorClassMethod;
 
+/**
+ * @see org.calculator.business.IMethodManager
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public class MethodManager implements IMethodManager {
 
 	private IMethodDao methodDao;

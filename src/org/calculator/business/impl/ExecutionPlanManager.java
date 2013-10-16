@@ -6,6 +6,12 @@ import org.calculator.business.IExecutionPlanManager;
 import org.calculator.dao.IExecutionPlanDao;
 import org.calculator.models.ExecutionPlan;
 
+/**
+ * @see  org.calculator.business.IExecutionPlanManager
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public class ExecutionPlanManager implements IExecutionPlanManager {
 	
 	private IExecutionPlanDao executionPlanDao;
