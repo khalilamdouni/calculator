@@ -11,6 +11,12 @@ import org.calculator.models.ExecutionPlan;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * @see org.calculator.dao.IExecutionPlanDao
+ * 
+ * @author khalil.amdouni
+ *
+ */
 @Repository(value = "executionPlanDao")
 @Transactional
 public class ExecutionPlanDao implements IExecutionPlanDao {

@@ -7,7 +7,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
+/**
+ * JPA Entity to encapsulate the execution plan
+ * 
+ * @author khalil.amdouni
+ *
+ */
 @Entity
 @Table(name = "EXEC_PLAN")
 @NamedQueries({

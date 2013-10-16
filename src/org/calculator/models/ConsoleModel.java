@@ -2,6 +2,12 @@ package org.calculator.models;
 
 import java.util.List;
 
+/**
+ * View model of the console functionality 
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public class ConsoleModel {
 
 	private List<Result> results;

@@ -22,6 +22,12 @@ import org.calculator.enums.CalculatorType;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
+/**
+ * JPA Entity to encapsulate method param metadata
+ * 
+ * @author khalil.amdouni
+ *
+ */
 @Entity
 @Table(name = "METHOD_PARAMS")
 @NamedQueries({

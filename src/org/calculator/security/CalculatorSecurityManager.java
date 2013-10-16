@@ -2,7 +2,6 @@ package org.calculator.security;
 
 import java.awt.AWTPermission;
 import java.io.FilePermission;
-import java.lang.reflect.ReflectPermission;
 import java.net.NetPermission;
 import java.net.SocketPermission;
 import java.security.AccessControlException;
@@ -11,8 +10,15 @@ import java.security.SecurityPermission;
 import java.sql.SQLPermission;
 import java.util.logging.LoggingPermission;
 
+/**
+ * Security manager of the application: used to execute reflected methods from
+ * jar files in a secure sandbox
+ * 
+ * @author khalil.amdouni
+ * 
+ */
 public class CalculatorSecurityManager extends SecurityManager {
-	
+
 	@Override
 	public void checkPermission(Permission perm) {
 
@@ -26,5 +32,5 @@ public class CalculatorSecurityManager extends SecurityManager {
 					"The access of system resources is denied");
 		}
 	}
-	
+
 }

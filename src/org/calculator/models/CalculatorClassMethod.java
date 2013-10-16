@@ -16,6 +16,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * JPA Entity to encapsulate the class method metadata
+ * 
+ * @author khalil.amdouni
+ *
+ */
 @Entity
 @Table(name = "CLASS_METHODS")
 @NamedQueries({

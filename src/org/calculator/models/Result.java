@@ -2,6 +2,12 @@ package org.calculator.models;
 
 import java.io.Serializable;
 
+/**
+ * Model to encapsulate calculation result
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public class Result implements Serializable {
 
 

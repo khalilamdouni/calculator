@@ -5,6 +5,12 @@ import java.util.List;
 
 import org.calculator.models.JarFileModel;
 
+/**
+ * The interface of jars Data Access Object
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public interface IJarManagerDao {
 	
 	public String saveJar(JarFileModel jarFile) throws IllegalStateException, IOException;

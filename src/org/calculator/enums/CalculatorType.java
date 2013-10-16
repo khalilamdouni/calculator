@@ -1,5 +1,11 @@
 package org.calculator.enums;
 
+/**
+ * Enum of param fixed types
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public enum CalculatorType {
 
 	NUMBER("NUMBER"), STRING("STRING"), TAB_NUMBER("TAB_NUMBER"),

@@ -11,6 +11,12 @@ import org.calculator.models.CalculatorClass;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * @see org.calculator.dao.ICalculatorClassDao
+ * 
+ * @author khalil.amdouni
+ *
+ */
 @Repository("calculatorClassDao")
 @Transactional
 public class CalculatorClassDao implements ICalculatorClassDao {

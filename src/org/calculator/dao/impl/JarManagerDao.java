@@ -15,6 +15,12 @@ import org.calculator.models.JarFileModel;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * @see org.calculator.dao.IJarManagerDao
+ * 
+ * @author khalil.amdouni
+ *
+ */
 @Repository("jarManagerDao")
 @Transactional
 public class JarManagerDao implements IJarManagerDao {

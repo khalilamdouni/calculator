@@ -12,6 +12,12 @@ import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+/**
+ * JPA Entity used to encapsulate Param config element
+ * 
+ * @author khalil.amdouni
+ *
+ */
 @Entity
 @Table(name = "PARAM_CONFIG")
 @NamedQueries({

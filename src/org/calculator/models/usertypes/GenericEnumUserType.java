@@ -14,6 +14,12 @@ import org.hibernate.type.TypeResolver;
 import org.hibernate.usertype.ParameterizedType;
 import org.hibernate.usertype.UserType;
 
+/**
+ * Generic user type used to map Enum types in JPA entities
+ * 
+ * @author khalil.amdouni
+ * 
+ */
 public class GenericEnumUserType implements UserType, ParameterizedType {
 
 	private Class<? extends Enum> enumClass;

@@ -17,6 +17,12 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * JPA Entity to encapsulate Jar file metadata
+ * 
+ * @author khalil.amdouni
+ *
+ */
 @Entity
 @Table(name = "JARS")
 @NamedQueries({

@@ -2,6 +2,12 @@ package org.calculator.models;
 
 import java.util.List;
 
+/**
+ * View model of the JarManager functionality
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public class JarManagerModel {
 
 	private JarFileModel jarFile;

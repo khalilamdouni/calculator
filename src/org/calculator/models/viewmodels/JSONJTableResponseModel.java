@@ -1,8 +1,14 @@
 package org.calculator.models.viewmodels;
 
-import org.calculator.models.JarFileModel;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+/**
+ * Generic adapter model used by the JTable javascript framework
+ * 
+ * @author khalil.amdouni
+ *
+ * @param <T>
+ */
 public class JSONJTableResponseModel<T> {
 	private String result;
 

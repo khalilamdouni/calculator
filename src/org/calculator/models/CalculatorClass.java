@@ -18,6 +18,12 @@ import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+/**
+ * JPA Entity to encapsulate Java class metadata
+ * 
+ * @author khalil.amdouni
+ *
+ */
 @Entity
 @Table(name = "CALCULATOR_CLASSES")
 @NamedQueries({

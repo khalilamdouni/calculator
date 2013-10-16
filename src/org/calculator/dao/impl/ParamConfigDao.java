@@ -12,6 +12,12 @@ import org.calculator.models.ParamConfig;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * @see org.calculator.dao.IParamConfigDao
+ * 
+ * @author khalil.amdouni
+ *
+ */
 @Repository("paramConfigDao")
 @Transactional
 public class ParamConfigDao implements IParamConfigDao {

@@ -1,5 +1,11 @@
 package org.calculator.models;
 
+/**
+ * View model used by the error page of the application
+ * 
+ * @author khalil.amdouni
+ *
+ */
 public class ExceptionModel {
 
 	private String title;
