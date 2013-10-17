@@ -3,6 +3,7 @@ package org.calculator.controllers;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import org.apache.log4j.Logger;
 import org.calculator.business.ICalculationEngine;
@@ -72,14 +73,21 @@ public class ConsoleController {
 	 */
 	@RequestMapping(value = "/calculate/{selectedAlgoId}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
-	List<Result> calculateResult(
-			@PathVariable("selectedAlgoId") String selectedAlgoId)
+	Callable<List<Result>> calculateResult(
+			@PathVariable("selectedAlgoId") final String selectedAlgoId)
 			throws NumberFormatException, ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IOException {
 
-		return this.calculationEngine.calculate(
-				classManager.loadCalculatorClass(Long.valueOf(selectedAlgoId)),
-				dataGenerator);
+		return new Callable<List<Result>>() {
+
+			@Override
+			public List<Result> call() throws Exception {
+				return calculationEngine.calculate(classManager
+						.loadCalculatorClass(Long.valueOf(selectedAlgoId)),
+						dataGenerator);
+			}
+		};
+
 	}
 
 	/**
@@ -98,14 +106,20 @@ public class ConsoleController {
 	 */
 	@RequestMapping(value = "/calculateMethod/{selectedMethod}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
-	List<Result> calculateMethod(
-			@PathVariable("selectedMethod") long selectedMethod)
+	Callable<List<Result>> calculateMethod(
+			@PathVariable("selectedMethod") final long selectedMethod)
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, IOException, NoSuchMethodException,
 			SecurityException, IllegalArgumentException,
 			InvocationTargetException {
 
-		return this.calculationEngine.calculate(selectedMethod);
+		return new Callable<List<Result>>() {
+
+			@Override
+			public List<Result> call() throws Exception {
+				return calculationEngine.calculate(selectedMethod);
+			}
+		};
 	}
 
 	/**
@@ -125,13 +139,20 @@ public class ConsoleController {
 	 */
 	@RequestMapping(value = "/calculateExecutionPlan/{executionPlanId}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
-	List<Result> calculateExecutionPlan(
-			@PathVariable("executionPlanId") long executionPlanId)
+	Callable<List<Result>> calculateExecutionPlan(
+			@PathVariable("executionPlanId") final long executionPlanId)
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, IOException, NoSuchMethodException,
 			SecurityException, IllegalArgumentException,
 			InvocationTargetException {
-		return calculationEngine.calculatePlan(executionPlanId);
+		return new Callable<List<Result>>() {
+
+			@Override
+			public List<Result> call() throws Exception {
+				return calculationEngine.calculatePlan(executionPlanId);
+
+			}
+		};
 	}
 
 	public ICalculationEngine getCalculationEngine() {

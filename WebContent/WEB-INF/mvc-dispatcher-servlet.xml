@@ -12,9 +12,19 @@
         http://www.springframework.org/schema/aop 
 		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-    
-    <mvc:annotation-driven />
 
+	<mvc:annotation-driven>
+		<mvc:async-support default-timeout="30000"
+			task-executor="asyncTaskExecutor" />
+	</mvc:annotation-driven>
+
+	<bean id="asyncTaskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5" />
+		<property name="maxPoolSize" value="10" />
+		<property name="queueCapacity" value="25" />
+	</bean>
+    
 	<mvc:interceptors>
 		<bean
 			class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
