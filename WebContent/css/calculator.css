@@ -46,6 +46,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	padding: 25px 20px;
 	margin-right: -260px;
 	position: relative;
+	margin-top: 5px;
 }
 .leftpanel h2 {
 	font-size: 14px;

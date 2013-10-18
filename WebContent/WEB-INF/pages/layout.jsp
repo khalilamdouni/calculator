@@ -43,8 +43,21 @@
 								<li><a href="jarManager">Jar manager</a></li>
 								<li><a href="reflector">Reflector</a></li>
 							</ul></li>
-						<li><a href="javascript:void(0)">WEB Calculator</a></li>
-						<li><a href="#">About Us</a></li>
+						<li><a href="javascript:void(0)">WEB Calculator</a>
+							<ul>
+								<li><a href="javascript:alert('Not yet implemented')">Scenarios</a></li>
+								<li><a href="javascript:alert('Not yet implemented')">Web
+										console</a></li>
+							</ul></li>
+						<li><a href="javascript:void(0)">Reporting</a>
+							<ul>
+								<li><a href="javascript:alert('Not yet implemented')">Jar
+										reports</a></li>
+								<li><a href="javascript:alert('Not yet implemented')">Web
+										reports</a></li>
+							</ul></li>
+						<li><a href="javascript:alert('Not yet implemented')">About
+								Us</a></li>
 
 
 					</ul>
