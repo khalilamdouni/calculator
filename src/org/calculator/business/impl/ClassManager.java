@@ -29,7 +29,7 @@ public class ClassManager implements IClassManager {
 			IllegalAccessException {
 
 		CalculatorClass calculatorClass = this.calculatorClassDao
-				.getClassById(id);
+				.getById(id);
 		String jarPath = "/home/khalil/work/spring/jartest/"
 				+ calculatorClass.getJarFile().getJarId() + ".jar";
 		JarFile jarFile = new JarFile(jarPath);
@@ -68,12 +68,12 @@ public class ClassManager implements IClassManager {
 
 	@Override
 	public CalculatorClass getCalculatorClass(long id) {
-		return calculatorClassDao.getClassById(id);
+		return calculatorClassDao.getById(id);
 	}
 
 	@Override
 	public CalculatorClass saveCalculatorClass(CalculatorClass calculatorClass) {
-		return calculatorClassDao.saveCalculatorClass(calculatorClass);
+		return calculatorClassDao.save(calculatorClass);
 	}
 
 }

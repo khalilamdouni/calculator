@@ -8,9 +8,9 @@ import org.calculator.models.CalculatorClassMethod;
  * @author khalil.amdouni
  *
  */
-public interface IMethodDao {
-	
+public interface IMethodDao extends IGenericDao<CalculatorClassMethod> {
+	/*
 	public CalculatorClassMethod getMethod(long methodId);
 	public CalculatorClassMethod saveMethod(CalculatorClassMethod method);
-
+*/
 }

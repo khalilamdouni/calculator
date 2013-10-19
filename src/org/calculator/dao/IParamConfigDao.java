@@ -10,13 +10,13 @@ import org.calculator.models.ParamConfig;
  * @author khalil.amdouni
  *
  */
-public interface IParamConfigDao {
+public interface IParamConfigDao extends IGenericDao<ParamConfig> {
 
 	public List<ParamConfig> getParamConfigs(long paramId, int startIndex, int dataCount);
 
-	public ParamConfig saveParamConfig(ParamConfig paramConfig);
+	/*public ParamConfig saveParamConfig(ParamConfig paramConfig);
 
-	public void deleteParamConfig(long paramConfigId);
+	public void deleteParamConfig(long paramConfigId);*/
 
 	public int getParamConfigsCount(long paramId);
 

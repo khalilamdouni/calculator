@@ -24,12 +24,12 @@ public class ConfigManager implements IConfigManager {
 
 	@Override
 	public ParamConfig saveParamConfig(ParamConfig paramConfig) {
-		return paramConfigDao.saveParamConfig(paramConfig);
+		return paramConfigDao.save(paramConfig);
 	}
 
 	@Override
 	public void deleteParamConfig(long paramConfigId) {
-		paramConfigDao.deleteParamConfig(paramConfigId);
+		paramConfigDao.delete(paramConfigId);
 	}
 
 	@Override

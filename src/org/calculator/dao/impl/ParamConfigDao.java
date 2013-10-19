@@ -2,8 +2,6 @@ package org.calculator.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -20,10 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository("paramConfigDao")
 @Transactional
-public class ParamConfigDao implements IParamConfigDao {
-
-	@PersistenceContext
-	private EntityManager em;
+public class ParamConfigDao extends GenericDao<ParamConfig> implements IParamConfigDao {
+	
+	
+	
+	public ParamConfigDao() {
+		super(ParamConfig.class);
+	}
+	
 	
 	@Override
 	public List<ParamConfig> getParamConfigs(long paramId, int startIndex, int dataCount) {
@@ -36,7 +38,7 @@ public class ParamConfigDao implements IParamConfigDao {
 		}
 		return query.getResultList();
 	}
-
+/*
 	@Override
 	public ParamConfig saveParamConfig(ParamConfig paramConfig) {
 		return em.merge(paramConfig);
@@ -46,7 +48,7 @@ public class ParamConfigDao implements IParamConfigDao {
 	public void deleteParamConfig(long paramConfigId) {
 		em.remove(em.find(ParamConfig.class, paramConfigId));
 	}
-
+*/
 	@Override
 	public int getParamConfigsCount(long paramId) {
 

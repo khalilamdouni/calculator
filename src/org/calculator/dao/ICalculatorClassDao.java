@@ -8,10 +8,13 @@ import org.calculator.models.CalculatorClass;
  * The interface of classes Data Access Object
  * 
  * @author khalil.amdouni
- *
+ * 
  */
-public interface ICalculatorClassDao {
+public interface ICalculatorClassDao extends IGenericDao<CalculatorClass> {
+
 	public void saveCalculatorClasses(List<CalculatorClass> calculatorClasses);
-	public CalculatorClass getClassById(long id);
-	public CalculatorClass saveCalculatorClass(CalculatorClass calculatorClass);
+
+	/*public CalculatorClass getClassById(long id);
+
+	public CalculatorClass saveCalculatorClass(CalculatorClass calculatorClass);*/
 }

@@ -10,14 +10,14 @@ import org.calculator.models.ExecutionPlan;
  * @author khalil.amdouni
  *
  */
-public interface IExecutionPlanDao {
+public interface IExecutionPlanDao extends IGenericDao<ExecutionPlan> {
 
 	public List<ExecutionPlan> getExecutionPlans();
 
-	public ExecutionPlan getExecutionPlan(long id);
+	/*public ExecutionPlan getExecutionPlan(long id);
 
 	public void saveExecutionPlan(ExecutionPlan executionplan);
 
-	public void delete(long id);
+	public void delete(long id);*/
 
 }

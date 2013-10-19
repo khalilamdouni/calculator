@@ -16,12 +16,12 @@ public class MethodManager implements IMethodManager {
 	
 	@Override
 	public CalculatorClassMethod getMethod(long methodId) {
-		return methodDao.getMethod(methodId);
+		return methodDao.getById(methodId);
 	}
 
 	@Override
 	public CalculatorClassMethod saveMethod(CalculatorClassMethod method) {
-		return methodDao.saveMethod(method);
+		return methodDao.save(method);
 	}
 
 	public IMethodDao getMethodDao() {

@@ -1,7 +1,5 @@
 package org.calculator.dao.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.calculator.dao.IMethodDao;
@@ -13,15 +11,20 @@ import org.springframework.transaction.annotation.Transactional;
  * @see org.calculator.dao.IMethodDao
  * 
  * @author khalil.amdouni
- *
+ * 
  */
 @Repository("methodDao")
 @Transactional
-public class MethodDao implements IMethodDao {
+public class MethodDao extends GenericDao<CalculatorClassMethod> implements
+		IMethodDao {
 
-	@PersistenceContext
-	private EntityManager em;
+	public MethodDao() {
+		super(CalculatorClassMethod.class);
+	}
 	
+	
+	
+/*
 	@Override
 	public CalculatorClassMethod getMethod(long methodId) {
 		TypedQuery<CalculatorClassMethod> query = em.createNamedQuery(
@@ -33,8 +36,8 @@ public class MethodDao implements IMethodDao {
 
 	@Override
 	public CalculatorClassMethod saveMethod(CalculatorClassMethod method) {
-		
+
 		return em.merge(method);
 	}
-
+*/
 }

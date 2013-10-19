@@ -1,7 +1,5 @@
 package org.calculator.dao.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.calculator.dao.IParamDao;
@@ -17,11 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository("paramDao")
 @Transactional
-public class ParamDao implements IParamDao {
+public class ParamDao extends GenericDao<CalculatorMethodParam> implements IParamDao {
 
-	@PersistenceContext
-	private EntityManager em;
+	public ParamDao() {
+		super(CalculatorMethodParam.class);
+	}
 	
+	/*
 	@Override
 	public CalculatorMethodParam getParam(long paramId) {
 		TypedQuery<CalculatorMethodParam> query = em.createNamedQuery(
@@ -37,5 +37,5 @@ public class ParamDao implements IParamDao {
 
 		return em.merge(calculatorMethodParam);
 	}
-
+*/
 }

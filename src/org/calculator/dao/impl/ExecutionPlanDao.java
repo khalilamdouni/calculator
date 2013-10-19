@@ -2,8 +2,6 @@ package org.calculator.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.calculator.dao.IExecutionPlanDao;
@@ -19,11 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository(value = "executionPlanDao")
 @Transactional
-public class ExecutionPlanDao implements IExecutionPlanDao {
-	
-	@PersistenceContext
-	private EntityManager em;
-	
+public class ExecutionPlanDao extends GenericDao<ExecutionPlan> implements IExecutionPlanDao {
+
+	public ExecutionPlanDao() {
+		super(ExecutionPlan.class);
+	}
+
 	@Override
 	public List<ExecutionPlan> getExecutionPlans() {
 
@@ -31,7 +30,7 @@ public class ExecutionPlanDao implements IExecutionPlanDao {
 				"ExecutionPlan.getExecutionPlans", ExecutionPlan.class);
 		return query.getResultList();
 	}
-
+/*
 	@Override
 	public ExecutionPlan getExecutionPlan(long id) {
 		TypedQuery<ExecutionPlan> query = em.createNamedQuery(
@@ -51,5 +50,5 @@ public class ExecutionPlanDao implements IExecutionPlanDao {
 
 		em.remove(em.find(ExecutionPlan.class, id));
 	}
-
+*/
 }

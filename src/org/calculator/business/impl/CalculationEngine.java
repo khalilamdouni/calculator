@@ -101,7 +101,7 @@ public class CalculationEngine implements ICalculationEngine {
 
 		List<Result> results = new ArrayList<Result>();
 		// getting the method entity
-		CalculatorClassMethod method = methodDao.getMethod(methodId);
+		CalculatorClassMethod method = methodDao.getById(methodId);
 
 		// charging the jar and instance of the object
 		Class<?> classInstance = jarManager.loadClassesAndGetInstance(method
@@ -201,7 +201,7 @@ public class CalculationEngine implements ICalculationEngine {
 			InvocationTargetException {
 		List<List<Result>> results = new ArrayList<List<Result>>();
 
-		ExecutionPlan executionPlan = executionPlanDao.getExecutionPlan(planId);
+		ExecutionPlan executionPlan = executionPlanDao.getById(planId);
 		String[] methodIds = executionPlan.getSequence().split("-");
 		for (int i = 0; i < methodIds.length; i++) {
 			results.add(calculate(Long.valueOf(methodIds[i])));

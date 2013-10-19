@@ -9,15 +9,22 @@ import org.calculator.models.JarFileModel;
  * The interface of jars Data Access Object
  * 
  * @author khalil.amdouni
- *
+ * 
  */
-public interface IJarManagerDao {
-	
-	public String saveJar(JarFileModel jarFile) throws IllegalStateException, IOException;
+public interface IJarManagerDao extends IGenericDao<JarFileModel> {
+
+	public String saveJar(JarFileModel jarFile) throws IllegalStateException,
+			IOException;
+
 	public List<JarFileModel> getJars(int startIndex, int dataCount);
-	public JarFileModel updateJar(JarFileModel jarFile);
-	public void deleteJar(String jarId);
+
+	/*public JarFileModel updateJar(JarFileModel jarFile);
+
+	public void deleteJar(String jarId);*/
+
 	public int getJarsCount();
+
 	public List<JarFileModel> getUnreflectedJars();
+
 	public List<JarFileModel> getReflectedJars();
 }

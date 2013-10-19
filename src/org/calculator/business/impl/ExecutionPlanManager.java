@@ -23,13 +23,13 @@ public class ExecutionPlanManager implements IExecutionPlanManager {
 
 	@Override
 	public ExecutionPlan getExecutionPlan(long id) {
-		return executionPlanDao.getExecutionPlan(id);
+		return executionPlanDao.getById(id);
 	}
 
 	@Override
 	public void saveExecutionPlan(ExecutionPlan executionplan) {
 		
-		executionPlanDao.saveExecutionPlan(executionplan);
+		executionPlanDao.save(executionplan);
 
 	}
 

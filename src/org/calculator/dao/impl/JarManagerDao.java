@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.apache.log4j.Logger;
@@ -23,12 +21,15 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository("jarManagerDao")
 @Transactional
-public class JarManagerDao implements IJarManagerDao {
+public class JarManagerDao extends GenericDao<JarFileModel> implements IJarManagerDao {
 
 	private static final Logger logger = Logger.getLogger(JarManagerDao.class);
+
 	
-	@PersistenceContext
-	private EntityManager em;
+	
+	public JarManagerDao() {
+		super(JarFileModel.class);
+	}
 
 	@Override
 	public String saveJar(JarFileModel jarFile) throws IllegalStateException,
@@ -62,7 +63,7 @@ public class JarManagerDao implements IJarManagerDao {
 		return ((Number) em.createNamedQuery("JarFileModel.getJarsCount")
 				.getSingleResult()).intValue();
 	}
-
+/*
 	@Override
 	public JarFileModel updateJar(JarFileModel jarFile) {
 		return em.merge(jarFile);
@@ -72,7 +73,7 @@ public class JarManagerDao implements IJarManagerDao {
 	public void deleteJar(String jarId) {
 		em.remove(em.find(JarFileModel.class, jarId));
 	}
-	
+	*/
 	public List<JarFileModel> getUnreflectedJars() {
 		TypedQuery<JarFileModel> query = em.createNamedQuery(
 				"JarFileModel.getJars", JarFileModel.class);

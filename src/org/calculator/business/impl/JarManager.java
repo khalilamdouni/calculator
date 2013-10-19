@@ -117,12 +117,12 @@ public class JarManager implements IJarManager {
 
 	@Override
 	public JarFileModel updateJar(JarFileModel jarFile) {
-		return this.jarManagerDao.updateJar(jarFile);
+		return this.jarManagerDao.save(jarFile);
 	}
 
 	@Override
 	public void deleteJar(String jarId) {
-		this.jarManagerDao.deleteJar(jarId);
+		this.jarManagerDao.delete(jarId);
 	}
 
 	@Override
@@ -132,7 +132,7 @@ public class JarManager implements IJarManager {
 			calculatorClassDao.saveCalculatorClasses(reflectJar(jarFileModel
 					.getJarId()));
 			jarFileModel.setReflected(true);
-			jarManagerDao.updateJar(jarFileModel);
+			jarManagerDao.save(jarFileModel);
 		}
 	}
 

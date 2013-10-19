@@ -2,10 +2,6 @@ package org.calculator.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-
 import org.calculator.dao.ICalculatorClassDao;
 import org.calculator.models.CalculatorClass;
 import org.springframework.stereotype.Repository;
@@ -19,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository("calculatorClassDao")
 @Transactional
-public class CalculatorClassDao implements ICalculatorClassDao {
-
-	@PersistenceContext
-	private EntityManager em;
+public class CalculatorClassDao extends GenericDao<CalculatorClass> implements ICalculatorClassDao {
 	
+	
+	
+	public CalculatorClassDao() {
+		super(CalculatorClass.class);
+	}
+
 	@Override
 	public void saveCalculatorClasses(List<CalculatorClass> calculatorClasses) {
 		
@@ -32,7 +31,7 @@ public class CalculatorClassDao implements ICalculatorClassDao {
 		}
 		em.flush();
 	}
-
+/*
 	@Override
 	public CalculatorClass getClassById(long id) {
 		TypedQuery<CalculatorClass> query = em.createNamedQuery(
@@ -45,5 +44,5 @@ public class CalculatorClassDao implements ICalculatorClassDao {
 	public CalculatorClass saveCalculatorClass(CalculatorClass calculatorClass) {
 		return em.merge(calculatorClass);
 	}
-
+*/
 }

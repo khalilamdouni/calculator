@@ -16,13 +16,13 @@ public class ParamManager implements IParamManager {
 	
 	@Override
 	public CalculatorMethodParam getParam(long paramId) {
-		return paramDao.getParam(paramId);
+		return paramDao.getById(paramId);
 	}
 
 	@Override
 	public CalculatorMethodParam saveParam(
 			CalculatorMethodParam calculatorMethodParam) {
-		return paramDao.saveParam(calculatorMethodParam);
+		return paramDao.save(calculatorMethodParam);
 	}
 
 	public IParamDao getParamDao() {
