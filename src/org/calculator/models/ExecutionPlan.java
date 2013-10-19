@@ -19,7 +19,7 @@ import javax.persistence.Table;
 		@NamedQuery(name = "ExecutionPlan.getExecutionPlans", query = "SELECT ep FROM ExecutionPlan ep"),
 		@NamedQuery(name = "ExecutionPlan.getExecutionPlanById", query = "SELECT ep FROM ExecutionPlan ep WHERE id=:id") 
 })
-public class ExecutionPlan {
+public class ExecutionPlan extends AbstractModel {
 	
 	@Id
 	@Column(name = "ID")

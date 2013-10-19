@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WEB_SCENARIOS")
-public class WebScenario {
+public class WebScenario extends AbstractModel {
 
 	@Column(name = "ID")
 	@Id

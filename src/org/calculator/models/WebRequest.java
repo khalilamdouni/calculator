@@ -23,7 +23,7 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 @Table(name = "WEB_REQUESTS")
-public class WebRequest {
+public class WebRequest extends AbstractModel {
 
 	@Id
 	@Column(name = "ID")
@@ -117,6 +117,11 @@ public class WebRequest {
 
 	public void setWebParams(List<WebParam> webParams) {
 		this.webParams = webParams;
+	}
+	
+	public void setScenarioId(long scenarioId) {
+		this.webScenario = new WebScenario();
+		this.webScenario.setId(scenarioId);
 	}
 
 }

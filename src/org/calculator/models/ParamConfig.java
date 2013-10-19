@@ -24,7 +24,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 	@NamedQuery(name = "ParamConfig.getAllParamConfigs", query = "SELECT pc FROM ParamConfig pc WHERE param.id=:id"),
 	@NamedQuery(name = "ParamConfig.getParamConfigsCount", query = "SELECT COUNT(pc) FROM ParamConfig pc WHERE param.id=:id")
 })
-public class ParamConfig {
+public class ParamConfig extends AbstractModel {
 	
 	@Id
 	@Column(name = "ID")

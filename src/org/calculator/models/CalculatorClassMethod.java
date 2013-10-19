@@ -27,7 +27,7 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name = "CalculatorClassMethod.getMethodById", query = "SELECT m FROM CalculatorClassMethod m WHERE id=:id")
 })
-public class CalculatorClassMethod {
+public class CalculatorClassMethod extends AbstractModel {
 
 	@Id
 	@Column(name = "ID")

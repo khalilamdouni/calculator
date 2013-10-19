@@ -29,7 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 		@NamedQuery(name = "JarFileModel.getAllJars", query = "SELECT j FROM JarFileModel j"),
 		@NamedQuery(name = "JarFileModel.getJarsCount", query = "SELECT COUNT(j) FROM JarFileModel j"),
 		@NamedQuery(name = "JarFileModel.getJars", query = "SELECT j FROM JarFileModel j WHERE j.reflected=:reflected")})
-public class JarFileModel {
+public class JarFileModel extends AbstractModel {
 
 	@Id
 	@Column(name = "JAR_ID")

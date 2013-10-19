@@ -29,7 +29,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
 	@NamedQuery(name = "CalculatorClass.getClassById", query = "SELECT c FROM CalculatorClass c WHERE c.id = :id")
 })
-public class CalculatorClass {
+public class CalculatorClass extends AbstractModel {
 
 	@Id
 	@Column(name = "ID")

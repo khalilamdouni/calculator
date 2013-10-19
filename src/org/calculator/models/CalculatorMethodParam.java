@@ -33,7 +33,7 @@ import org.hibernate.annotations.Type;
 @NamedQueries({
 	@NamedQuery(name = "CalculatorMethodParam.getParamById", query = "SELECT p FROM CalculatorMethodParam p WHERE id=:id")
 })
-public class CalculatorMethodParam {
+public class CalculatorMethodParam extends AbstractModel {
 
 	@Id
 	@Column(name = "ID")

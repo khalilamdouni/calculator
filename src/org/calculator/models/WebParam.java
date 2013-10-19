@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WEB_PARAMS")
-public class WebParam {
+public class WebParam extends AbstractModel {
 
 	@Id
 	@Column(name = "ID")
@@ -62,6 +62,11 @@ public class WebParam {
 
 	public void setWebRequest(WebRequest webRequest) {
 		this.webRequest = webRequest;
+	}
+	
+	public void setRequestId(long requestId) {
+		this.webRequest = new WebRequest();
+		this.webRequest.setId(requestId);
 	}
 
 }
