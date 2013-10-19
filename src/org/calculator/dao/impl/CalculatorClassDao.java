@@ -31,18 +31,5 @@ public class CalculatorClassDao extends GenericDao<CalculatorClass> implements I
 		}
 		em.flush();
 	}
-/*
-	@Override
-	public CalculatorClass getClassById(long id) {
-		TypedQuery<CalculatorClass> query = em.createNamedQuery(
-				"CalculatorClass.getClassById", CalculatorClass.class);
-		query.setParameter("id", id);
-		return query.getSingleResult();
-	}
 
-	@Override
-	public CalculatorClass saveCalculatorClass(CalculatorClass calculatorClass) {
-		return em.merge(calculatorClass);
-	}
-*/
 }

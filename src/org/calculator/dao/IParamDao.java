@@ -9,8 +9,5 @@ import org.calculator.models.CalculatorMethodParam;
  *
  */
 public interface IParamDao extends IGenericDao<CalculatorMethodParam> {
-	/*
-	public CalculatorMethodParam getParam(long paramId);
-	public CalculatorMethodParam saveParam(CalculatorMethodParam calculatorMethodParam);
-	*/
+
 }

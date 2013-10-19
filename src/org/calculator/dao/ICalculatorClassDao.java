@@ -14,7 +14,4 @@ public interface ICalculatorClassDao extends IGenericDao<CalculatorClass> {
 
 	public void saveCalculatorClasses(List<CalculatorClass> calculatorClasses);
 
-	/*public CalculatorClass getClassById(long id);
-
-	public CalculatorClass saveCalculatorClass(CalculatorClass calculatorClass);*/
 }

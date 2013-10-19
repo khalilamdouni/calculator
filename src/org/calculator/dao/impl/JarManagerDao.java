@@ -63,17 +63,7 @@ public class JarManagerDao extends GenericDao<JarFileModel> implements IJarManag
 		return ((Number) em.createNamedQuery("JarFileModel.getJarsCount")
 				.getSingleResult()).intValue();
 	}
-/*
-	@Override
-	public JarFileModel updateJar(JarFileModel jarFile) {
-		return em.merge(jarFile);
-	}
 
-	@Override
-	public void deleteJar(String jarId) {
-		em.remove(em.find(JarFileModel.class, jarId));
-	}
-	*/
 	public List<JarFileModel> getUnreflectedJars() {
 		TypedQuery<JarFileModel> query = em.createNamedQuery(
 				"JarFileModel.getJars", JarFileModel.class);

@@ -14,10 +14,4 @@ public interface IExecutionPlanDao extends IGenericDao<ExecutionPlan> {
 
 	public List<ExecutionPlan> getExecutionPlans();
 
-	/*public ExecutionPlan getExecutionPlan(long id);
-
-	public void saveExecutionPlan(ExecutionPlan executionplan);
-
-	public void delete(long id);*/
-
 }

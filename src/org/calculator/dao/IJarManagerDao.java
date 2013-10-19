@@ -18,10 +18,6 @@ public interface IJarManagerDao extends IGenericDao<JarFileModel> {
 
 	public List<JarFileModel> getJars(int startIndex, int dataCount);
 
-	/*public JarFileModel updateJar(JarFileModel jarFile);
-
-	public void deleteJar(String jarId);*/
-
 	public int getJarsCount();
 
 	public List<JarFileModel> getUnreflectedJars();

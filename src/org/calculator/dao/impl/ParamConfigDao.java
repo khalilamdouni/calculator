@@ -38,17 +38,7 @@ public class ParamConfigDao extends GenericDao<ParamConfig> implements IParamCon
 		}
 		return query.getResultList();
 	}
-/*
-	@Override
-	public ParamConfig saveParamConfig(ParamConfig paramConfig) {
-		return em.merge(paramConfig);
-	}
 
-	@Override
-	public void deleteParamConfig(long paramConfigId) {
-		em.remove(em.find(ParamConfig.class, paramConfigId));
-	}
-*/
 	@Override
 	public int getParamConfigsCount(long paramId) {
 

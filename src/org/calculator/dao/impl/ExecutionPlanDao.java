@@ -30,25 +30,5 @@ public class ExecutionPlanDao extends GenericDao<ExecutionPlan> implements IExec
 				"ExecutionPlan.getExecutionPlans", ExecutionPlan.class);
 		return query.getResultList();
 	}
-/*
-	@Override
-	public ExecutionPlan getExecutionPlan(long id) {
-		TypedQuery<ExecutionPlan> query = em.createNamedQuery(
-				"ExecutionPlan.getExecutionPlanById", ExecutionPlan.class);
-		query.setParameter("id", id);
-		return query.getSingleResult();
-	}
 
-	@Override
-	public void saveExecutionPlan(ExecutionPlan executionplan) {
-
-		em.merge(executionplan);
-	}
-
-	@Override
-	public void delete(long id) {
-
-		em.remove(em.find(ExecutionPlan.class, id));
-	}
-*/
 }
