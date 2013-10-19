@@ -23,7 +23,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "CLASS_METHODS")
+@Table(name = "JARS_CLASS_METHODS")
 @NamedQueries({
 	@NamedQuery(name = "CalculatorClassMethod.getMethodById", query = "SELECT m FROM CalculatorClassMethod m WHERE id=:id")
 })

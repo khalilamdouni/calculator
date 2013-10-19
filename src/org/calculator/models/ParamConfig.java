@@ -19,7 +19,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  *
  */
 @Entity
-@Table(name = "PARAM_CONFIG")
+@Table(name = "JARS_PARAM_CONFIG")
 @NamedQueries({
 	@NamedQuery(name = "ParamConfig.getAllParamConfigs", query = "SELECT pc FROM ParamConfig pc WHERE param.id=:id"),
 	@NamedQuery(name = "ParamConfig.getParamConfigsCount", query = "SELECT COUNT(pc) FROM ParamConfig pc WHERE param.id=:id")

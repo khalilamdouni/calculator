@@ -14,7 +14,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "EXEC_PLAN")
+@Table(name = "JARS_EXEC_PLAN")
 @NamedQueries({
 		@NamedQuery(name = "ExecutionPlan.getExecutionPlans", query = "SELECT ep FROM ExecutionPlan ep"),
 		@NamedQuery(name = "ExecutionPlan.getExecutionPlanById", query = "SELECT ep FROM ExecutionPlan ep WHERE id=:id") 

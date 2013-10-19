@@ -29,7 +29,7 @@ import org.hibernate.annotations.Type;
  *
  */
 @Entity
-@Table(name = "METHOD_PARAMS")
+@Table(name = "JARS_METHOD_PARAMS")
 @NamedQueries({
 	@NamedQuery(name = "CalculatorMethodParam.getParamById", query = "SELECT p FROM CalculatorMethodParam p WHERE id=:id")
 })

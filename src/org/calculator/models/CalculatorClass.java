@@ -25,7 +25,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  *
  */
 @Entity
-@Table(name = "CALCULATOR_CLASSES")
+@Table(name = "JARS_CALCULATOR_CLASSES")
 @NamedQueries({
 	@NamedQuery(name = "CalculatorClass.getClassById", query = "SELECT c FROM CalculatorClass c WHERE c.id = :id")
 })
