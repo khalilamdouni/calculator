@@ -7,19 +7,15 @@
 
 
 
-<script type="text/javascript" src="js/jqplot/jquery.jqplot.js"></script>
-<script type="text/javascript"
-	src="js/jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
-<script type="text/javascript"
-	src="js/jqplot/plugins/jqplot.logAxisRenderer.min.js"></script>
-<script type="text/javascript"
-	src="js/jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
-<script type="text/javascript"
-	src="js/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
-<script type="text/javascript"
-	src="js/jqplot/plugins/jqplot.highlighter.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="css/jqplot/jquery.jqplot.css" />
+<script type="text/javascript" src="js/jqplot/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.logAxisRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.highlighter.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="css/jqplot/jquery.jqplot.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 
 <script type="text/javascript">
