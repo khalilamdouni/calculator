@@ -3,6 +3,7 @@ package org.calculator.business.impl;
 import java.util.List;
 
 import org.calculator.business.IConfigManager;
+import org.calculator.dao.IGenericDao;
 import org.calculator.dao.IParamConfigDao;
 import org.calculator.models.ParamConfig;
 
@@ -12,7 +13,7 @@ import org.calculator.models.ParamConfig;
  * @author khalil.amdouni
  *
  */
-public class ConfigManager implements IConfigManager {
+public class ConfigManager extends GenericManager<ParamConfig> implements IConfigManager {
 
 	private IParamConfigDao paramConfigDao;
 
@@ -20,16 +21,6 @@ public class ConfigManager implements IConfigManager {
 	public List<ParamConfig> getParamConfigs(long paramId, int startIndex,
 			int dataCount) {
 		return paramConfigDao.getParamConfigs(paramId, startIndex, dataCount);
-	}
-
-	@Override
-	public ParamConfig saveParamConfig(ParamConfig paramConfig) {
-		return paramConfigDao.save(paramConfig);
-	}
-
-	@Override
-	public void deleteParamConfig(long paramConfigId) {
-		paramConfigDao.delete(paramConfigId);
 	}
 
 	@Override
@@ -43,6 +34,11 @@ public class ConfigManager implements IConfigManager {
 
 	public void setParamConfigDao(IParamConfigDao paramConfigDao) {
 		this.paramConfigDao = paramConfigDao;
+	}
+
+	@Override
+	public IGenericDao<ParamConfig> getDao() {
+		return (IGenericDao<ParamConfig>) paramConfigDao;
 	}
 
 }

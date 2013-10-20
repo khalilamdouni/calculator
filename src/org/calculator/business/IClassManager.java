@@ -13,7 +13,7 @@ import org.calculator.models.IAlgorithme;
  * @author khalil.amdouni
  * 
  */
-public interface IClassManager {
+public interface IClassManager extends IGenericManager<CalculatorClass> {
 
 	/**
 	 * Loading a class that implements the IAlgorithme interface
@@ -36,19 +36,4 @@ public interface IClassManager {
 	 */
 	public void saveCalculatorClasses(List<CalculatorClass> calculatorClasses);
 
-	/**
-	 * Returning class info by class id
-	 * 
-	 * @param id
-	 * @return CalculatorClass
-	 */
-	public CalculatorClass getCalculatorClass(long id);
-
-	/**
-	 * Saving class info in the database
-	 * 
-	 * @param calculatorClass
-	 * @return CalculatorClass
-	 */
-	public CalculatorClass saveCalculatorClass(CalculatorClass calculatorClass);
 }

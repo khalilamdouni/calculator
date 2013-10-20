@@ -1,6 +1,7 @@
 package org.calculator.business.impl;
 
 import org.calculator.business.IMethodManager;
+import org.calculator.dao.IGenericDao;
 import org.calculator.dao.IMethodDao;
 import org.calculator.models.CalculatorClassMethod;
 
@@ -10,19 +11,10 @@ import org.calculator.models.CalculatorClassMethod;
  * @author khalil.amdouni
  *
  */
-public class MethodManager implements IMethodManager {
+public class MethodManager extends GenericManager<CalculatorClassMethod> implements IMethodManager {
 
 	private IMethodDao methodDao;
-	
-	@Override
-	public CalculatorClassMethod getMethod(long methodId) {
-		return methodDao.getById(methodId);
-	}
 
-	@Override
-	public CalculatorClassMethod saveMethod(CalculatorClassMethod method) {
-		return methodDao.save(method);
-	}
 
 	public IMethodDao getMethodDao() {
 		return methodDao;
@@ -30,6 +22,11 @@ public class MethodManager implements IMethodManager {
 
 	public void setMethodDao(IMethodDao methodDao) {
 		this.methodDao = methodDao;
+	}
+
+	@Override
+	public IGenericDao<CalculatorClassMethod> getDao() {
+		return (IGenericDao<CalculatorClassMethod>) methodDao;
 	}
 
 }

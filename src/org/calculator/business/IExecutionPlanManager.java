@@ -11,7 +11,7 @@ import org.calculator.models.ExecutionPlan;
  * @author khalil.amdouni
  * 
  */
-public interface IExecutionPlanManager {
+public interface IExecutionPlanManager extends IGenericManager<ExecutionPlan> {
 
 	/**
 	 * Getting all execution plans
@@ -20,25 +20,4 @@ public interface IExecutionPlanManager {
 	 */
 	public List<ExecutionPlan> getExecutionPlans();
 
-	/**
-	 * Getting execution plan by id
-	 * 
-	 * @param id
-	 * @return ExecutionPlan
-	 */
-	public ExecutionPlan getExecutionPlan(long id);
-
-	/**
-	 * Saving execution plan
-	 * 
-	 * @param executionplan
-	 */
-	public void saveExecutionPlan(ExecutionPlan executionplan);
-
-	/**
-	 * Delete of execution plan
-	 * 
-	 * @param id
-	 */
-	public void delete(long id);
 }

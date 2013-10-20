@@ -15,7 +15,7 @@ import org.calculator.models.WebParam;
  */
 public class WebParamDao extends GenericDao<WebParam> implements IWebParamDao {
 
-	public WebParamDao(Class<WebParam> type) {
+	public WebParamDao() {
 		super(WebParam.class);
 	}
 

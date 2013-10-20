@@ -45,7 +45,7 @@ public class ExecutionPlanController {
 	public @ResponseBody
 	ExecutionPlan getExecutionPlan(
 			@PathVariable("executionPlanId") long executionPlanId) {
-		return executionPlanManager.getExecutionPlan(executionPlanId);
+		return executionPlanManager.get(executionPlanId);
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class ExecutionPlanController {
 	 */
 	@RequestMapping(value = "/saveExecutionPlan", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String saveExecutionPlan(@RequestBody ExecutionPlan executionPlan) {
-		executionPlanManager.saveExecutionPlan(executionPlan);
+		executionPlanManager.save(executionPlan);
 		return "redirect:getExecutionPlans";
 	}
 

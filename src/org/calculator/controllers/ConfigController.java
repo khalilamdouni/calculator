@@ -63,7 +63,7 @@ public class ConfigController {
 		param.setId(paramId);
 		paramConfig.setParam(param);
 		return new JSONJTableResponseModel<ParamConfig>("OK",
-				this.configManager.saveParamConfig(paramConfig));
+				this.configManager.save(paramConfig));
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class ConfigController {
 	JSONJTableResponseModel<ParamConfig> updateParamConfig(
 			@ModelAttribute ParamConfig paramConfig, BindingResult result) {
 		return new JSONJTableResponseModel<ParamConfig>("OK",
-				this.configManager.saveParamConfig(paramConfig));
+				this.configManager.save(paramConfig));
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class ConfigController {
 	public @ResponseBody
 	JSONJTableResponseModel<ParamConfig> deleteParamConfig(
 			@RequestParam long paramConfigId) {
-		configManager.deleteParamConfig(paramConfigId);
+		configManager.delete(paramConfigId);
 		return new JSONJTableResponseModel<ParamConfig>("OK");
 	}
 

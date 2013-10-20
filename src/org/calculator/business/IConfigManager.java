@@ -12,7 +12,7 @@ import org.calculator.models.ParamConfig;
  * @author khalil.amdouni
  * 
  */
-public interface IConfigManager {
+public interface IConfigManager extends IGenericManager<ParamConfig> {
 
 	/**
 	 * Getting the list of param configs by param id
@@ -24,21 +24,6 @@ public interface IConfigManager {
 	 */
 	public List<ParamConfig> getParamConfigs(long paramId, int startIndex,
 			int dataCount);
-
-	/**
-	 * Saving param config
-	 * 
-	 * @param paramConfig
-	 * @return ParamConfig
-	 */
-	public ParamConfig saveParamConfig(ParamConfig paramConfig);
-
-	/**
-	 * Delete of param config
-	 * 
-	 * @param paramConfigId
-	 */
-	public void deleteParamConfig(long paramConfigId);
 
 	/**
 	 * getting the number of param configs by param id

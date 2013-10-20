@@ -97,7 +97,7 @@ public class JarManagerController {
 	JSONJTableResponseModel<JarFileModel> updateJar(
 			@ModelAttribute JarFileModel jarFile, BindingResult result) {
 		return new JSONJTableResponseModel<JarFileModel>("OK",
-				this.jarManager.updateJar(jarFile));
+				this.jarManager.save(jarFile));
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class JarManagerController {
 	@RequestMapping(value = "/deleteJar", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
 	JSONJTableResponseModel<JarFileModel> deleteJar(@RequestParam String jarId) {
-		this.jarManager.deleteJar(jarId);
+		this.jarManager.delete(jarId);
 		return new JSONJTableResponseModel<JarFileModel>("OK");
 	}
 

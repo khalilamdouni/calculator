@@ -72,7 +72,7 @@ public class ReflectorController {
 	@RequestMapping(value = "/getClassForm/{classId}")
 	public ModelAndView getClassForm(@PathVariable("classId") long classId) {
 		return new ModelAndView("classForm", "classModel",
-				classManager.getCalculatorClass(classId));
+				classManager.get(classId));
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class ReflectorController {
 	public ModelAndView saveClass(@RequestBody CalculatorClass claculatorClass) {
 		logger.info("Save off : " + claculatorClass);
 		return new ModelAndView("classForm", "classModel",
-				this.classManager.saveCalculatorClass(claculatorClass));
+				this.classManager.save(claculatorClass));
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class ReflectorController {
 	@RequestMapping(value = "/getMethodForm/{methodId}")
 	public ModelAndView getMethodForm(@PathVariable("methodId") long methodId) {
 		return new ModelAndView("methodForm", "methodModel",
-				this.methodManager.getMethod(methodId));
+				this.methodManager.get(methodId));
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class ReflectorController {
 			@RequestBody CalculatorClassMethod calculatorClassMethod) {
 		logger.info("Save off : " + calculatorClassMethod);
 		return new ModelAndView("methodForm", "methodModel",
-				this.methodManager.saveMethod(calculatorClassMethod));
+				this.methodManager.save(calculatorClassMethod));
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class ReflectorController {
 	@RequestMapping(value = "/getParamForm/{paramId}")
 	public ModelAndView getParamForm(@PathVariable("paramId") long paramId) {
 		return new ModelAndView("paramForm", "paramModel",
-				this.paramManager.getParam(paramId));
+				this.paramManager.get(paramId));
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class ReflectorController {
 			@RequestBody CalculatorMethodParam calculatorMethodParam) {
 		logger.info("Save off : " + calculatorMethodParam);
 		return new ModelAndView("paramForm", "paramModel",
-				this.paramManager.saveParam(calculatorMethodParam));
+				this.paramManager.save(calculatorMethodParam));
 	}
 
 	public IJarManager getJarManager() {

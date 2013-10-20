@@ -1,6 +1,7 @@
 package org.calculator.business.impl;
 
 import org.calculator.business.IParamManager;
+import org.calculator.dao.IGenericDao;
 import org.calculator.dao.IParamDao;
 import org.calculator.models.CalculatorMethodParam;
 
@@ -10,20 +11,9 @@ import org.calculator.models.CalculatorMethodParam;
  * @author khalil.amdouni
  *
  */
-public class ParamManager implements IParamManager {
+public class ParamManager extends GenericManager<CalculatorMethodParam> implements IParamManager {
 
 	private IParamDao paramDao;
-	
-	@Override
-	public CalculatorMethodParam getParam(long paramId) {
-		return paramDao.getById(paramId);
-	}
-
-	@Override
-	public CalculatorMethodParam saveParam(
-			CalculatorMethodParam calculatorMethodParam) {
-		return paramDao.save(calculatorMethodParam);
-	}
 
 	public IParamDao getParamDao() {
 		return paramDao;
@@ -31,6 +21,11 @@ public class ParamManager implements IParamManager {
 
 	public void setParamDao(IParamDao paramDao) {
 		this.paramDao = paramDao;
+	}
+
+	@Override
+	public IGenericDao<CalculatorMethodParam> getDao() {
+		return (IGenericDao<CalculatorMethodParam>) paramDao;
 	}
 	
 }

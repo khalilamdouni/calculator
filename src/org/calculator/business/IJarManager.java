@@ -13,7 +13,7 @@ import org.calculator.models.JarFileModel;
  * @author khalil.amdouni
  * 
  */
-public interface IJarManager {
+public interface IJarManager extends IGenericManager<JarFileModel> {
 
 	/**
 	 * saving jar file and jar info in the database
@@ -45,21 +45,6 @@ public interface IJarManager {
 	 * @return List JarFileModel
 	 */
 	public List<JarFileModel> loadJars(int startIndex, int dataCount);
-
-	/**
-	 * updating jar info
-	 * 
-	 * @param jarFile
-	 * @return JarFileModel
-	 */
-	public JarFileModel updateJar(JarFileModel jarFile);
-
-	/**
-	 * Delete jar file
-	 * 
-	 * @param jarId
-	 */
-	public void deleteJar(String jarId);
 
 	/**
 	 * Getting jars number

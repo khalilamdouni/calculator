@@ -10,6 +10,7 @@ import java.util.jar.JarFile;
 
 import org.calculator.business.IClassManager;
 import org.calculator.dao.ICalculatorClassDao;
+import org.calculator.dao.IGenericDao;
 import org.calculator.models.CalculatorClass;
 import org.calculator.models.IAlgorithme;
 
@@ -19,7 +20,7 @@ import org.calculator.models.IAlgorithme;
  * @author khalil.amdouni
  *
  */
-public class ClassManager implements IClassManager {
+public class ClassManager extends GenericManager<CalculatorClass> implements IClassManager {
 
 	private ICalculatorClassDao calculatorClassDao;
 	
@@ -67,13 +68,8 @@ public class ClassManager implements IClassManager {
 	}
 
 	@Override
-	public CalculatorClass getCalculatorClass(long id) {
-		return calculatorClassDao.getById(id);
-	}
-
-	@Override
-	public CalculatorClass saveCalculatorClass(CalculatorClass calculatorClass) {
-		return calculatorClassDao.save(calculatorClass);
+	public IGenericDao<CalculatorClass> getDao() {
+		return (IGenericDao<CalculatorClass>) calculatorClassDao;
 	}
 
 }

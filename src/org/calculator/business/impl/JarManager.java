@@ -13,6 +13,7 @@ import java.util.jar.JarFile;
 import org.apache.log4j.Logger;
 import org.calculator.business.IJarManager;
 import org.calculator.dao.ICalculatorClassDao;
+import org.calculator.dao.IGenericDao;
 import org.calculator.dao.IJarManagerDao;
 import org.calculator.enums.CalculatorType;
 import org.calculator.models.CalculatorClass;
@@ -27,7 +28,7 @@ import org.calculator.models.JarFileModel;
  * @author khalil.amdouni
  *
  */
-public class JarManager implements IJarManager {
+public class JarManager extends GenericManager<JarFileModel> implements IJarManager {
 
 	private IJarManagerDao jarManagerDao;
 	private ICalculatorClassDao calculatorClassDao;
@@ -116,16 +117,6 @@ public class JarManager implements IJarManager {
 	}
 
 	@Override
-	public JarFileModel updateJar(JarFileModel jarFile) {
-		return this.jarManagerDao.save(jarFile);
-	}
-
-	@Override
-	public void deleteJar(String jarId) {
-		this.jarManagerDao.delete(jarId);
-	}
-
-	@Override
 	public void reflectJars() throws IOException, ClassNotFoundException {
 		List<JarFileModel> unreflectedJars = jarManagerDao.getUnreflectedJars();
 		for (JarFileModel jarFileModel : unreflectedJars) {
@@ -178,6 +169,11 @@ public class JarManager implements IJarManager {
 		}
 		jarFile.close();
 		return objectClass;
+	}
+
+	@Override
+	public IGenericDao<JarFileModel> getDao() {
+		return (IGenericDao<JarFileModel>) jarManagerDao;
 	}
 
 }
