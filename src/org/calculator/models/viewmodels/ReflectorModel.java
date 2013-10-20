@@ -1,6 +1,8 @@
-package org.calculator.models;
+package org.calculator.models.viewmodels;
 
 import java.util.List;
+
+import org.calculator.models.JarFileModel;
 
 /**
  * View model of the reflector functionality

@@ -1,4 +1,4 @@
-package org.calculator.models;
+package org.calculator.models.viewmodels;
 
 /**
  * View model used by the error page of the application

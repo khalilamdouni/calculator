@@ -41,5 +41,17 @@
 	<bean id="executionPlanManager" class="org.calculator.business.impl.ExecutionPlanManager">
 	    <property name="executionPlanDao" ref="executionPlanDao"></property>
 	</bean>
+	
+	<bean id="webScenarioManager" class="org.calculator.business.impl.WebScenarioManager">
+	    <property name="webScenarioDao" ref="webScenarioDao"></property>
+	</bean>
+	
+	<bean id="webRequestManager" class="org.calculator.business.impl.WebRequestManager">
+	    <property name="webRequestDao" ref="webRequestDao"></property>
+	</bean>
+	
+	<bean id="webParamManager" class="org.calculator.business.impl.WebParamManager">
+	    <property name="webParamDao" ref="webParamDao"></property>
+	</bean>
 
 </beans>

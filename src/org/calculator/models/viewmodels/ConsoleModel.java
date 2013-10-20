@@ -1,6 +1,10 @@
-package org.calculator.models;
+package org.calculator.models.viewmodels;
 
 import java.util.List;
+
+import org.calculator.models.ExecutionPlan;
+import org.calculator.models.JarFileModel;
+import org.calculator.models.Result;
 
 /**
  * View model of the console functionality 

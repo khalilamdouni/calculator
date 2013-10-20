@@ -10,7 +10,7 @@ import org.calculator.business.IParamManager;
 import org.calculator.models.CalculatorClass;
 import org.calculator.models.CalculatorClassMethod;
 import org.calculator.models.CalculatorMethodParam;
-import org.calculator.models.ReflectorModel;
+import org.calculator.models.viewmodels.ReflectorModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;

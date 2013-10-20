@@ -2,7 +2,7 @@ package org.calculator.controllers;
 
 import java.io.IOException;
 
-import org.calculator.models.ExceptionModel;
+import org.calculator.models.viewmodels.ExceptionModel;
 import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
