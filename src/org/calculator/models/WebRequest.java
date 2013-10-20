@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,6 +25,7 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 @Table(name = "WEB_REQUESTS")
+@NamedQueries({ @NamedQuery(name = "WebRequest.getRequestsByScenarioId", query = "SELECT wr FROM WebRequest wr WHERE webScenario.id=:scenarioId") })
 public class WebRequest extends AbstractModel {
 
 	@Id
@@ -51,8 +54,8 @@ public class WebRequest extends AbstractModel {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "SCENARIO_ID", nullable = false, updatable = false)
 	private WebScenario webScenario;
-	
-	@OneToMany(fetch = FetchType.LAZY ,mappedBy = "webRequest")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "webRequest")
 	private List<WebParam> webParams;
 
 	public long getId() {
@@ -118,7 +121,7 @@ public class WebRequest extends AbstractModel {
 	public void setWebParams(List<WebParam> webParams) {
 		this.webParams = webParams;
 	}
-	
+
 	public void setScenarioId(long scenarioId) {
 		this.webScenario = new WebScenario();
 		this.webScenario.setId(scenarioId);

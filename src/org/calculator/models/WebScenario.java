@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,6 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WEB_SCENARIOS")
+@NamedQueries({ @NamedQuery(name = "WebScenario.getScenarios", query = "SELECT ws FROM WebScenario ws") })
 public class WebScenario extends AbstractModel {
 
 	@Column(name = "ID")
@@ -29,7 +32,7 @@ public class WebScenario extends AbstractModel {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
-	@OneToMany(fetch = FetchType.LAZY ,mappedBy = "webScenario")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "webScenario")
 	private List<WebRequest> webRequests;
 
 	public long getId() {

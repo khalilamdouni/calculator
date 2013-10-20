@@ -6,6 +6,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -16,6 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WEB_PARAMS")
+@NamedQueries({ @NamedQuery(name = "WebParam.getParamsByRequestId", query = "SELECT wp FROM WebParam wp WHERE webRequest.id=:requestId") })
 public class WebParam extends AbstractModel {
 
 	@Id
@@ -63,7 +66,7 @@ public class WebParam extends AbstractModel {
 	public void setWebRequest(WebRequest webRequest) {
 		this.webRequest = webRequest;
 	}
-	
+
 	public void setRequestId(long requestId) {
 		this.webRequest = new WebRequest();
 		this.webRequest.setId(requestId);

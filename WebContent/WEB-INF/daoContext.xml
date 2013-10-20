@@ -16,6 +16,8 @@
     <bean id="paramDao" class="org.calculator.dao.impl.ParamDao"></bean>
     <bean id="paramConfigDao" class="org.calculator.dao.impl.ParamConfigDao"></bean>
     <bean id="executionPlanDao" class="org.calculator.dao.impl.ExecutionPlanDao"></bean>
-        
+    <bean id="webScenarioDao" class="org.calculator.dao.impl.WebScenarioDao"></bean>
+    <bean id="webRequestDao" class="org.calculator.dao.impl.WebRequestDao"></bean>
+    <bean id="webParamDao" class="org.calculator.dao.impl.WebParamDao"></bean>
 
 </beans>
