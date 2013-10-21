@@ -403,3 +403,28 @@ function resetPlanForm() {
 	$("#plan-description").val("");
 	$("#sequence").html("");
 }
+
+
+/***********************************************************************/
+/***********         Web scenarios management calls          ***********/
+/** ********************************************************************/
+
+function addWebScenario(scenarioTitle) {
+	var url = "addScenario/" + scenarioTitle;
+	$.ajax({
+		type : "POST",
+		url : url,
+		dataType : "json",
+		contentType : 'application/json',
+		success : function(data) {
+			addScenarioToList(data.id, data.title);
+		}
+	});
+	return false;
+}
+
+function addScenarioToList(id, title) {
+	$("#scenarios-list").append(
+			"<li onclick='getScenario('" + id + "') class='ui-widget-content'>"
+					+ title + "</li>");
+}

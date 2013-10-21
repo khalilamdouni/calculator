@@ -23,6 +23,7 @@
 
 		$("#scenarios-list").selectable();
 
+		var scenarioTitle = $("#title");
 		$("#add-scenario").dialog({
 			autoOpen : false,
 			height : 300,
@@ -30,6 +31,7 @@
 			modal : true,
 			buttons : {
 				"Add scenario" : function() {
+					addWebScenario(scenarioTitle.val());
 					$(this).dialog("close");
 				},
 				Cancel : function() {
