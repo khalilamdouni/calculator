@@ -378,4 +378,28 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 #nav {
 	display: inline-block;
 	z-index: 5;
-} 
+}
+
+
+.selectable-list .ui-selecting {
+	background: #b4b4b4;
+}
+
+.selectable-list .ui-selected {
+	background: #0078ff;
+	color: white;
+}
+
+.selectable-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.selectable-list li {
+	margin: 3px;
+	padding: 0.4em;
+	font-size: 1.4em;
+	height: 18px;
+}

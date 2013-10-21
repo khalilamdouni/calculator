@@ -19,6 +19,22 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-	
+	$( "#scenarios-list" ).selectable();
 });
 </script>
+
+<div class="leftpanel">
+	<ol id="scenarios-list" class="selectable-list">
+		<c:forEach items="${webScenarioViewModel.webScenarios}"
+			var="webScenario" varStatus="webScenarioStatus">
+			<li onclick="getScenario('${webScenario.id}')"
+				class="ui-widget-content">${webScenario.title}</li>
+		</c:forEach>
+	</ol>
+</div>
+<div class="rightpanel">
+	<div class="rightbody">
+
+	</div>
+</div>
+<div class="clear"></div>

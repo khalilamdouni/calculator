@@ -45,7 +45,7 @@
 							</ul></li>
 						<li><a href="javascript:void(0)">WEB Calculator</a>
 							<ul>
-								<li><a href="javascript:alert('Not yet implemented')">Scenarios</a></li>
+								<li><a href="webScenarioManager">Scenarios</a></li>
 								<li><a href="javascript:alert('Not yet implemented')">Web
 										console</a></li>
 							</ul></li>
