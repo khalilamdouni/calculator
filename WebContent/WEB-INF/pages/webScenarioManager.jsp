@@ -18,9 +18,34 @@
 
 
 <script type="text/javascript">
-$(document).ready(function () {
-	$( "#scenarios-list" ).selectable();
-});
+
+	$(document).ready(function() {
+
+		$("#scenarios-list").selectable();
+
+		$("#add-scenario").dialog({
+			autoOpen : false,
+			height : 300,
+			width : 350,
+			modal : true,
+			buttons : {
+				"Add scenario" : function() {
+					$(this).dialog("close");
+				},
+				Cancel : function() {
+					$(this).dialog("close");
+				}
+			},
+			close : function() {
+
+			}
+		});
+
+		$("#add-scenario-button").click(function() {
+			$("#add-scenario").dialog("open");
+		});
+
+	});
 </script>
 
 <div class="leftpanel">
@@ -31,6 +56,18 @@ $(document).ready(function () {
 				class="ui-widget-content">${webScenario.title}</li>
 		</c:forEach>
 	</ol>
+	<div class="business-button">
+		<a href="javascript:void(0)" id="add-scenario-button">+</a>
+	</div>
+	<div id="add-scenario" title="Create new scenario">
+		<form>
+			<fieldset>
+				<label for="title">Scenario Title</label> <input type="text"
+					name="title" id="title"
+					class="text ui-widget-content ui-corner-all" />
+			</fieldset>
+		</form>
+	</div>
 </div>
 <div class="rightpanel">
 	<div class="rightbody">

@@ -66,7 +66,7 @@
 </div>
 <div class="rightpanel">
 	<div class="rightbody">
-		<div class="estimate-button">
+		<div class="business-button">
 			<a href="reflectJars" id="reflectButton">Reflect All Jars</a>
 		</div>
 		<div style="height: 300px" id="element-form">

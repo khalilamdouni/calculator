@@ -147,7 +147,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	border-color: rgba(11, 91, 177, 1);
 }
 
-.estimate-button a {
+.business-button a {
 	position: relative;
 	color: rgba(255, 255, 255, 1);
 	text-decoration: none;
@@ -176,7 +176,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, textarea {
 	transition: all .1s ease;
 }
 
-.estimate-button a:active {
+.business-button a:active {
 	background-color: rgba(219, 31, 5, 1);
 	-webkit-box-shadow: 0px 3px 0px rgba(219, 31, 5, 1), 0px 3px 6px
 		rgba(0, 0, 0, .9);

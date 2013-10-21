@@ -70,7 +70,7 @@
 			<tr>
 				<td></td>
 				<td>
-					<div class="estimate-button">
+					<div class="business-button">
 						<a href="javascript:void(0)" id="estimateButton">Select Algo
 							in the tree</a>
 					</div>

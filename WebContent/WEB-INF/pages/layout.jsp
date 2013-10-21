@@ -72,7 +72,7 @@
 <div class="footer">
 
 
-<img src="img/footer.gif" alt="html templates" border="0" height="1" width="1"></a>
+<img src="img/footer.gif" alt="html templates" border="0" height="1" width="1">
 <p>Copyright 2013. Calculator project <br>
 </p>
 
