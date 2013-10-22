@@ -21,7 +21,7 @@
 
 	$(document).ready(function() {
 
-		$("#scenarios-list").selectable();
+		$("#scenarios-list").selectable({ distance: 1 });
 
 		var scenarioTitle = $("#title");
 		$("#add-scenario").dialog({
@@ -72,7 +72,7 @@
 	</div>
 </div>
 <div class="rightpanel">
-	<div class="rightbody">
+	<div id="scenario-content" class="rightbody">
 
 	</div>
 </div>

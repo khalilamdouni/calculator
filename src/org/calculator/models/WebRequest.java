@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,18 +32,19 @@ public class WebRequest extends AbstractModel {
 
 	@Id
 	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	@Column(name = "NAME")
 	private String name;
 
-	@Column(name = "description")
+	@Column(name = "DESCRIPTION")
 	private String description;
 
-	@Column(name = "url")
+	@Column(name = "URL")
 	private String url;
 
-	@Column(name = "order")
+	@Column(name = "REQUEST_ORDER")
 	private int order;
 
 	@Column(name = "METHOD")

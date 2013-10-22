@@ -428,3 +428,26 @@ function addScenarioToList(id, title) {
 			"<li onclick='getScenario('" + id + "') class='ui-widget-content'>"
 					+ title + "</li>");
 }
+
+var selectedScenarioId = -1;
+function getScenario(scenarioId) {
+	selectedScenarioId = scenarioId;
+	$.ajax({
+		type : "GET",
+		url : 'getScenario/' + scenarioId,
+		success : function(response) {
+			$("#scenario-content").html(response);
+		}
+	});
+	return false;
+}
+
+function addRequest(requestName, requestURL, requestMethod) {
+
+	var json = {
+		"name" : requestName,
+		"url" : requestURL,
+		"method" : requestMethod
+	};
+	postAjaxForm('addRequest/' + selectedScenarioId, 'scenario-content', json);
+}
