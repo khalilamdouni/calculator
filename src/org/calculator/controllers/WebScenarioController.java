@@ -41,6 +41,12 @@ public class WebScenarioController {
 		return webScenarioManager.save(webScenario);
 	}
 	
+	@RequestMapping(value = "/getScenario/{scenarioId}", method = RequestMethod.GET)
+	public ModelAndView getScenario(@PathVariable("scenarioId") long scenarioId) {
+		return new ModelAndView("webScenarioView", "webScenarioModel",
+				webScenarioManager.get(scenarioId));
+	}
+	
 	public IWebScenarioManager getWebScenarioManager() {
 		return webScenarioManager;
 	}
