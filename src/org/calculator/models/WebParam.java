@@ -10,6 +10,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * JPA entity to encapsulate the web http param in the WEB calculation process
  * 
@@ -18,7 +20,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WEB_PARAMS")
-@NamedQueries({ @NamedQuery(name = "WebParam.getParamsByRequestId", query = "SELECT wp FROM WebParam wp WHERE webRequest.id=:requestId") })
+@NamedQueries({
+		@NamedQuery(name = "WebParam.getParamsByRequestId", query = "SELECT wp FROM WebParam wp WHERE webRequest.id=:requestId"),
+		@NamedQuery(name = "WebParam.getParamsCount", query = "SELECT count(wp) FROM WebParam wp WHERE webRequest.id=:requestId") })
 public class WebParam extends AbstractModel {
 
 	@Id
@@ -31,6 +35,7 @@ public class WebParam extends AbstractModel {
 	@Column(name = "value")
 	private String value;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "REQUEST_ID", nullable = false, updatable = false)
 	private WebRequest webRequest;

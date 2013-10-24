@@ -451,3 +451,28 @@ function addRequest(requestName, requestURL, requestMethod) {
 	};
 	postAjaxForm('addRequest/' + selectedScenarioId, 'scenario-content', json);
 }
+
+function getRequest(requestId) {
+	$.ajax({
+		type : "GET",
+		url : 'getRequest/' + requestId,
+		success : function(response) {
+			$("#request-content" + requestId).html(response);
+		}
+	});
+}
+
+function saveWebRequest(requestId) {
+	var name = $("#request-name").val();
+	var url = $("#request-url").val();
+	var method = $("#method-type").find(":selected").val();
+
+	var json = {
+		"id" : requestId,
+		"name" : name,
+		"url" : url,
+		"method" : method
+	};
+	postAjaxForm('updateRequest', 'request-content' + requestId, json);
+
+}

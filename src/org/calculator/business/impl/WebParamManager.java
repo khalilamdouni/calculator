@@ -24,10 +24,15 @@ public class WebParamManager extends GenericManager<WebParam> implements
 	}
 
 	@Override
-	public List<WebParam> getWebParamByRequestId(long requestId) {
-		return webParamDao.getWebParamByRequestId(requestId);
+	public List<WebParam> getWebParamByRequestId(long requestId, int startIndex, int resultSize) {
+		return webParamDao.getWebParamByRequestId(requestId, startIndex, resultSize);
 	}
 
+	@Override
+	public int getWebParamsCount(long requestId) {
+		return webParamDao.getWebParamsCount(requestId);
+	}
+	
 	public IWebParamDao getWebParamDao() {
 		return webParamDao;
 	}

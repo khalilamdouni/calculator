@@ -11,5 +11,6 @@ import org.calculator.models.WebParam;
  * 
  */
 public interface IWebParamDao extends IGenericDao<WebParam> {
-	public List<WebParam> getWebParamByRequestId(long requestId);
+	public List<WebParam> getWebParamByRequestId(long requestId, int startIndex, int resultSize);
+	public int getWebParamsCount(long requestId);
 }

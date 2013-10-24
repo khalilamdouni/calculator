@@ -12,5 +12,6 @@ import org.calculator.models.WebParam;
  * 
  */
 public interface IWebParamManager extends IGenericManager<WebParam> {
-	public List<WebParam> getWebParamByRequestId(long requestId);
+	public List<WebParam> getWebParamByRequestId(long requestId, int startIndex, int resultSize);
+	public int getWebParamsCount(long requestId);
 }

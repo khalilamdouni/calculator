@@ -1,6 +1,13 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+
+<link href="js/jtable/themes/lightcolor/blue/jtable.css" rel="stylesheet" type="text/css" />
+<link href="js/jqueryUICustom/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
+
+<script src="js/jtable/jquery.jtable.min.js" type="text/javascript"></script>
+<script src="js/jtable/json2.js" type="text/javascript"></script>
+
 <script>
 	$(function() {
 		$("#requests-view").accordion({
@@ -44,12 +51,12 @@
 	});
 </script>
 
-<div id="requests-view" style="width: 800px">
+<div id="requests-view" style="width: 800px;">
 	<c:forEach items="${webScenarioModel.webRequests}" var="webRequest"
 		varStatus="webRequestStatus">
 		<div>
-			<h3>${webRequest.name} - ${webRequest.url}</h3>
-			<div>
+			<h3 onclick="getRequest('${webRequest.id}')">${webRequest.name} - ${webRequest.url}</h3>
+			<div style="height: 500px !important" id="request-content${webRequest.id}">
 				<p>Form</p>
 			</div>
 		</div>
