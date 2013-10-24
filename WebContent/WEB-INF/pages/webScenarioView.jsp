@@ -50,9 +50,10 @@
 		});
 		
 		$("#order-request-button").click(function() {
-			serializeRequests();
+			reorderRequests();
 		});
-
+		
+		loadFirstRequest();
 	});
 </script>
 

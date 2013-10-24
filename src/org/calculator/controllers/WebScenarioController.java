@@ -118,8 +118,9 @@ public class WebScenarioController {
 	}
 	
 	@RequestMapping(value = "/reorderRequests/{requestsSequence}", method = RequestMethod.POST)
-	public void reorderRequests(@PathVariable("requestsSequence") String requestsSequence) {
+	public @ResponseBody String reorderRequests(@PathVariable("requestsSequence") String requestsSequence) {
 		webRequestManager.reorderRequests(requestsSequence);
+		return "OK";
 	}
 
 	public IWebScenarioManager getWebScenarioManager() {

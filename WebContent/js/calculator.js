@@ -447,7 +447,8 @@ function addRequest(requestName, requestURL, requestMethod) {
 	var json = {
 		"name" : requestName,
 		"url" : requestURL,
-		"method" : requestMethod
+		"method" : requestMethod,
+		"order" : lastOrder()
 	};
 	postAjaxForm('addRequest/' + selectedScenarioId, 'scenario-content', json);
 }
@@ -463,15 +464,16 @@ function getRequest(requestId) {
 }
 
 function saveWebRequest(requestId) {
-	var name = $("#request-name").val();
-	var url = $("#request-url").val();
-	var method = $("#method-type").find(":selected").val();
+	var name = $("#request-name" + requestId).val();
+	var url = $("#request-url" + requestId).val();
+	var method = $("#method-type" + requestId).find(":selected").val();
 
 	var json = {
 		"id" : requestId,
 		"name" : name,
 		"url" : url,
-		"method" : method
+		"method" : method,
+		"order" : getRequestOrder(requestId)
 	};
 	postAjaxForm('updateRequest', 'request-content' + requestId, json);
 
@@ -492,4 +494,26 @@ function serializeRequests() {
 		return this.id;
 	}).get();
 	return methodIds.join("-");
+}
+
+function loadFirstRequest() {
+	getRequest($("#requests-view .request-view[id]:first").attr('id'));
+}
+
+function lastOrder() {
+	alert('order : ' + $("#requests-view .request-view[id]").length);
+	return $("#requests-view .request-view[id]").length;
+	
+}
+
+function getRequestOrder(requestId) {
+	var methodIds = $("#requests-view .request-view[id]").map(function() {
+		return this.id;
+	}).get();
+	
+	for ( var i = 0; i < methodIds.length; i++) {
+		if (methodIds[i] == requestId) {
+			return i;
+		}
+	}
 }
