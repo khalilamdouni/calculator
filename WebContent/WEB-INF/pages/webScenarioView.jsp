@@ -11,7 +11,8 @@
 <script>
 	$(function() {
 		$("#requests-view").accordion({
-			header : "> div > h3"
+			header : "> div > h3",
+			heightStyle: "content"
 		}).sortable({
 			axis : "y",
 			handle : "h3",
@@ -56,7 +57,7 @@
 		varStatus="webRequestStatus">
 		<div>
 			<h3 onclick="getRequest('${webRequest.id}')">${webRequest.name} - ${webRequest.url}</h3>
-			<div style="height: 500px !important" id="request-content${webRequest.id}">
+			<div id="request-content${webRequest.id}">
 				<p>Form</p>
 			</div>
 		</div>
