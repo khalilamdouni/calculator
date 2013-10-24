@@ -61,7 +61,9 @@ $(document).ready(function () {
 		</tr>
 	</table>
 
-	<a href="javascript:saveWebRequest('${webRequestModel.id}')">Save Web Request</a>
+	<a href="javascript:saveWebRequest('${webRequestModel.id}')">Save Web Request</a> | 
+	<a href="javascript:deleteRequest('${webRequestModel.id}')">Delete Web Request</a>
+	
 </div>
 
 <div class="shadow-conteiner" id="webparam-table${webRequestModel.id}">

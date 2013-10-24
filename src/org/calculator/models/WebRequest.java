@@ -2,6 +2,7 @@ package org.calculator.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -58,7 +59,8 @@ public class WebRequest extends AbstractModel {
 	@JoinColumn(name = "SCENARIO_ID", nullable = false, updatable = false)
 	private WebScenario webScenario;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "webRequest")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "webRequest", cascade = {
+			CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
 	private List<WebParam> webParams;
 
 	public long getId() {

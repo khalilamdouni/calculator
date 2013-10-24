@@ -79,6 +79,12 @@ public class WebScenarioController {
 		return getRequest(webRequest.getId());
 	}
 	
+	@RequestMapping(value = "/deleteRequest/{requestId}", method = RequestMethod.DELETE)
+	public @ResponseBody
+	String deleteRequest(@PathVariable("requestId") long requestId) {
+		webRequestManager.delete(requestId);
+		return "OK";
+	}
 	
 	@RequestMapping(value = "/getWebParams/{requestId}", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody

@@ -517,3 +517,13 @@ function getRequestOrder(requestId) {
 		}
 	}
 }
+
+function deleteRequest(requestId) {
+	$.ajax({
+		type : "DELETE",
+		url : 'deleteRequest/' + requestId,
+		success : function() {
+			$('#' + requestId).remove();
+		}
+	});
+}
