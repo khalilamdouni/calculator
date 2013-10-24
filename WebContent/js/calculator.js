@@ -477,11 +477,19 @@ function saveWebRequest(requestId) {
 
 }
 
+function reorderRequests() {
+	$.ajax({
+		type : "POST",
+		url : 'reorderRequests/' + serializeRequests(),
+		success : function() {
+		}
+	});
+}
+
 function serializeRequests() {
 
 	var methodIds = $("#requests-view .request-view[id]").map(function() {
 		return this.id;
 	}).get();
-	alert('sequence : ' + methodIds.join("-"));
 	return methodIds.join("-");
 }

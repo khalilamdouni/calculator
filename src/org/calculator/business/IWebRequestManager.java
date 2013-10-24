@@ -14,4 +14,5 @@ import org.calculator.models.WebRequest;
 public interface IWebRequestManager extends IGenericManager<WebRequest> {
 
 	public List<WebRequest> getWebRequestsByScenarioId(long scenarioId);
+	public void reorderRequests(String requestSequence);
 }

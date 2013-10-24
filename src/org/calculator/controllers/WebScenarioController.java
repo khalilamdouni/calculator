@@ -117,7 +117,11 @@ public class WebScenarioController {
 		return new JSONJTableResponseModel<WebParam>("OK");
 	}
 	
-	
+	@RequestMapping(value = "/reorderRequests/{requestsSequence}", method = RequestMethod.POST)
+	public void reorderRequests(@PathVariable("requestsSequence") String requestsSequence) {
+		webRequestManager.reorderRequests(requestsSequence);
+	}
+
 	public IWebScenarioManager getWebScenarioManager() {
 		return webScenarioManager;
 	}

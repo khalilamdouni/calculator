@@ -35,5 +35,16 @@ public class WebRequestManager extends GenericManager<WebRequest> implements
 	public void setWebRequestDao(IWebRequestDao webRequestDao) {
 		this.webRequestDao = webRequestDao;
 	}
+
+	@Override
+	public void reorderRequests(String requestSequence) {
+		String[] requestIds = requestSequence.split("-");
+		for (int i = 0; i < requestIds.length; i++) {
+			long requestId = Long.valueOf(requestIds[i]);
+			WebRequest webRequest = webRequestDao.getById(requestId);
+			webRequest.setOrder(i);
+			webRequestDao.save(webRequest);
+		}
+	}
 	
 }
