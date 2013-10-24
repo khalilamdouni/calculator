@@ -48,6 +48,10 @@
 		$("#add-request-button").click(function() {
 			$("#add-request").dialog("open");
 		});
+		
+		$("#order-request-button").click(function() {
+			serializeRequests();
+		});
 
 	});
 </script>
@@ -55,7 +59,7 @@
 <div id="requests-view" style="width: 800px;">
 	<c:forEach items="${webScenarioModel.webRequests}" var="webRequest"
 		varStatus="webRequestStatus">
-		<div>
+		<div class="request-view" id="${webRequest.id}">
 			<h3 onclick="getRequest('${webRequest.id}')">${webRequest.name} - ${webRequest.url}</h3>
 			<div id="request-content${webRequest.id}">
 				<p>Form</p>
@@ -65,6 +69,7 @@
 
 	<div class="business-button">
 		<a href="javascript:void(0)" id="add-request-button">+</a>
+		<a href="javascript:void(0)" id="order-request-button">Save Order</a>
 	</div>
 	<div id="add-request" title="Create new Web request">
 		<form>
