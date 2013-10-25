@@ -13,7 +13,7 @@ var selectedItemId = -1;
 var selectedItemName;
 var calculationURL;
 var calculationURLs = [ "calculate", "calculateMethod",
-		"calculateExecutionPlan" ];
+		"calculateJarScenario" ];
 
 // Chart management vars
 var chartTabCount = 0;
@@ -273,22 +273,21 @@ function saveParam() {
 }
 
 /** ******************************************************************** */
-/** *********** Execution Plan calls ************ */
+/** *********** Jar Scenario calls ************ */
 /** ******************************************************************** */
 
-var selectedPlanId = -1;
-var selectedPlanName;
+var selectedJarScenarioId = -1;
+var selectedJarScenarioName;
 
 // Javascript call used to select execution plan in the tree
-function selectPlan(executionPlanId, executionPlanName) {
-	selectedPlanId = executionPlanId;
-	selectedPlanName = executionPlanName;
-	getPlan();
+function selectPlan(jarScenarioId, jarScenarioName) {
+	selectedJarScenarioId = jarScenarioId;
+	selectedJarScenarioName = jarScenarioName;
+	getJarScenario();
 }
 
-// Javascript call used to add a method to the sortable list of the execution
-// plan
-function addMethodToExecutionPlan(methodId, methodName) {
+// Javascript call used to add a method to the sortable list of the jar scenarios
+function addMethodToJarScenario(methodId, methodName) {
 	$("#sequence").append(
 			"<li class='ui-state-default' id=" + methodId + " name="
 					+ methodName
@@ -298,7 +297,7 @@ function addMethodToExecutionPlan(methodId, methodName) {
 
 // serializeSequence, serializeNamesSequence and deserializeSequence:
 // javascript calls used to construct and serialize the sortable methods list of
-// the execution plam
+// the jar scenario
 function serializeSequence() {
 
 	var methodIds = $("#sequence li[id]").map(function() {
@@ -318,19 +317,19 @@ function deserializeSequence(sequence, namesSequence) {
 	var methodNames = namesSequence.split("-");
 	$("#sequence").html("");
 	for ( var i = 0; i < methodIds.length; i++) {
-		addMethodToExecutionPlan(methodIds[i], methodNames[i]);
+		addMethodToJarScenario(methodIds[i], methodNames[i]);
 	}
 }
 
 // savePlan, getPlans, getPlan, deletePlan:
-// Javascript calls for the CRUD operations on the execution plan management
-function savePlan() {
+// Javascript calls for the CRUD operations on the jar scenario management
+function saveJarScenario() {
 	var id = null;
-	if (selectedPlanId > 0) {
-		id = $("#plan-id").val();
+	if (selectedJarScenarioId > 0) {
+		id = $("#jar-scenario-id").val();
 	}
-	var name = $("#plan-name").val();
-	var description = $("#plan-description").val();
+	var name = $("#jar-scenario-name").val();
+	var description = $("#jar-scenario-description").val();
 	var sequence = serializeSequence();
 	var namesSequence = serializeNamesSequence();
 	var json = {
@@ -340,45 +339,45 @@ function savePlan() {
 		"sequence" : sequence,
 		"namesSequence" : namesSequence
 	};
-	postAjaxForm('saveExecutionPlan', 'plans-tree', json);
-	resetPlanForm();
-	hideExecPlanForm();
+	postAjaxForm('saveJarScenario', 'plans-tree', json);
+	resetJarScenarioForm();
+	hideJarScenarioForm();
 }
-function getPlans() {
+function getJarScenarios() {
 	$.ajax({
 		type : "GET",
 		url : 'getExecutionPlans',
 		success : function(response) {
-			$("#plans-tree").html(response);
+			$("#jar-scenarios-tree").html(response);
 		}
 	});
 	return false;
 }
-function getPlan() {
+function getJarScenario() {
 	$.ajax({
 		type : "GET",
-		url : 'getExecutionPlan/' + selectedPlanId,
+		url : 'getJarScenario/' + selectedJarScenarioId,
 		dataType : "json",
 		contentType : 'application/json',
 		success : function(data) {
 			displayExecPlanForm();
-			$("#delete-plan-link").css("display", "block");
-			$("#plan-id").val(data.id);
-			$("#plan-name").val(data.name);
-			$("#plan-description").val(data.description);
+			$("#delete-jar-scenario-link").css("display", "block");
+			$("#jar-scenario-id").val(data.id);
+			$("#jar-scenario-name").val(data.name);
+			$("#jar-scenario-description").val(data.description);
 			deserializeSequence(data.sequence, data.namesSequence);
 		}
 	});
 	return false;
 }
-function deletePlan() {
+function deleteJarScenario() {
 	$.ajax({
 		type : "GET",
-		url : 'deleteExecutionPlan/' + selectedPlanId,
+		url : 'deleteJarScenario/' + selectedJarScenarioId,
 		success : function(response) {
-			$("#plans-tree").html(response);
-			resetPlanForm();
-			hideExecPlanForm();
+			$("#jar-scenarios-tree").html(response);
+			resetJarScenarioForm();
+			hideJarScenarioForm();
 		}
 	});
 	return false;
@@ -386,21 +385,21 @@ function deletePlan() {
 
 // newExecutionPlan, hideExecPlanForm, displayExecPlanForm and resetPlanForm:
 // javascript calls used to manipulate the execution plan form
-function newExecutionPlan() {
-	displayExecPlanForm();
+function newJarScenario() {
+	displayJarScenarioForm();
 	resetPlanForm();
 }
-function hideExecPlanForm() {
-	$("#plan-form").css("display", "none");
+function hideJarScenarioForm() {
+	$("#jar-scenario-form").css("display", "none");
 }
-function displayExecPlanForm() {
+function displayJarScenarioForm() {
 	$("#plan-form").css("display", "block");
 }
-function resetPlanForm() {
-	$("#delete-plan-link").css("display", "none");
-	$("#plan-id").val("");
-	$("#plan-name").val("");
-	$("#plan-description").val("");
+function resetJarScenarioForm() {
+	$("#delete-jar-scenario-link").css("display", "none");
+	$("#jar-scenario-id").val("");
+	$("#jar-scenario-name").val("");
+	$("#jar-scenario-description").val("");
 	$("#sequence").html("");
 }
 

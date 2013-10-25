@@ -12,11 +12,11 @@ import org.calculator.business.ICalculationEngine;
 import org.calculator.business.IJarManager;
 import org.calculator.business.ITypesManager;
 import org.calculator.business.generators.IDataGenerator;
-import org.calculator.dao.IExecutionPlanDao;
+import org.calculator.dao.IjarScenarioDao;
 import org.calculator.dao.IMethodDao;
 import org.calculator.models.CalculatorClassMethod;
 import org.calculator.models.CalculatorMethodParam;
-import org.calculator.models.ExecutionPlan;
+import org.calculator.models.JarScenario;
 import org.calculator.models.IAlgorithme;
 import org.calculator.models.Result;
 import org.calculator.security.CalculatorSecurityManager;
@@ -36,7 +36,7 @@ public class CalculationEngine implements ICalculationEngine {
 	private IMethodDao methodDao;
 	private IJarManager jarManager;
 	private ITypesManager typesManager;
-	private IExecutionPlanDao executionPlanDao;
+	private IjarScenarioDao jarScenarioDao;
 
 	@Override
 	public List<Result> calculate(IAlgorithme algo, IDataGenerator dataGenerator) {
@@ -201,7 +201,7 @@ public class CalculationEngine implements ICalculationEngine {
 			InvocationTargetException {
 		List<List<Result>> results = new ArrayList<List<Result>>();
 
-		ExecutionPlan executionPlan = executionPlanDao.getById(planId);
+		JarScenario executionPlan = jarScenarioDao.getById(planId);
 		String[] methodIds = executionPlan.getSequence().split("-");
 		for (int i = 0; i < methodIds.length; i++) {
 			results.add(calculate(Long.valueOf(methodIds[i])));
@@ -241,12 +241,12 @@ public class CalculationEngine implements ICalculationEngine {
 		this.typesManager = typesManager;
 	}
 
-	public IExecutionPlanDao getExecutionPlanDao() {
-		return executionPlanDao;
+	public IjarScenarioDao getJarScenarioDao() {
+		return jarScenarioDao;
 	}
 
-	public void setExecutionPlanDao(IExecutionPlanDao executionPlanDao) {
-		this.executionPlanDao = executionPlanDao;
+	public void setJarScenarioDao(IjarScenarioDao jarScenarioDao) {
+		this.jarScenarioDao = jarScenarioDao;
 	}
 
 }

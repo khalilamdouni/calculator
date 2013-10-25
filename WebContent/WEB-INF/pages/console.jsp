@@ -53,13 +53,13 @@
 						</ul></li>
 				</c:forEach>
 			</ul></li>
-		<li><a>Execution plans</a>
+		<li><a>Jar Scenarios</a>
 			<ul>
-				<c:forEach items="${consoleModel.executionPlans}"
-					var="executionPlan" varStatus="executionPlanStatus">
+				<c:forEach items="${consoleModel.jarScenarios}"
+					var="jarScenario" varStatus="jarScenarioStatus">
 					<li><a
-						onclick="selectItem('${executionPlan.id}', '${executionPlan.name}', 2);"
-						href="javascript:void(0)"> ${executionPlan.name} </a></li>
+						onclick="selectItem('${jarScenario.id}', '${jarScenario.name}', 2);"
+						href="javascript:void(0)"> ${jarScenario.name} </a></li>
 				</c:forEach>
 			</ul></li>
 	</ul>

@@ -1,41 +1,39 @@
 package org.calculator.models;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 /**
- * JPA Entity to encapsulate the execution plan
+ * The super class of Scenario JPA entity which can be a JarScenario,
+ * WebScenario, ...
  * 
  * @author khalil.amdouni
- *
+ * 
  */
 @Entity
-@Table(name = "JARS_EXEC_PLAN")
-@NamedQueries({
-		@NamedQuery(name = "ExecutionPlan.getExecutionPlans", query = "SELECT ep FROM ExecutionPlan ep"),
-		@NamedQuery(name = "ExecutionPlan.getExecutionPlanById", query = "SELECT ep FROM ExecutionPlan ep WHERE id=:id") 
-})
-public class ExecutionPlan extends AbstractModel {
-	
+@Table(name = "SCENARIOS")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "SCENARIO_CATEGORY", discriminatorType = DiscriminatorType.STRING)
+public class Scenario extends AbstractModel {
+
 	@Id
 	@Column(name = "ID")
 	private long id;
-	
+
 	@Column(name = "NAME")
 	private String name;
-	
+
 	@Column(name = "DESCRIPTION")
 	private String description;
-	
+
 	@Column(name = "SEQUENCE")
 	private String sequence;
-	
-	@Column(name = "NAMES_SEQUENCE")
-	private String namesSequence;
 
 	public long getId() {
 		return id;
@@ -69,12 +67,4 @@ public class ExecutionPlan extends AbstractModel {
 		this.sequence = sequence;
 	}
 
-	public String getNamesSequence() {
-		return namesSequence;
-	}
-
-	public void setNamesSequence(String namesSequence) {
-		this.namesSequence = namesSequence;
-	}
-	
 }

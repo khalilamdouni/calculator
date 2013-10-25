@@ -12,7 +12,7 @@
 		<property name="methodDao" ref="methodDao"></property>
 		<property name="jarManager" ref="jarManager"></property>
 		<property name="typesManager" ref="typesManager"></property>
-		<property name="executionPlanDao" ref="executionPlanDao"></property>
+		<property name="jarScenarioDao" ref="jarScenarioDao"></property>
 	</bean>
 
 	<bean id="dataGenerator" class="org.calculator.business.generators.impl.DataGenerator">
@@ -38,8 +38,8 @@
 	</bean>
 	<bean id="typesManager" class="org.calculator.business.impl.TypesManager"></bean>
 	
-	<bean id="executionPlanManager" class="org.calculator.business.impl.ExecutionPlanManager">
-	    <property name="executionPlanDao" ref="executionPlanDao"></property>
+	<bean id="jarScenarioManager" class="org.calculator.business.impl.JarScenarioManager">
+	    <property name="jarScenarioDao" ref="jarScenarioDao"></property>
 	</bean>
 	
 	<bean id="webScenarioManager" class="org.calculator.business.impl.WebScenarioManager">

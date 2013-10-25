@@ -2,7 +2,7 @@ package org.calculator.models.viewmodels;
 
 import java.util.List;
 
-import org.calculator.models.ExecutionPlan;
+import org.calculator.models.JarScenario;
 import org.calculator.models.JarFileModel;
 import org.calculator.models.Result;
 
@@ -18,7 +18,7 @@ public class ConsoleModel {
 	
 	private List<JarFileModel> jarFiles;
 	
-	private List<ExecutionPlan> executionPlans;
+	private List<JarScenario> executionPlans;
 
 	public List<Result> getResults() {
 		return results;
@@ -36,11 +36,11 @@ public class ConsoleModel {
 		this.jarFiles = jarFiles;
 	}
 
-	public List<ExecutionPlan> getExecutionPlans() {
+	public List<JarScenario> getExecutionPlans() {
 		return executionPlans;
 	}
 
-	public void setExecutionPlans(List<ExecutionPlan> executionPlans) {
+	public void setExecutionPlans(List<JarScenario> executionPlans) {
 		this.executionPlans = executionPlans;
 	}
 

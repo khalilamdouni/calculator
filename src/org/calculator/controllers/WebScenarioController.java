@@ -45,11 +45,11 @@ public class WebScenarioController {
 				webScenarioViewModel);
 	}
 
-	@RequestMapping(value = "/addScenario/{scenarioTitle}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/addScenario/{scenarioName}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
-	WebScenario addWebscenario(@PathVariable("scenarioTitle") String title) {
+	WebScenario addWebscenario(@PathVariable("scenarioName") String scenarioName) {
 		WebScenario webScenario = new WebScenario();
-		webScenario.setTitle(title);
+		webScenario.setName(scenarioName);
 		return webScenarioManager.save(webScenario);
 	}
 	

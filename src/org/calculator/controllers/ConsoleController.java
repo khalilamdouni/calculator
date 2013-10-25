@@ -8,8 +8,8 @@ import java.util.concurrent.Callable;
 import org.apache.log4j.Logger;
 import org.calculator.business.ICalculationEngine;
 import org.calculator.business.IClassManager;
-import org.calculator.business.IExecutionPlanManager;
 import org.calculator.business.IJarManager;
+import org.calculator.business.IJarScenarioManager;
 import org.calculator.business.generators.IDataGenerator;
 import org.calculator.models.Result;
 import org.calculator.models.viewmodels.ConsoleModel;
@@ -40,13 +40,13 @@ public class ConsoleController {
 
 	private IClassManager classManager;
 
-	private IExecutionPlanManager executionPlanManager;
+	private IJarScenarioManager jarScenarioManager;
 
 	private static final Logger logger = Logger
 			.getLogger(ConsoleController.class);
 
 	/**
-	 * Handles the query gettin the Console view
+	 * Handles the query getting the Console view
 	 * 
 	 * @return ModelAndView
 	 */
@@ -55,7 +55,7 @@ public class ConsoleController {
 		ConsoleModel consoleModel = new ConsoleModel();
 		consoleModel.setJarFiles(jarManager.loadJars(-1, -1));
 		consoleModel
-				.setExecutionPlans(executionPlanManager.getExecutionPlans());
+				.setExecutionPlans(jarScenarioManager.getJarScenarios());
 		return new ModelAndView("console", "consoleModel", consoleModel);
 	}
 
@@ -123,10 +123,9 @@ public class ConsoleController {
 	}
 
 	/**
-	 * Handles the calculation query of an execution plan (a scenarios of
-	 * methods)
+	 * Handles the calculation query of an execution plan a scenarios of methods
 	 * 
-	 * @param executionPlanId
+	 * @param jarScenarioId
 	 * @return List of Result as JSON
 	 * @throws ClassNotFoundException
 	 * @throws InstantiationException
@@ -137,10 +136,10 @@ public class ConsoleController {
 	 * @throws IllegalArgumentException
 	 * @throws InvocationTargetException
 	 */
-	@RequestMapping(value = "/calculateExecutionPlan/{executionPlanId}", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "/calculateJarScenario/{jarScenarioId}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
-	Callable<List<Result>> calculateExecutionPlan(
-			@PathVariable("executionPlanId") final long executionPlanId)
+	Callable<List<Result>> calculateJarScenario(
+			@PathVariable("jarScenarioId") final long jarScenarioId)
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, IOException, NoSuchMethodException,
 			SecurityException, IllegalArgumentException,
@@ -149,7 +148,7 @@ public class ConsoleController {
 
 			@Override
 			public List<Result> call() throws Exception {
-				return calculationEngine.calculatePlan(executionPlanId);
+				return calculationEngine.calculatePlan(jarScenarioId);
 
 			}
 		};
@@ -195,15 +194,14 @@ public class ConsoleController {
 		this.classManager = classManager;
 	}
 
-	public IExecutionPlanManager getExecutionPlanManager() {
-		return executionPlanManager;
+	public IJarScenarioManager getJarScenarioManager() {
+		return jarScenarioManager;
 	}
 
 	@Autowired
-	@Qualifier(value = "executionPlanManager")
-	public void setExecutionPlanManager(
-			IExecutionPlanManager executionPlanManager) {
-		this.executionPlanManager = executionPlanManager;
+	@Qualifier(value = "jarScenarioManager")
+	public void setJarScenarioManager(IJarScenarioManager jarScenarioManager) {
+		this.jarScenarioManager = jarScenarioManager;
 	}
 
 }

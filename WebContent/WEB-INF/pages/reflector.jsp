@@ -26,7 +26,7 @@
 
 	$(document).ready(
 			function() {
-				getPlans();
+				getJarScenarios();
 				$("#sequence").sortable();						
 
 			});
@@ -61,7 +61,7 @@
 						</ul></li>
 				</c:forEach>
 			</ul></li>
-			<li id="plans-tree"></li>
+			<li id="jar-scenarios-tree"></li>
 	</ul>
 </div>
 <div class="rightpanel">
@@ -71,21 +71,21 @@
 		</div>
 		<div style="height: 300px" id="element-form">
 		</div>
-		<a href="javascript:newExecutionPlan()">New Execution Plan</a>
-		<div id="plan-form" style="display: none; height: 400px; overflow: scroll;" class="shadow-conteiner">
+		<a href="javascript:newJarScenario()">New Jar Scenario</a>
+		<div id="planjar-scenario-form" style="display: none; height: 400px; overflow: scroll;" class="shadow-conteiner">
 			<table>
 				<tr>
-					<td> <a id="delete-plan-link" style="display: none;" href="javascript:deletePlan()"> Delete Plan</a> </td>
-					<td> <a href="javascript:savePlan()">Save Plan</a></td>
+					<td> <a id="delete-jar-scenario-link" style="display: none;" href="javascript:deleteJarScenario()">Delete Jar Scenario</a> </td>
+					<td> <a href="javascript:saveJarScenario()">Save Jar Scenario</a></td>
 				</tr>
 				<tr>
-					<td>Plan Name</td>
-					<td> <input id="plan-name" name="name" type="text"/> 
-					 <input id="plan-id" name="id" type="hidden"/> </td>
+					<td>Jar Scenario Name</td>
+					<td> <input id="jar-scenario-name" name="name" type="text"/> 
+					 <input id="jar-scenario-id" name="id" type="hidden"/> </td>
 				</tr>
 				<tr>
-					<td>Plan Description</td>
-					<td> <textarea name="description" id="plan-description" rows="5" cols="30"></textarea> </td>
+					<td>Jar Scenario Description</td>
+					<td> <textarea name="description" id="jar-scenario-description" rows="5" cols="30"></textarea> </td>
 				</tr>
 				<tr>
 					<td align="center" colspan="2">

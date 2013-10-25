@@ -8,10 +8,10 @@ $(document).ready(function() {
 
 <a>Execution Plans</a>
 <ul>
-	<c:forEach items="${executionPlans}" var="executionPlan"
-		varStatus="executionPlanStatus">
-		<li><a onclick="selectPlan('${executionPlan.id}', '${executionPlan.name}')"
+	<c:forEach items="${jarScenarios}" var="jarScenario"
+		varStatus="jarScenarioStatus">
+		<li><a onclick="selectJarScenario('${jarScenario.id}', '${jarScenario.name}')"
 			href="javascript:void(0)">
-				${executionPlan.name} </a></li>
+				${jarScenario.name} </a></li>
 	</c:forEach>
 </ul>
