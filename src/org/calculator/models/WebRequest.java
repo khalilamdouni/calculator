@@ -9,10 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,7 +24,6 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 @Table(name = "WEB_REQUESTS")
-@NamedQueries({ @NamedQuery(name = "WebRequest.getRequestsByScenarioId", query = "SELECT wr FROM WebRequest wr WHERE webScenario.id=:scenarioId") })
 public class WebRequest extends AbstractModel {
 
 	@Id
@@ -45,19 +40,12 @@ public class WebRequest extends AbstractModel {
 	@Column(name = "URL")
 	private String url;
 
-	@Column(name = "REQUEST_ORDER")
-	private int order;
-
 	@Column(name = "METHOD")
 	@Type(type = "org.calculator.models.usertypes.GenericEnumUserType", parameters = {
 			@Parameter(name = "enumClass", value = "org.calculator.enums.CalculatorHttpMethods"),
 			@Parameter(name = "identifierMethod", value = "name"),
 			@Parameter(name = "valueOfMethod", value = "valueOf") })
 	private CalculatorHttpMethods method;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "SCENARIO_ID", nullable = false, updatable = false)
-	private WebScenario webScenario;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "webRequest", cascade = {
 			CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
@@ -95,14 +83,6 @@ public class WebRequest extends AbstractModel {
 		this.url = url;
 	}
 
-	public int getOrder() {
-		return order;
-	}
-
-	public void setOrder(int order) {
-		this.order = order;
-	}
-
 	public CalculatorHttpMethods getMethod() {
 		return method;
 	}
@@ -111,25 +91,12 @@ public class WebRequest extends AbstractModel {
 		this.method = method;
 	}
 
-	public WebScenario getWebScenario() {
-		return webScenario;
-	}
-
-	public void setWebScenario(WebScenario webScenario) {
-		this.webScenario = webScenario;
-	}
-
 	public List<WebParam> getWebParams() {
 		return webParams;
 	}
 
 	public void setWebParams(List<WebParam> webParams) {
 		this.webParams = webParams;
-	}
-
-	public void setScenarioId(long scenarioId) {
-		this.webScenario = new WebScenario();
-		this.webScenario.setId(scenarioId);
 	}
 
 }

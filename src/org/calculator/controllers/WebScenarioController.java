@@ -55,14 +55,15 @@ public class WebScenarioController {
 	
 	@RequestMapping(value = "/getScenario/{scenarioId}", method = RequestMethod.GET)
 	public ModelAndView getScenario(@PathVariable("scenarioId") long scenarioId) {
+		
+		
 		return new ModelAndView("webScenarioView", "webScenarioModel",
-				webScenarioManager.get(scenarioId));
+				webRequestManager.populateWebScenario(webScenarioManager.get(scenarioId)));
 	}
 	
 	@RequestMapping(value = "/addRequest/{scenarioId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ModelAndView addRequest(@RequestBody WebRequest webRequest,
 			@PathVariable("scenarioId") long scenarioId) {
-		webRequest.setScenarioId(scenarioId);
 		webRequestManager.save(webRequest);
 		return getScenario(scenarioId);
 	}
@@ -123,9 +124,12 @@ public class WebScenarioController {
 		return new JSONJTableResponseModel<WebParam>("OK");
 	}
 	
-	@RequestMapping(value = "/reorderRequests/{requestsSequence}", method = RequestMethod.POST)
-	public @ResponseBody String reorderRequests(@PathVariable("requestsSequence") String requestsSequence) {
-		webRequestManager.reorderRequests(requestsSequence);
+	@RequestMapping(value = "/reorderRequests/{requestsSequence}/{scenarioId}", method = RequestMethod.POST)
+	public @ResponseBody String reorderRequests(@PathVariable("requestsSequence") String requestsSequence, @PathVariable("scenarioId") long scenarioId) {
+		
+		WebScenario webScenario = webScenarioManager.get(scenarioId);
+		webScenario.setSequence(requestsSequence);
+		webScenarioManager.save(webScenario);
 		return "OK";
 	}
 

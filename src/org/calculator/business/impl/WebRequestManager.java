@@ -1,31 +1,43 @@
 package org.calculator.business.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.calculator.business.IWebRequestManager;
 import org.calculator.dao.IGenericDao;
 import org.calculator.dao.IWebRequestDao;
 import org.calculator.models.WebRequest;
+import org.calculator.models.WebScenario;
 
 /**
  * @see org.calculator.business.IWebRequestManager
  * 
  * @author khalil.amdouni
- *
+ * 
  */
 public class WebRequestManager extends GenericManager<WebRequest> implements
 		IWebRequestManager {
 
 	private IWebRequestDao webRequestDao;
-	
+
 	@Override
 	public IGenericDao<WebRequest> getDao() {
 		return (IGenericDao<WebRequest>) webRequestDao;
 	}
 
 	@Override
-	public List<WebRequest> getWebRequestsByScenarioId(long scenarioId) {
-		return webRequestDao.getWebRequestsByScenarioId(scenarioId);
+	public WebScenario populateWebScenario(WebScenario webScenario) {
+
+		if (webScenario.getSequence() == null) {
+			return null;
+		}
+		String[] webRequestIds = webScenario.getSequence().split("-");
+		List<WebRequest> webRequests = new ArrayList<WebRequest>();
+		for (String webRequestId : webRequestIds) {
+			webRequests.add(webRequestDao.getById(Long.valueOf(webRequestId)));
+		}
+		webScenario.setWebRequests(webRequests);
+		return webScenario;
 	}
 
 	public IWebRequestDao getWebRequestDao() {
@@ -36,15 +48,4 @@ public class WebRequestManager extends GenericManager<WebRequest> implements
 		this.webRequestDao = webRequestDao;
 	}
 
-	@Override
-	public void reorderRequests(String requestSequence) {
-		String[] requestIds = requestSequence.split("-");
-		for (int i = 0; i < requestIds.length; i++) {
-			long requestId = Long.valueOf(requestIds[i]);
-			WebRequest webRequest = webRequestDao.getById(requestId);
-			webRequest.setOrder(i);
-			webRequestDao.save(webRequest);
-		}
-	}
-	
 }

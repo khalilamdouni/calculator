@@ -22,7 +22,7 @@ public class WebScenarioManager extends GenericManager<WebScenario> implements
 	public IGenericDao<WebScenario> getDao() {
 		return (IGenericDao<WebScenario>) webScenarioDao;
 	}
-
+	
 	@Override
 	public List<WebScenario> getWebScenarios() {
 		return webScenarioDao.getWebScenarios();

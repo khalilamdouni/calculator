@@ -88,7 +88,7 @@
 							class="text ui-widget-content ui-corner-all" /></td>
 					</tr>
 					<tr>
-						<td><label for="request-url">Method type</label></td>
+						<td><label for="method-type">Method type</label></td>
 						<td><select id="method-type">
 								<option value="GET">GET</option>
 								<option value="POST">POST</option>

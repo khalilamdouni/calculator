@@ -1,8 +1,7 @@
 package org.calculator.business;
 
-import java.util.List;
-
 import org.calculator.models.WebRequest;
+import org.calculator.models.WebScenario;
 
 /**
  * The interface of the Web request manager which is responsible of saving,
@@ -12,7 +11,12 @@ import org.calculator.models.WebRequest;
  * 
  */
 public interface IWebRequestManager extends IGenericManager<WebRequest> {
-
-	public List<WebRequest> getWebRequestsByScenarioId(long scenarioId);
-	public void reorderRequests(String requestSequence);
+	
+	/**
+	 * Business method used to populate a web scenario object with attached web
+	 * requests
+	 * 
+	 * @param webScenario
+	 */
+	public WebScenario populateWebScenario(WebScenario webScenario);
 }
