@@ -23,7 +23,7 @@ public class WebScenarioDao extends GenericDao<WebScenario> implements
 	@Override
 	public List<WebScenario> getWebScenarios() {
 		TypedQuery<WebScenario> query = em.createNamedQuery(
-				"WebScenario.getScenarios", WebScenario.class);
+				"WebScenario.getWebScenarios", WebScenario.class);
 		return query.getResultList();
 	}
 }

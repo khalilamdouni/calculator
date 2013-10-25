@@ -55,7 +55,7 @@ public class ConsoleController {
 		ConsoleModel consoleModel = new ConsoleModel();
 		consoleModel.setJarFiles(jarManager.loadJars(-1, -1));
 		consoleModel
-				.setExecutionPlans(jarScenarioManager.getJarScenarios());
+				.setJarScenarios(jarScenarioManager.getJarScenarios());
 		return new ModelAndView("console", "consoleModel", consoleModel);
 	}
 

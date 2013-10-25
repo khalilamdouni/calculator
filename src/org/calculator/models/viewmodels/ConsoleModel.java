@@ -18,7 +18,7 @@ public class ConsoleModel {
 	
 	private List<JarFileModel> jarFiles;
 	
-	private List<JarScenario> executionPlans;
+	private List<JarScenario> jarScenarios;
 
 	public List<Result> getResults() {
 		return results;
@@ -36,12 +36,12 @@ public class ConsoleModel {
 		this.jarFiles = jarFiles;
 	}
 
-	public List<JarScenario> getExecutionPlans() {
-		return executionPlans;
+	public List<JarScenario> getJarScenarios() {
+		return jarScenarios;
 	}
 
-	public void setExecutionPlans(List<JarScenario> executionPlans) {
-		this.executionPlans = executionPlans;
+	public void setJarScenarios(List<JarScenario> jarScenarios) {
+		this.jarScenarios = jarScenarios;
 	}
 
 }

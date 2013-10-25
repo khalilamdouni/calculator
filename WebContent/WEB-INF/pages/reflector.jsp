@@ -7,7 +7,7 @@
 
 
 
-<script type="text/javascript" src="js/jqplot/jquery.jqplot.js"></script>
+<script type="text/javascript" src="js/jqplot/jquery.jqplot.min.js"></script>
 <script type="text/javascript"
 	src="js/jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
 <script type="text/javascript"
@@ -72,7 +72,7 @@
 		<div style="height: 300px" id="element-form">
 		</div>
 		<a href="javascript:newJarScenario()">New Jar Scenario</a>
-		<div id="planjar-scenario-form" style="display: none; height: 400px; overflow: scroll;" class="shadow-conteiner">
+		<div id="jar-scenario-form" style="display: none; height: 400px; overflow: scroll;" class="shadow-conteiner">
 			<table>
 				<tr>
 					<td> <a id="delete-jar-scenario-link" style="display: none;" href="javascript:deleteJarScenario()">Delete Jar Scenario</a> </td>

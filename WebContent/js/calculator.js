@@ -280,7 +280,7 @@ var selectedJarScenarioId = -1;
 var selectedJarScenarioName;
 
 // Javascript call used to select execution plan in the tree
-function selectPlan(jarScenarioId, jarScenarioName) {
+function selectJarScenario(jarScenarioId, jarScenarioName) {
 	selectedJarScenarioId = jarScenarioId;
 	selectedJarScenarioName = jarScenarioName;
 	getJarScenario();
@@ -339,14 +339,14 @@ function saveJarScenario() {
 		"sequence" : sequence,
 		"namesSequence" : namesSequence
 	};
-	postAjaxForm('saveJarScenario', 'plans-tree', json);
+	postAjaxForm('saveJarScenario', 'jar-scenarios-tree', json);
 	resetJarScenarioForm();
 	hideJarScenarioForm();
 }
 function getJarScenarios() {
 	$.ajax({
 		type : "GET",
-		url : 'getExecutionPlans',
+		url : 'getJarScenarios',
 		success : function(response) {
 			$("#jar-scenarios-tree").html(response);
 		}
@@ -360,7 +360,7 @@ function getJarScenario() {
 		dataType : "json",
 		contentType : 'application/json',
 		success : function(data) {
-			displayExecPlanForm();
+			displayJarScenarioForm();
 			$("#delete-jar-scenario-link").css("display", "block");
 			$("#jar-scenario-id").val(data.id);
 			$("#jar-scenario-name").val(data.name);
@@ -387,13 +387,13 @@ function deleteJarScenario() {
 // javascript calls used to manipulate the execution plan form
 function newJarScenario() {
 	displayJarScenarioForm();
-	resetPlanForm();
+	resetJarScenarioForm();
 }
 function hideJarScenarioForm() {
 	$("#jar-scenario-form").css("display", "none");
 }
 function displayJarScenarioForm() {
-	$("#plan-form").css("display", "block");
+	$("#jar-scenario-form").css("display", "block");
 }
 function resetJarScenarioForm() {
 	$("#delete-jar-scenario-link").css("display", "none");
@@ -481,7 +481,8 @@ function saveWebRequest(requestId) {
 function reorderRequests() {
 	$.ajax({
 		type : "POST",
-		url : 'reorderRequests/' + serializeRequests(),
+		url : 'reorderRequests/' + serializeRequests() + '/'
+				+ selectedScenarioId,
 		success : function() {
 		}
 	});
