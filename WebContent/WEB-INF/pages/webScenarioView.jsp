@@ -54,6 +54,56 @@
 		});
 		
 		loadFirstRequest();
+		
+	    $('#config-scenarios-table').jtable({
+	    	 title: 'List Configs',
+	         paging: true,
+	         pageSize: 10, //Set page size (default: 10)
+	         sorting: true,
+	         defaultSorting: 'Title ASC',
+	         selecting: true, 
+	         multiselect: true,
+	         selectingCheckboxes: true, 
+	        actions: {
+	            listAction: 'getWebScenarioConfigs/${webScenarioModel.id}',
+	            createAction: 'addWebScenarioConfig/${webScenarioModel.id}',
+	            updateAction: 'updateCalculationConfig',
+	            deleteAction: 'deleteCalculationConfig'
+	        },
+	        fields: {
+	        	id: {
+	        		title: 'ID',
+	                key: true,
+	                list: true,
+	                edit: false
+	            },
+	            name: {
+	                title: 'Name',
+	                width: '20%'
+	            },
+	            min: {
+	                title: 'MIN',
+	                width: '15%'
+	            },
+	            max: {
+	                title: 'MAX',
+	                width: '15%'
+	            },
+	            step: {
+	                title: 'Step',
+	                width: '15%'
+	            },
+	            active: {
+	                title: 'Active',
+	                width: '15%',
+	                type: 'checkbox',
+	                values: { 'false': 'Disabled', 'true': 'Enabled' },
+	                defaultValue: 'false'
+	            }
+	        }
+	    });
+	    $('#config-scenarios-table').jtable('load');
+		
 	});
 </script>
 
@@ -71,6 +121,8 @@
 	<div class="business-button">
 		<a href="javascript:void(0)" id="add-request-button">+</a>
 		<a href="javascript:void(0)" id="order-request-button">Save Order</a>
+	</div>
+	<div class="shadow-conteiner" id="config-scenarios-table">
 	</div>
 	<div id="add-request" title="Create new Web request">
 		<form>

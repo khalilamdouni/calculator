@@ -59,7 +59,7 @@ public class CalculatorMethodParam extends AbstractModel {
 	
 	@OneToMany(mappedBy = "param", cascade = { CascadeType.PERSIST,
 			CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.EAGER)
-	private List<ParamConfig> configs;
+	private List<CalculationConfig> configs;
 
 	@Transient
 	private Map generatedDatas;
@@ -78,8 +78,8 @@ public class CalculatorMethodParam extends AbstractModel {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ParamConfig getActiveConfig(){
-		for (ParamConfig paramConfig : this.getConfigs()) {
+	public CalculationConfig getActiveConfig(){
+		for (CalculationConfig paramConfig : this.getConfigs()) {
 			if (paramConfig.isActive()) {
 				return paramConfig;
 			}
@@ -131,11 +131,11 @@ public class CalculatorMethodParam extends AbstractModel {
 		this.description = description;
 	}
 
-	public List<ParamConfig> getConfigs() {
+	public List<CalculationConfig> getConfigs() {
 		return configs;
 	}
 
-	public void setConfigs(List<ParamConfig> configs) {
+	public void setConfigs(List<CalculationConfig> configs) {
 		this.configs = configs;
 	}
 

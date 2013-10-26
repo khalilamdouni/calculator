@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.calculator.business.generators.IDataGenerator;
 import org.calculator.enums.CalculatorType;
 import org.calculator.models.CalculatorMethodParam;
-import org.calculator.models.ParamConfig;
+import org.calculator.models.CalculationConfig;
 
 /**
  * @see org.calculator.business.generators.IDataGenerator
@@ -39,7 +39,7 @@ public class DataGenerator implements IDataGenerator {
 	@Override
 	public void generateDataForParam(CalculatorMethodParam param) {
 
-		ParamConfig activeConfig = param.getActiveConfig();
+		CalculationConfig activeConfig = param.getActiveConfig();
 		param.setGeneratedDatas(new LinkedHashMap());
 		for (int i = activeConfig.getMin(); i < activeConfig.getMax(); i += activeConfig
 				.getStep()) {

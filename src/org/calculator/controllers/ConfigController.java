@@ -1,8 +1,7 @@
 package org.calculator.controllers;
 
 import org.calculator.business.IConfigManager;
-import org.calculator.models.CalculatorMethodParam;
-import org.calculator.models.ParamConfig;
+import org.calculator.models.CalculationConfig;
 import org.calculator.models.viewmodels.JSONJTableModel;
 import org.calculator.models.viewmodels.JSONJTableResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +36,10 @@ public class ConfigController {
 	 */
 	@RequestMapping(value = "/getParamConfigs/{paramId}", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
-	JSONJTableModel<ParamConfig> getParamConfigs(
+	JSONJTableModel<CalculationConfig> getParamConfigs(
 			@RequestParam int jtStartIndex, @RequestParam int jtPageSize,
 			@PathVariable("paramId") long paramId) {
-		return new JSONJTableModel<ParamConfig>("OK",
+		return new JSONJTableModel<CalculationConfig>("OK",
 				this.configManager.getParamConfigs(paramId, jtStartIndex,
 						jtPageSize),
 				this.configManager.getParamConfigsCount(paramId));
@@ -56,43 +55,78 @@ public class ConfigController {
 	 */
 	@RequestMapping(value = "/addParamConfig/{paramId}", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
-	JSONJTableResponseModel<ParamConfig> addParamConfig(
-			@ModelAttribute ParamConfig paramConfig,
+	JSONJTableResponseModel<CalculationConfig> addParamConfig(
+			@ModelAttribute CalculationConfig paramConfig,
 			@PathVariable("paramId") long paramId, BindingResult result) {
-		CalculatorMethodParam param = new CalculatorMethodParam();
-		param.setId(paramId);
-		paramConfig.setParam(param);
-		return new JSONJTableResponseModel<ParamConfig>("OK",
+		paramConfig.setParamId(paramId);
+		return new JSONJTableResponseModel<CalculationConfig>("OK",
 				this.configManager.save(paramConfig));
 	}
 
 	/**
-	 * Updating param config
+	 * Getting all configs of a web scenario
+	 * 
+	 * @param jtStartIndex
+	 * @param jtPageSize
+	 * @param scenarioId
+	 * @return JSONJTableModel; Adapter for JTable framework
+	 */
+	@RequestMapping(value = "/getWebScenarioConfigs/{scenarioId}", method = RequestMethod.POST, headers = "Accept=application/json")
+	public @ResponseBody
+	JSONJTableModel<CalculationConfig> getWebScenarioConfigs(
+			@RequestParam int jtStartIndex, @RequestParam int jtPageSize,
+			@PathVariable("scenarioId") long scenarioId) {
+		return new JSONJTableModel<CalculationConfig>("OK",
+				this.configManager.getWebScenarioConfigs(scenarioId,
+						jtStartIndex, jtPageSize),
+				this.configManager.getWebScenarioConfigsCount(scenarioId));
+	}
+
+	/**
+	 * Adding web scenario config
+	 * 
+	 * @param wbScenarioConfig
+	 * @param scenarioId
+	 * @param result
+	 * @return JSONJTableResponseModel; Adapter for JTable framework
+	 */
+	@RequestMapping(value = "/addWebScenarioConfig/{scenarioId}", method = RequestMethod.POST, headers = "Accept=application/json")
+	public @ResponseBody
+	JSONJTableResponseModel<CalculationConfig> addWebScenarioConfig(
+			@ModelAttribute CalculationConfig wbScenarioConfig,
+			@PathVariable("scenarioId") long scenarioId, BindingResult result) {
+		wbScenarioConfig.setScenarioId(scenarioId);
+		return new JSONJTableResponseModel<CalculationConfig>("OK",
+				this.configManager.save(wbScenarioConfig));
+	}
+
+	/**
+	 * Updating calculation config
 	 * 
 	 * @param paramConfig
 	 * @param result
 	 * @return JSONJTableResponseModel; Adapter for JTable framework
 	 */
-	@RequestMapping(value = "/updateParamConfig", method = RequestMethod.POST, headers = "Accept=application/json")
+	@RequestMapping(value = "/updateCalculationConfig", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
-	JSONJTableResponseModel<ParamConfig> updateParamConfig(
-			@ModelAttribute ParamConfig paramConfig, BindingResult result) {
-		return new JSONJTableResponseModel<ParamConfig>("OK",
+	JSONJTableResponseModel<CalculationConfig> updateParamConfig(
+			@ModelAttribute CalculationConfig paramConfig, BindingResult result) {
+		return new JSONJTableResponseModel<CalculationConfig>("OK",
 				this.configManager.save(paramConfig));
 	}
 
 	/**
-	 * Deleting param config
+	 * Deleting calculation config
 	 * 
 	 * @param paramConfigId
 	 * @return JSONJTableResponseModel; Adapter for JTable framework
 	 */
-	@RequestMapping(value = "/deleteParamConfig", method = RequestMethod.POST, headers = "Accept=application/json")
+	@RequestMapping(value = "/deleteCalculationConfig", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
-	JSONJTableResponseModel<ParamConfig> deleteParamConfig(
+	JSONJTableResponseModel<CalculationConfig> deleteParamConfig(
 			@RequestParam long paramConfigId) {
 		configManager.delete(paramConfigId);
-		return new JSONJTableResponseModel<ParamConfig>("OK");
+		return new JSONJTableResponseModel<CalculationConfig>("OK");
 	}
 
 	public IConfigManager getConfigManager() {

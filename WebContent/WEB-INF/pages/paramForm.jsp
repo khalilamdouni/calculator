@@ -21,8 +21,8 @@ $(document).ready(function () {
         actions: {
             listAction: 'getParamConfigs/${paramModel.id}',
             createAction: 'addParamConfig/${paramModel.id}',
-            updateAction: 'updateParamConfig',
-            deleteAction: 'deleteParamConfig'
+            updateAction: 'updateCalculationConfig',
+            deleteAction: 'deleteCalculationConfig'
         },
         fields: {
         	id: {

@@ -309,7 +309,6 @@ function serializeNamesSequence() {
 	var methodNamess = $("#sequence li[name]").map(function() {
 		return $(this).attr("name");
 	}).get();
-	alert("names : " + methodNamess.join("-"));
 	return methodNamess.join("-");
 }
 function deserializeSequence(sequence, namesSequence) {
@@ -430,7 +429,6 @@ function addScenarioToList(id, name) {
 
 var selectedScenarioId = -1;
 function getScenario(scenarioId) {
-	alert('scen is ' + scenarioId);
 	selectedScenarioId = scenarioId;
 	$.ajax({
 		type : "GET",
@@ -449,7 +447,6 @@ function addRequest(requestName, requestURL, requestMethod) {
 		"url" : requestURL,
 		"method" : requestMethod
 	};
-	alert('id : ' + selectedScenarioId);
 	postAjaxForm('addRequest/' + selectedScenarioId, 'scenario-content', json);
 }
 
@@ -503,9 +500,7 @@ function loadFirstRequest() {
 }
 
 function lastOrder() {
-	alert('order : ' + $("#requests-view .request-view[id]").length);
 	return $("#requests-view .request-view[id]").length;
-	
 }
 
 function getRequestOrder(requestId) {

@@ -2,7 +2,7 @@ package org.calculator.business;
 
 import java.util.List;
 
-import org.calculator.models.ParamConfig;
+import org.calculator.models.CalculationConfig;
 
 /**
  * The interface of the config manager which is responsible of java methods
@@ -12,7 +12,7 @@ import org.calculator.models.ParamConfig;
  * @author khalil.amdouni
  * 
  */
-public interface IConfigManager extends IGenericManager<ParamConfig> {
+public interface IConfigManager extends IGenericManager<CalculationConfig> {
 
 	/**
 	 * Getting the list of param configs by param id
@@ -22,7 +22,7 @@ public interface IConfigManager extends IGenericManager<ParamConfig> {
 	 * @param dataCount
 	 * @return List of ParamConfig
 	 */
-	public List<ParamConfig> getParamConfigs(long paramId, int startIndex,
+	public List<CalculationConfig> getParamConfigs(long paramId, int startIndex,
 			int dataCount);
 
 	/**
@@ -32,5 +32,24 @@ public interface IConfigManager extends IGenericManager<ParamConfig> {
 	 * @return int
 	 */
 	public int getParamConfigsCount(long paramId);
+	
+	/**
+	 * Getting the list of web scenario configs by scenario id
+	 * 
+	 * @param scenarioId
+	 * @param startIndex
+	 * @param dataCount
+	 * @return List of Web Scenario Configs
+	 */
+	public List<CalculationConfig> getWebScenarioConfigs(long scenarioId, int startIndex,
+			int dataCount);
+
+	/**
+	 * getting the number of param configs by param id
+	 * 
+	 * @param scenarioId
+	 * @return int
+	 */
+	public int getWebScenarioConfigsCount(long scenarioId);
 
 }

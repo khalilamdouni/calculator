@@ -2,10 +2,13 @@ package org.calculator.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 /**
@@ -19,6 +22,10 @@ import javax.persistence.Transient;
 @NamedQueries({ @NamedQuery(name = "WebScenario.getWebScenarios", query = "SELECT ws FROM WebScenario ws") })
 public class WebScenario extends Scenario {
 	
+	@OneToMany(mappedBy = "webScenario", cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.EAGER)
+	private List<CalculationConfig> configs;
+	
 	@Transient
 	private List<WebRequest> webRequests;
 
@@ -28,6 +35,14 @@ public class WebScenario extends Scenario {
 
 	public void setWebRequests(List<WebRequest> webRequests) {
 		this.webRequests = webRequests;
+	}
+
+	public List<CalculationConfig> getConfigs() {
+		return configs;
+	}
+
+	public void setConfigs(List<CalculationConfig> configs) {
+		this.configs = configs;
 	}
 	
 }

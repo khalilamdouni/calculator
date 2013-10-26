@@ -19,12 +19,14 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  *
  */
 @Entity
-@Table(name = "JARS_PARAM_CONFIG")
+@Table(name = "CORE_CALCULATION_CONFIG")
 @NamedQueries({
-	@NamedQuery(name = "ParamConfig.getAllParamConfigs", query = "SELECT pc FROM ParamConfig pc WHERE param.id=:id"),
-	@NamedQuery(name = "ParamConfig.getParamConfigsCount", query = "SELECT COUNT(pc) FROM ParamConfig pc WHERE param.id=:id")
+	@NamedQuery(name = "ParamConfig.getAllConfigs", query = "SELECT cc FROM CalculationConfig cc WHERE param.id=:id"),
+	@NamedQuery(name = "ParamConfig.getConfigsCount", query = "SELECT COUNT(cc) FROM CalculationConfig cc WHERE param.id=:id"),
+	@NamedQuery(name = "WebScenarioConfig.getAllConfigs", query = "SELECT cc FROM CalculationConfig cc WHERE webScenario.id=:id"),
+	@NamedQuery(name = "WebScenarioConfig.getConfigsCount", query = "SELECT COUNT(cc) FROM CalculationConfig cc WHERE webScenario.id=:id")
 })
-public class ParamConfig extends AbstractModel {
+public class CalculationConfig extends AbstractModel {
 	
 	@Id
 	@Column(name = "ID")
@@ -47,17 +49,16 @@ public class ParamConfig extends AbstractModel {
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "PARAM_ID", nullable = false, updatable = false)
+	@JoinColumn(name = "PARAM_ID", nullable = true, updatable = false)
 	private CalculatorMethodParam param;
 	
-	public ParamConfig() {
-		super();
-	}
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "SCENARIO_ID", nullable = true, updatable = false)
+	private WebScenario webScenario;
 	
-	public ParamConfig(long paramId) {
+	public CalculationConfig() {
 		super();
-		this.param = new CalculatorMethodParam();
-		this.param.setId(id);
 	}
 
 	public long getId() {
@@ -114,6 +115,24 @@ public class ParamConfig extends AbstractModel {
 
 	public void setParam(CalculatorMethodParam param) {
 		this.param = param;
+	}
+	
+	public WebScenario getWebScenario() {
+		return webScenario;
+	}
+
+	public void setWebScenario(WebScenario webScenario) {
+		this.webScenario = webScenario;
+	}
+
+	public void setParamId(long id) {
+		this.param = new CalculatorMethodParam();
+		this.param.setId(id);
+	}
+	
+	public void setScenarioId(long id) {
+		this.webScenario = new WebScenario();
+		this.webScenario.setId(id);
 	}
 
 }

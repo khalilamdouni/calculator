@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name = "SCENARIOS")
+@Table(name = "CORE_SCENARIOS")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "SCENARIO_CATEGORY", discriminatorType = DiscriminatorType.STRING)
 public class Scenario extends AbstractModel {

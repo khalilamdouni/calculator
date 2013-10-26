@@ -34,7 +34,7 @@
 		<property name="paramDao" ref="paramDao"></property>
 	</bean>
 	<bean id="configManager" class="org.calculator.business.impl.ConfigManager">
-		<property name="paramConfigDao" ref="paramConfigDao"></property>
+		<property name="calculationConfigDao" ref="calculationConfigDao"></property>
 	</bean>
 	<bean id="typesManager" class="org.calculator.business.impl.TypesManager"></bean>
 	
