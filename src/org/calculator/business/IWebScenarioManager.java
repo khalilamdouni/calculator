@@ -14,5 +14,7 @@ import org.calculator.models.WebScenario;
 public interface IWebScenarioManager extends IGenericManager<WebScenario> {
 
 	public List<WebScenario> getWebScenarios();
+	
+	public void addWebRequestToWebScenario(long scenarioId, long requestId);
 
 }

@@ -12,12 +12,12 @@ import org.calculator.business.ICalculationEngine;
 import org.calculator.business.IJarManager;
 import org.calculator.business.ITypesManager;
 import org.calculator.business.generators.IDataGenerator;
-import org.calculator.dao.IjarScenarioDao;
 import org.calculator.dao.IMethodDao;
+import org.calculator.dao.IjarScenarioDao;
 import org.calculator.models.CalculatorClassMethod;
 import org.calculator.models.CalculatorMethodParam;
-import org.calculator.models.JarScenario;
 import org.calculator.models.IAlgorithme;
+import org.calculator.models.JarScenario;
 import org.calculator.models.Result;
 import org.calculator.security.CalculatorSecurityManager;
 
@@ -39,7 +39,7 @@ public class CalculationEngine implements ICalculationEngine {
 	private IjarScenarioDao jarScenarioDao;
 
 	@Override
-	public List<Result> calculate(IAlgorithme algo, IDataGenerator dataGenerator) {
+	public List<Result> calculate(IAlgorithme algo) {
 
 		CalculatorSecurityManager csm = new CalculatorSecurityManager();
 		List<Result> results = new ArrayList<Result>();
@@ -80,7 +80,6 @@ public class CalculationEngine implements ICalculationEngine {
 	}
 
 	private long dataSizeAvg(Map<Integer, Object>[] datas, int[] indexes) {
-		long result = 0;
 		long sum = 0;
 		int i = 0;
 		for (Map<Integer, Object> map : datas) {
@@ -94,14 +93,13 @@ public class CalculationEngine implements ICalculationEngine {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Result> calculate(long methodId) throws ClassNotFoundException,
+	public List<Result> calculate(CalculatorClassMethod method) throws ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IOException,
 			NoSuchMethodException, SecurityException, IllegalArgumentException,
 			InvocationTargetException {
 
 		List<Result> results = new ArrayList<Result>();
 		// getting the method entity
-		CalculatorClassMethod method = methodDao.getById(methodId);
 
 		// charging the jar and instance of the object
 		Class<?> classInstance = jarManager.loadClassesAndGetInstance(method
@@ -194,17 +192,16 @@ public class CalculationEngine implements ICalculationEngine {
 	}
 
 	@Override
-	public List<Result> calculatePlan(long planId)
+	public List<Result> calculate(JarScenario jarScenario)
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, IOException, NoSuchMethodException,
 			SecurityException, IllegalArgumentException,
 			InvocationTargetException {
 		List<List<Result>> results = new ArrayList<List<Result>>();
 
-		JarScenario executionPlan = jarScenarioDao.getById(planId);
-		String[] methodIds = executionPlan.getSequence().split("-");
+		String[] methodIds = jarScenario.getSequence().split("-");
 		for (int i = 0; i < methodIds.length; i++) {
-			results.add(calculate(Long.valueOf(methodIds[i])));
+			results.add(calculate(methodDao.getById(Long.valueOf(methodIds[i]))));
 		}
 		return mergeResults(results);
 	}

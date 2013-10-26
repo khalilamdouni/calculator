@@ -5,13 +5,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.calculator.business.generators.IDataGenerator;
+import org.calculator.models.CalculatorClassMethod;
 import org.calculator.models.IAlgorithme;
+import org.calculator.models.JarScenario;
 import org.calculator.models.Result;
 
 /**
  * The Interface of the calculation engine, which has three principal
  * functionalities; calculation of class that implements the IAlgorithme
- * interface, a java method stored in the database or an execution plan
+ * interface, a java method stored in the database or a jar scenario
  * 
  * @author khalil.amdouni
  * 
@@ -26,7 +28,7 @@ public interface ICalculationEngine {
 	 * @return List of Results
 	 * 
 	 */
-	public List<Result> calculate(IAlgorithme algo, IDataGenerator dataGenerator);
+	public List<Result> calculate(IAlgorithme algo);
 
 	/**
 	 * Calculates a java method stored in the database
@@ -42,7 +44,7 @@ public interface ICalculationEngine {
 	 * @throws IllegalArgumentException
 	 * @throws InvocationTargetException
 	 */
-	public List<Result> calculate(long methodId) throws ClassNotFoundException,
+	public List<Result> calculate(CalculatorClassMethod method) throws ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IOException,
 			NoSuchMethodException, SecurityException, IllegalArgumentException,
 			InvocationTargetException;
@@ -61,7 +63,7 @@ public interface ICalculationEngine {
 	 * @throws IllegalArgumentException
 	 * @throws InvocationTargetException
 	 */
-	public List<Result> calculatePlan(long planId)
+	public List<Result> calculate(JarScenario jarScenario)
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, IOException, NoSuchMethodException,
 			SecurityException, IllegalArgumentException,

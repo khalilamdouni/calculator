@@ -28,8 +28,8 @@ public class WebRequestManager extends GenericManager<WebRequest> implements
 	@Override
 	public WebScenario populateWebScenario(WebScenario webScenario) {
 
-		if (webScenario.getSequence() == null) {
-			return null;
+		if (webScenario.getSequence() == null || "".equals(webScenario.getSequence())) {
+			return webScenario;
 		}
 		String[] webRequestIds = webScenario.getSequence().split("-");
 		List<WebRequest> webRequests = new ArrayList<WebRequest>();

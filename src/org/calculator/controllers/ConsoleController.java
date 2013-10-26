@@ -10,7 +10,7 @@ import org.calculator.business.ICalculationEngine;
 import org.calculator.business.IClassManager;
 import org.calculator.business.IJarManager;
 import org.calculator.business.IJarScenarioManager;
-import org.calculator.business.generators.IDataGenerator;
+import org.calculator.business.IMethodManager;
 import org.calculator.models.Result;
 import org.calculator.models.viewmodels.ConsoleModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +34,11 @@ public class ConsoleController {
 
 	private ICalculationEngine calculationEngine;
 
-	private IDataGenerator dataGenerator;
-
 	private IJarManager jarManager;
 
 	private IClassManager classManager;
+	
+	private IMethodManager methodManager;
 
 	private IJarScenarioManager jarScenarioManager;
 
@@ -83,8 +83,7 @@ public class ConsoleController {
 			@Override
 			public List<Result> call() throws Exception {
 				return calculationEngine.calculate(classManager
-						.loadCalculatorClass(Long.valueOf(selectedAlgoId)),
-						dataGenerator);
+						.loadCalculatorClass(Long.valueOf(selectedAlgoId)));
 			}
 		};
 
@@ -117,7 +116,7 @@ public class ConsoleController {
 
 			@Override
 			public List<Result> call() throws Exception {
-				return calculationEngine.calculate(selectedMethod);
+				return calculationEngine.calculate(methodManager.get(selectedMethod));
 			}
 		};
 	}
@@ -148,8 +147,7 @@ public class ConsoleController {
 
 			@Override
 			public List<Result> call() throws Exception {
-				return calculationEngine.calculatePlan(jarScenarioId);
-
+				return calculationEngine.calculate(jarScenarioManager.get(jarScenarioId));
 			}
 		};
 	}
@@ -162,16 +160,6 @@ public class ConsoleController {
 	@Qualifier(value = "calculationEngine")
 	public void setCalculationEngine(ICalculationEngine calculationEngine) {
 		this.calculationEngine = calculationEngine;
-	}
-
-	public IDataGenerator getDataGenerator() {
-		return dataGenerator;
-	}
-
-	@Autowired
-	@Qualifier(value = "dataGenerator")
-	public void setDataGenerator(IDataGenerator dataGenerator) {
-		this.dataGenerator = dataGenerator;
 	}
 
 	public IJarManager getJarManager() {
@@ -202,6 +190,16 @@ public class ConsoleController {
 	@Qualifier(value = "jarScenarioManager")
 	public void setJarScenarioManager(IJarScenarioManager jarScenarioManager) {
 		this.jarScenarioManager = jarScenarioManager;
+	}
+
+	public IMethodManager getMethodManager() {
+		return methodManager;
+	}
+
+	@Autowired
+	@Qualifier(value = "methodManager")
+	public void setMethodManager(IMethodManager methodManager) {
+		this.methodManager = methodManager;
 	}
 
 }

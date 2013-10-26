@@ -416,20 +416,21 @@ function addWebScenario(scenarioTitle) {
 		dataType : "json",
 		contentType : 'application/json',
 		success : function(data) {
-			addScenarioToList(data.id, data.title);
+			addScenarioToList(data.id, data.name);
 		}
 	});
 	return false;
 }
 
-function addScenarioToList(id, title) {
+function addScenarioToList(id, name) {
 	$("#scenarios-list").append(
 			"<li onclick='getScenario('" + id + "') class='ui-widget-content'>"
-					+ title + "</li>");
+					+ name + "</li>");
 }
 
 var selectedScenarioId = -1;
 function getScenario(scenarioId) {
+	alert('scen is ' + scenarioId);
 	selectedScenarioId = scenarioId;
 	$.ajax({
 		type : "GET",
@@ -446,9 +447,9 @@ function addRequest(requestName, requestURL, requestMethod) {
 	var json = {
 		"name" : requestName,
 		"url" : requestURL,
-		"method" : requestMethod,
-		"order" : lastOrder()
+		"method" : requestMethod
 	};
+	alert('id : ' + selectedScenarioId);
 	postAjaxForm('addRequest/' + selectedScenarioId, 'scenario-content', json);
 }
 
@@ -471,8 +472,7 @@ function saveWebRequest(requestId) {
 		"id" : requestId,
 		"name" : name,
 		"url" : url,
-		"method" : method,
-		"order" : getRequestOrder(requestId)
+		"method" : method
 	};
 	postAjaxForm('updateRequest', 'request-content' + requestId, json);
 
@@ -497,7 +497,9 @@ function serializeRequests() {
 }
 
 function loadFirstRequest() {
-	getRequest($("#requests-view .request-view[id]:first").attr('id'));
+	if ($("#requests-view .request-view[id]:first").attr('id') !== undefined) {
+		getRequest($("#requests-view .request-view[id]:first").attr('id'));
+	}
 }
 
 function lastOrder() {

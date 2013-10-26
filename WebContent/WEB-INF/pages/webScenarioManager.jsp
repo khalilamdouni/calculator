@@ -55,7 +55,7 @@
 		<c:forEach items="${webScenarioViewModel.webScenarios}"
 			var="webScenario" varStatus="webScenarioStatus">
 			<li onclick="getScenario('${webScenario.id}')"
-				class="ui-widget-content">${webScenario.title}</li>
+				class="ui-widget-content">${webScenario.name}</li>
 		</c:forEach>
 	</ol>
 	<div class="business-button">

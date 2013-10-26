@@ -24,6 +24,15 @@ public class WebScenarioManager extends GenericManager<WebScenario> implements
 	}
 	
 	@Override
+	public void addWebRequestToWebScenario(long scenarioId, long requestId) {
+		WebScenario webScenario = webScenarioDao.getById(scenarioId);
+		webScenario.setSequence((webScenario.getSequence() == null || ""
+				.equals(webScenario.getSequence())) ? Long.toString(requestId)
+				: webScenario.getSequence() + "-" + Long.toString(requestId));
+		webScenarioDao.save(webScenario);
+	}
+	
+	@Override
 	public List<WebScenario> getWebScenarios() {
 		return webScenarioDao.getWebScenarios();
 	}

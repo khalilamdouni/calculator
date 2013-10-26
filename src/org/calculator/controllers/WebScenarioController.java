@@ -1,5 +1,6 @@
 package org.calculator.controllers;
 
+import org.apache.log4j.Logger;
 import org.calculator.business.IWebParamManager;
 import org.calculator.business.IWebRequestManager;
 import org.calculator.business.IWebScenarioManager;
@@ -36,6 +37,8 @@ public class WebScenarioController {
 	private IWebRequestManager webRequestManager;
 	private IWebParamManager webParamManager;
 	
+	private final static Logger logger = Logger.getLogger(WebScenarioController.class);
+	
 	@RequestMapping(value = "/webScenarioManager", method = RequestMethod.GET)
 	public ModelAndView webScenarioManager() {
 		WebScenarioViewModel webScenarioViewModel = new WebScenarioViewModel();
@@ -56,7 +59,6 @@ public class WebScenarioController {
 	@RequestMapping(value = "/getScenario/{scenarioId}", method = RequestMethod.GET)
 	public ModelAndView getScenario(@PathVariable("scenarioId") long scenarioId) {
 		
-		
 		return new ModelAndView("webScenarioView", "webScenarioModel",
 				webRequestManager.populateWebScenario(webScenarioManager.get(scenarioId)));
 	}
@@ -64,7 +66,10 @@ public class WebScenarioController {
 	@RequestMapping(value = "/addRequest/{scenarioId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ModelAndView addRequest(@RequestBody WebRequest webRequest,
 			@PathVariable("scenarioId") long scenarioId) {
-		webRequestManager.save(webRequest);
+
+		WebRequest savedWebRequest = webRequestManager.save(webRequest);
+		webScenarioManager.addWebRequestToWebScenario(scenarioId,
+				savedWebRequest.getId());
 		return getScenario(scenarioId);
 	}
 	
