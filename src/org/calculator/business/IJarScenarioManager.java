@@ -13,6 +13,7 @@ import org.calculator.models.JarScenario;
  */
 public interface IJarScenarioManager extends IGenericManager<JarScenario> {
 
+
 	/**
 	 * Getting all Jar Scenarios
 	 * 
