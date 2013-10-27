@@ -6,7 +6,7 @@ import org.calculator.models.JarScenario;
 
 /**
  * The interface of the jar scenario manager which is responsible for managing
- * scenarios of java methods methods
+ *  execution scenarios of java methods methods
  * 
  * @author khalil.amdouni
  * 
