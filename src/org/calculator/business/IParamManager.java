@@ -7,8 +7,8 @@ import org.calculator.models.CalculatorMethodParam;
  * method params stored in the database
  * 
  * @author khalil.amdouni
- *
+ * 
  */
 public interface IParamManager extends IGenericManager<CalculatorMethodParam> {
-	
+
 }

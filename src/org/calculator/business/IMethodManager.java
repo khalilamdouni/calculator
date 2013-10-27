@@ -10,5 +10,5 @@ import org.calculator.models.CalculatorClassMethod;
  * 
  */
 public interface IMethodManager extends IGenericManager<CalculatorClassMethod> {
-	
+
 }
