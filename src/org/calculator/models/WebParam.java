@@ -76,5 +76,10 @@ public class WebParam extends AbstractModel {
 		this.webRequest = new WebRequest();
 		this.webRequest.setId(requestId);
 	}
+	
+	@Override
+	public String toString() {
+		return this.name + "=" + this.value;
+	}
 
 }

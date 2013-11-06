@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.StringUtils;
 import org.calculator.enums.CalculatorHttpMethods;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
@@ -51,6 +52,10 @@ public class WebRequest extends AbstractModel {
 			CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
 	private List<WebParam> webParams;
 
+	public String getHTTPFormatParams() {
+		return StringUtils.join(webParams, "&");
+	}
+	
 	public long getId() {
 		return id;
 	}

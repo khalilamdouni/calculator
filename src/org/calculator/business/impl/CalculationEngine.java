@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.calculator.business.ICalculationEngine;
@@ -14,13 +15,19 @@ import org.calculator.business.ITypesManager;
 import org.calculator.business.generators.IDataGenerator;
 import org.calculator.dao.IMethodDao;
 import org.calculator.dao.IjarScenarioDao;
+import org.calculator.models.CalculationConfig;
 import org.calculator.models.CalculatorClassMethod;
 import org.calculator.models.CalculatorMethodParam;
 import org.calculator.models.IAlgorithme;
 import org.calculator.models.JarScenario;
 import org.calculator.models.Result;
 import org.calculator.models.WebRequest;
+import org.calculator.models.WebScenario;
 import org.calculator.security.CalculatorSecurityManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 /**
  * @see org.calculator.business.ICalculationEngine
@@ -209,8 +216,39 @@ public class CalculationEngine implements ICalculationEngine {
 	
 	private double calculateWebRequest(WebRequest webRequest) {
 		double result = System.currentTimeMillis();
-		
-		return result;
+		WebDriver driver = new HtmlUnitDriver();
+
+		double startTime = System.currentTimeMillis() / 1000;
+		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+
+		driver.get(webRequest.getUrl() + "?" + webRequest.getHTTPFormatParams());
+
+		WebElement search = driver.findElement(By.tagName("body"));
+		while (((System.currentTimeMillis() / 1000) - startTime) < 60) {
+			if (search.isDisplayed()) {
+				return System.currentTimeMillis() - result;
+			}
+		}
+		return 0;
+	}
+	
+	@Override
+	public List<Result> calculate(WebScenario webScenario) {
+
+		CalculationConfig ativeConfig = webScenario.getActiveConfig();
+		List<Result> results = new ArrayList<Result>();
+		double executionTime = 0;
+		for (int i = ativeConfig.getMin(); i < ativeConfig.getMax(); i += ativeConfig
+				.getStep()) {
+			executionTime = 0;
+			for (int j = 1; j <= i; j++) {
+				for (WebRequest webRequest : webScenario.getWebRequests()) {
+					executionTime += calculateWebRequest(webRequest);
+				}
+			}
+			results.add(new Result(i, executionTime));
+		}
+		return results;
 	}
 
 	public IDataGenerator getDataGenerator() {

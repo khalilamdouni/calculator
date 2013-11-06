@@ -9,6 +9,7 @@ import org.calculator.models.CalculatorClassMethod;
 import org.calculator.models.IAlgorithme;
 import org.calculator.models.JarScenario;
 import org.calculator.models.Result;
+import org.calculator.models.WebScenario;
 
 /**
  * The Interface of the calculation engine, which has three principal
@@ -68,4 +69,12 @@ public interface ICalculationEngine {
 			IllegalAccessException, IOException, NoSuchMethodException,
 			SecurityException, IllegalArgumentException,
 			InvocationTargetException;
+	
+	/**
+	 * Calculates a webRequest (Scenario of web requests)
+	 * 
+	 * @param webScenario
+	 * @return List of Results
+	 */
+	public List<Result> calculate(WebScenario webScenario);
 }
