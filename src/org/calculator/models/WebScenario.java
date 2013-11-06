@@ -45,4 +45,12 @@ public class WebScenario extends Scenario {
 		this.configs = configs;
 	}
 	
+	public CalculationConfig getActiveConfig() {
+		for (CalculationConfig calculationConfig : configs) {
+			if (calculationConfig.isActive())
+				return calculationConfig;
+		}
+		return null;
+	}
+	
 }

@@ -19,6 +19,7 @@ import org.calculator.models.CalculatorMethodParam;
 import org.calculator.models.IAlgorithme;
 import org.calculator.models.JarScenario;
 import org.calculator.models.Result;
+import org.calculator.models.WebRequest;
 import org.calculator.security.CalculatorSecurityManager;
 
 /**
@@ -204,6 +205,12 @@ public class CalculationEngine implements ICalculationEngine {
 			results.add(calculate(methodDao.getById(Long.valueOf(methodIds[i]))));
 		}
 		return mergeResults(results);
+	}
+	
+	private double calculateWebRequest(WebRequest webRequest) {
+		double result = System.currentTimeMillis();
+		
+		return result;
 	}
 
 	public IDataGenerator getDataGenerator() {
