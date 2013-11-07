@@ -28,26 +28,23 @@
 <body>
 <div class="main">
 <div class="page">
-<div class="header">
-<div class="header-img"><img src="img/header.jpg" alt="" height="170"
- width="1300"></div>
-
+			<div class="header">
+				<div class="header-img">
+					<img src="img/header.jpg" alt="" height="170" width="1300">
+				</div>
 				<div>
-
 					<ul id="nav">
-
 						<li class="current"><a href="javascript:void(0)">Jars
 								Calculator</a>
 							<ul>
-								<li><a href="calculate">Console</a></li>
+								<li><a href="calculateJAR">Console</a></li>
 								<li><a href="jarManager">Jar manager</a></li>
 								<li><a href="reflector">Reflector</a></li>
 							</ul></li>
 						<li><a href="javascript:void(0)">WEB Calculator</a>
 							<ul>
 								<li><a href="webScenarioManager">Scenarios</a></li>
-								<li><a href="javascript:alert('Not yet implemented')">Web
-										console</a></li>
+								<li><a href="calculateWEB">Web console</a></li>
 							</ul></li>
 						<li><a href="javascript:void(0)">Reporting</a>
 							<ul>
@@ -58,15 +55,10 @@
 							</ul></li>
 						<li><a href="javascript:alert('Not yet implemented')">About
 								Us</a></li>
-
-
 					</ul>
-
-
 				</div>
 			</div>
-
-<div class="content">
+			<div class="content">
 	<tiles:insertAttribute name="body" />
 </div>
 <div class="footer">

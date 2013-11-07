@@ -11,6 +11,8 @@ import org.calculator.business.IClassManager;
 import org.calculator.business.IJarManager;
 import org.calculator.business.IJarScenarioManager;
 import org.calculator.business.IMethodManager;
+import org.calculator.business.IWebScenarioManager;
+import org.calculator.enums.ConsoleNature;
 import org.calculator.models.Result;
 import org.calculator.models.viewmodels.ConsoleModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,21 +43,38 @@ public class ConsoleController {
 	private IMethodManager methodManager;
 
 	private IJarScenarioManager jarScenarioManager;
+	
+	private IWebScenarioManager webScenarioManager;
+
 
 	private static final Logger logger = Logger
 			.getLogger(ConsoleController.class);
 
 	/**
-	 * Handles the query getting the Console view
+	 * Handles the query getting the Jar Console Console view
 	 * 
 	 * @return ModelAndView
 	 */
-	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
+	@RequestMapping(value = "/calculateJAR", method = RequestMethod.GET)
 	public ModelAndView calculate() {
 		ConsoleModel consoleModel = new ConsoleModel();
 		consoleModel.setJarFiles(jarManager.loadJars(-1, -1));
 		consoleModel
 				.setJarScenarios(jarScenarioManager.getJarScenarios());
+		consoleModel.setConsoleNature(ConsoleNature.JAR_CONSOLE);
+		return new ModelAndView("console", "consoleModel", consoleModel);
+	}
+	
+	/**
+	 * Handles the query getting the WEB Console Console view
+	 * 
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "/calculateWEB", method = RequestMethod.GET)
+	public ModelAndView calculateWEB() {
+		ConsoleModel consoleModel = new ConsoleModel();
+		consoleModel.setWebScenarios(webScenarioManager.getWebScenarios());
+		consoleModel.setConsoleNature(ConsoleNature.WEB_CONSOLE);
 		return new ModelAndView("console", "consoleModel", consoleModel);
 	}
 
@@ -200,6 +219,16 @@ public class ConsoleController {
 	@Qualifier(value = "methodManager")
 	public void setMethodManager(IMethodManager methodManager) {
 		this.methodManager = methodManager;
+	}
+
+	public IWebScenarioManager getWebScenarioManager() {
+		return webScenarioManager;
+	}
+
+	@Autowired
+	@Qualifier(value = "webScenarioManager")
+	public void setWebScenarioManager(IWebScenarioManager webScenarioManager) {
+		this.webScenarioManager = webScenarioManager;
 	}
 
 }

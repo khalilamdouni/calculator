@@ -21,49 +21,64 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#algos-treeview").jstree();
+		$("#scenarios-list").selectable({ distance: 1 });
 		$("#estimateButton").click(function() {
 			calculate();
 		});
 	});
 </script>
 
-<div id="algos-treeview" class="leftpanel">
-	<ul>
-		<li><a>Jars</a>
-			<ul>
-				<c:forEach items="${consoleModel.jarFiles}" var="jarFile"
-					varStatus="jarStatus">
-					<li><a> ${jarFile.title} </a>
-						<ul>
-							<c:forEach items="${jarFile.calculatorClasses}"
-								var="calculatorClass" varStatus="classStatus">
-								<li><a
-									onclick="selectItem('${calculatorClass.id}', '${calculatorClass.name}', 0);"
-									href="javascript:void(0)"> ${calculatorClass.name} </a>
+<c:if test="${consoleModel.consoleNature=='JAR_CONSOLE'}">
+	<div id="algos-treeview" class="leftpanel">
+		<ul>
+			<li><a>Jars</a>
+				<ul>
+					<c:forEach items="${consoleModel.jarFiles}" var="jarFile"
+						varStatus="jarStatus">
+						<li><a> ${jarFile.title} </a>
+							<ul>
+								<c:forEach items="${jarFile.calculatorClasses}"
+									var="calculatorClass" varStatus="classStatus">
+									<li><a
+										onclick="selectItem('${calculatorClass.id}', '${calculatorClass.name}', 0);"
+										href="javascript:void(0)"> ${calculatorClass.name} </a>
 
-									<ul>
-										<c:forEach items="${calculatorClass.methods}"
-											var="classMethod" varStatus="methodStatus">
-											<li><a
-												onclick="selectItem('${classMethod.id}', '${classMethod.name}', 1);"
-												href="javascript:void(0)"> ${classMethod.name} </a></li>
-										</c:forEach>
-									</ul></li>
-							</c:forEach>
-						</ul></li>
-				</c:forEach>
-			</ul></li>
-		<li><a>Jar Scenarios</a>
-			<ul>
-				<c:forEach items="${consoleModel.jarScenarios}"
-					var="jarScenario" varStatus="jarScenarioStatus">
-					<li><a
-						onclick="selectItem('${jarScenario.id}', '${jarScenario.name}', 2);"
-						href="javascript:void(0)"> ${jarScenario.name} </a></li>
-				</c:forEach>
-			</ul></li>
-	</ul>
-</div>
+										<ul>
+											<c:forEach items="${calculatorClass.methods}"
+												var="classMethod" varStatus="methodStatus">
+												<li><a
+													onclick="selectItem('${classMethod.id}', '${classMethod.name}', 1);"
+													href="javascript:void(0)"> ${classMethod.name} </a></li>
+											</c:forEach>
+										</ul></li>
+								</c:forEach>
+							</ul></li>
+					</c:forEach>
+				</ul></li>
+			<li><a>Jar Scenarios</a>
+				<ul>
+					<c:forEach items="${consoleModel.jarScenarios}" var="jarScenario"
+						varStatus="jarScenarioStatus">
+						<li><a
+							onclick="selectItem('${jarScenario.id}', '${jarScenario.name}', 2);"
+							href="javascript:void(0)"> ${jarScenario.name} </a></li>
+					</c:forEach>
+				</ul></li>
+		</ul>
+	</div>
+</c:if>
+<c:if test="${consoleModel.consoleNature=='WEB_CONSOLE'}">
+	<div class="leftpanel">
+		<ol id="scenarios-list" class="selectable-list">
+			<c:forEach items="${consoleModel.webScenarios}" var="webScenario"
+				varStatus="webScenarioStatus">
+				<li
+					onclick="selectItem('${webScenario.id}', '${webScenario.name}', 3);"
+					class="ui-widget-content">${webScenario.name}</li>
+			</c:forEach>
+		</ol>
+	</div>
+</c:if>
 <div class="rightpanel">
 	<div class="rightbody">
 		<table>
