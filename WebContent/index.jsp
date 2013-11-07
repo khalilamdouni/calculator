@@ -1,1 +1,1 @@
-<META HTTP-EQUIV="Refresh" CONTENT="0;URL=calculate">
+<META HTTP-EQUIV="Refresh" CONTENT="0;URL=calculateJAR">
