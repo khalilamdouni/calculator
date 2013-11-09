@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.calculator.business.ICalculationEngine;
 import org.calculator.business.IJarManager;
 import org.calculator.business.ITypesManager;
+import org.calculator.business.IWebRequestManager;
 import org.calculator.business.generators.IDataGenerator;
 import org.calculator.dao.IMethodDao;
 import org.calculator.dao.IjarScenarioDao;
@@ -45,6 +46,7 @@ public class CalculationEngine implements ICalculationEngine {
 	private IJarManager jarManager;
 	private ITypesManager typesManager;
 	private IjarScenarioDao jarScenarioDao;
+	private IWebRequestManager webRequestManager;
 
 	@Override
 	public List<Result> calculate(IAlgorithme algo) {
@@ -236,6 +238,7 @@ public class CalculationEngine implements ICalculationEngine {
 	public List<Result> calculate(WebScenario webScenario) {
 
 		CalculationConfig ativeConfig = webScenario.getActiveConfig();
+		webRequestManager.populateWebScenario(webScenario);
 		List<Result> results = new ArrayList<Result>();
 		double executionTime = 0;
 		for (int i = ativeConfig.getMin(); i < ativeConfig.getMax(); i += ativeConfig
@@ -289,6 +292,14 @@ public class CalculationEngine implements ICalculationEngine {
 
 	public void setJarScenarioDao(IjarScenarioDao jarScenarioDao) {
 		this.jarScenarioDao = jarScenarioDao;
+	}
+
+	public IWebRequestManager getWebRequestManager() {
+		return webRequestManager;
+	}
+
+	public void setWebRequestManager(IWebRequestManager webRequestManager) {
+		this.webRequestManager = webRequestManager;
 	}
 
 }

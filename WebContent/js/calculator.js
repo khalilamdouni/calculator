@@ -12,8 +12,8 @@
 var selectedItemId = -1;
 var selectedItemName;
 var calculationURL;
-var calculationURLs = [ "calculate", "calculateMethod",
-		"calculateJarScenario", "calculateWebScenario" ];
+var calculationURLs = [ "calculate", "calculateMethod", "calculateJarScenario",
+		"calculateWebScenario" ];
 
 // Chart management vars
 var chartTabCount = 0;

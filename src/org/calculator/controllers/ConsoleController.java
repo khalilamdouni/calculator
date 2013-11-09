@@ -17,7 +17,6 @@ import org.calculator.models.Result;
 import org.calculator.models.viewmodels.ConsoleModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +49,7 @@ public class ConsoleController {
 
 	private static final Logger logger = Logger
 			.getLogger(ConsoleController.class);
-
+	
 	/**
 	 * Handles the query getting the Jar Console Console view
 	 * 
@@ -140,7 +139,7 @@ public class ConsoleController {
 			}
 		};
 	}
-
+	
 	/**
 	 * Handles the calculation query of an execution plan a scenarios of methods
 	 * 
@@ -156,7 +155,7 @@ public class ConsoleController {
 	 * @throws InvocationTargetException
 	 */
 	@RequestMapping(value = "/calculateJarScenario/{jarScenarioId}", method = RequestMethod.GET, headers = "Accept=application/json")
-	public @ResponseBody
+	public @ResponseBody      
 	Callable<List<Result>> calculateJarScenario(
 			@PathVariable("jarScenarioId") final long jarScenarioId)
 			throws ClassNotFoundException, InstantiationException,
@@ -172,15 +171,26 @@ public class ConsoleController {
 		};
 	}
 	
-	@RequestMapping(value = "/calculateWebScenario/{webScenarioId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Callable<List<Result>> calculateWebScenario(@PathVariable("webScenarioId") final long webScenarioId) {
+	/**
+	 * Handles the calculation query of a scenario of web requests
+	 * 
+	 * @param webScenarioId
+	 * @return List of Result as JSON
+	 */
+	@RequestMapping(value = "/calculateWebScenario/{webScenarioId}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public @ResponseBody      
+	Callable<List<Result>> calculateWebScenario(
+			@PathVariable("webScenarioId") final long webScenarioId)
+			throws ClassNotFoundException, InstantiationException,
+			IllegalAccessException, IOException, NoSuchMethodException,
+			SecurityException, IllegalArgumentException,
+			InvocationTargetException {
 		return new Callable<List<Result>>() {
 
 			@Override
 			public List<Result> call() throws Exception {
 				return calculationEngine.calculate(webScenarioManager.get(webScenarioId));
 			}
-			
 		};
 	}
 

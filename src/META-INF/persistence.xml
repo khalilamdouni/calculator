@@ -4,9 +4,9 @@
 http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 	<persistence-unit name="calculatorPU">
-	    <class>org.calculator.models.JarFileModel</class>
+	    <!--<class>org.calculator.models.JarFileModel</class>
 	    <class>org.calculator.models.CalculatorClass</class>
 	    <class>org.calculator.models.CalculatorClassMethod</class>
-	  	<class>org.calculator.models.CalculatorMethodParam</class>
+	  	<class>org.calculator.models.CalculatorMethodParam</class>-->
 	</persistence-unit>
 </persistence>
