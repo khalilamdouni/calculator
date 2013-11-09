@@ -17,6 +17,7 @@ import org.calculator.models.Result;
 import org.calculator.models.viewmodels.ConsoleModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -168,6 +169,18 @@ public class ConsoleController {
 			public List<Result> call() throws Exception {
 				return calculationEngine.calculate(jarScenarioManager.get(jarScenarioId));
 			}
+		};
+	}
+	
+	@RequestMapping(value = "/calculateWebScenario/{webScenarioId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Callable<List<Result>> calculateWebScenario(@PathVariable("webScenarioId") final long webScenarioId) {
+		return new Callable<List<Result>>() {
+
+			@Override
+			public List<Result> call() throws Exception {
+				return calculationEngine.calculate(webScenarioManager.get(webScenarioId));
+			}
+			
 		};
 	}
 
