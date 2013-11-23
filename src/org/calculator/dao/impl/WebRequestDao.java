@@ -21,10 +21,9 @@ public class WebRequestDao extends GenericDao<WebRequest> implements
 	}
 
 	@Override
-	public List<WebRequest> getWebRequestsByScenarioId(long scenarioId) {
+	public List<WebRequest> getAllWebRequests() {
 		TypedQuery<WebRequest> query = em.createNamedQuery(
-				"WebRequest.getRequestsByScenarioId", WebRequest.class);
-		query.setParameter("scenarioId", scenarioId);
+				"WebRequest.getAllWebRequests", WebRequest.class);
 		return query.getResultList();
 	}
 

@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,6 +27,9 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 @Table(name = "WEB_REQUESTS")
+@NamedQueries({
+	@NamedQuery(name = "WebRequest.getAllWebRequests", query = "SELECT wr FROM WebRequest wr")
+})
 public class WebRequest extends AbstractModel {
 
 	@Id

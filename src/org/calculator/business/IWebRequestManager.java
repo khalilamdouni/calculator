@@ -1,5 +1,7 @@
 package org.calculator.business;
 
+import java.util.List;
+
 import org.calculator.models.WebRequest;
 import org.calculator.models.WebScenario;
 
@@ -19,4 +21,11 @@ public interface IWebRequestManager extends IGenericManager<WebRequest> {
 	 * @param webScenario
 	 */
 	public WebScenario populateWebScenario(WebScenario webScenario);
+	
+	/**
+	 * Business Method to get all WebRequests
+	 * 
+	 * @return List of WebRequests
+	 */
+	public List<WebRequest> getAllWebRequests();
 }

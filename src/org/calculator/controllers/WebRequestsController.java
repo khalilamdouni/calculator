@@ -6,6 +6,7 @@ import org.calculator.models.WebParam;
 import org.calculator.models.WebRequest;
 import org.calculator.models.viewmodels.JSONJTableModel;
 import org.calculator.models.viewmodels.JSONJTableResponseModel;
+import org.calculator.models.viewmodels.WebRequestsViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
@@ -32,17 +33,23 @@ public class WebRequestsController {
 	private IWebParamManager webParamManager;
 	private IWebRequestManager webRequestManager;
 	
-	@RequestMapping(value = "/getRequestsManager", method = RequestMethod.GET)
-	public ModelAndView getRequestsManager() {
-		// TO DO: getting allo web requests in the WebRequestsViewModel
-		return null;
+	@RequestMapping(value = "/webRequestsManager", method = RequestMethod.GET)
+	public ModelAndView webRequestsManager() {
+		return new ModelAndView("webRequestsManager");
+	}
+	
+	@RequestMapping(value = "/getRequestsList", method = RequestMethod.GET)
+	public ModelAndView getRequestsList() {
+		WebRequestsViewModel webRequestsViewModel = new WebRequestsViewModel();
+		webRequestsViewModel.setWebRequests(webRequestManager.getAllWebRequests());
+		return new ModelAndView("webRequestsList", "webRequestsViewModel", webRequestsViewModel);
 	}
 	
 	@RequestMapping(value = "/addRequest", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ModelAndView addRequest(@RequestBody WebRequest webRequest) {
 
-		WebRequest savedWebRequest = webRequestManager.save(webRequest);
-		return getRequestsManager();
+		webRequestManager.save(webRequest);
+		return getRequestsList();
 	}
 	
 	@RequestMapping(value = "/getRequest/{requestId}", method = RequestMethod.GET)

@@ -11,7 +11,6 @@ import org.calculator.models.WebRequest;
  * 
  */
 public interface IWebRequestDao extends IGenericDao<WebRequest> {
-	
-	public List<WebRequest> getWebRequestsByScenarioId(long scenarioId);
-	
+
+	public List<WebRequest> getAllWebRequests();
 }

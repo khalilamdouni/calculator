@@ -39,7 +39,12 @@ public class WebRequestManager extends GenericManager<WebRequest> implements
 		webScenario.setWebRequests(webRequests);
 		return webScenario;
 	}
-
+	
+	@Override
+	public List<WebRequest> getAllWebRequests() {
+		return webRequestDao.getAllWebRequests();
+	}
+	
 	public IWebRequestDao getWebRequestDao() {
 		return webRequestDao;
 	}

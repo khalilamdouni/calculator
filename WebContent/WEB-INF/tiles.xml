@@ -32,5 +32,10 @@
 		<put-attribute name="title" value="Web Scenarios Manager" />
 		<put-attribute name="body" value="/WEB-INF/pages/webScenarioManager.jsp" />
 	</definition>
+
+	<definition name="webRequestsManager" extends="base.definition">
+		<put-attribute name="title" value="Web Requests Manager" />
+		<put-attribute name="body" value="/WEB-INF/pages/webRequestsManager.jsp" />
+	</definition>
 	
 </tiles-definitions>

@@ -43,6 +43,7 @@
 							</ul></li>
 						<li><a href="javascript:void(0)">WEB Calculator</a>
 							<ul>
+								<li><a href="webRequestsManager">Web Requests</a></li>
 								<li><a href="webScenarioManager">Scenarios</a></li>
 								<li><a href="calculateWEB">Web console</a></li>
 							</ul></li>
