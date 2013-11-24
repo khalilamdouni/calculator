@@ -21,7 +21,7 @@
 
 	$(document).ready(function() {
 
-		// TO DO: call the get webRequests List
+		getrequestsList();
 
 	});
 </script>

@@ -440,6 +440,57 @@ function getScenario(scenarioId) {
 	return false;
 }
 
+
+function reorderRequests() {
+	$.ajax({
+		type : "POST",
+		url : 'reorderRequests/' + serializeRequests() + '/'
+				+ selectedScenarioId,
+		success : function() {
+		}
+	});
+}
+
+function serializeRequests() {
+
+	var methodIds = $("#requests-view .request-view[id]").map(function() {
+		return this.id;
+	}).get();
+	return methodIds.join("-");
+}
+
+
+function lastOrder() {
+	return $("#requests-view .request-view[id]").length;
+}
+
+function getRequestOrder(requestId) {
+	var methodIds = $("#requests-view .request-view[id]").map(function() {
+		return this.id;
+	}).get();
+	
+	for ( var i = 0; i < methodIds.length; i++) {
+		if (methodIds[i] == requestId) {
+			return i;
+		}
+	}
+}
+
+
+/***********************************************************************/
+/***********         Web requests management calls          ***********/
+/** ********************************************************************/
+
+function getrequestsList() {
+	$.ajax({
+		type : "GET",
+		url : 'getRequestsList',
+		success : function(response) {
+			$("#requests-list-view").html(response);
+		}
+	});
+}
+
 function addRequest(requestName, requestURL, requestMethod) {
 
 	var json = {
@@ -447,7 +498,7 @@ function addRequest(requestName, requestURL, requestMethod) {
 		"url" : requestURL,
 		"method" : requestMethod
 	};
-	postAjaxForm('addRequest/' + selectedScenarioId, 'scenario-content', json);
+	postAjaxForm('addRequest', 'requests-list-view', json);
 }
 
 function getRequest(requestId) {
@@ -475,43 +526,9 @@ function saveWebRequest(requestId) {
 
 }
 
-function reorderRequests() {
-	$.ajax({
-		type : "POST",
-		url : 'reorderRequests/' + serializeRequests() + '/'
-				+ selectedScenarioId,
-		success : function() {
-		}
-	});
-}
-
-function serializeRequests() {
-
-	var methodIds = $("#requests-view .request-view[id]").map(function() {
-		return this.id;
-	}).get();
-	return methodIds.join("-");
-}
-
 function loadFirstRequest() {
 	if ($("#requests-view .request-view[id]:first").attr('id') !== undefined) {
 		getRequest($("#requests-view .request-view[id]:first").attr('id'));
-	}
-}
-
-function lastOrder() {
-	return $("#requests-view .request-view[id]").length;
-}
-
-function getRequestOrder(requestId) {
-	var methodIds = $("#requests-view .request-view[id]").map(function() {
-		return this.id;
-	}).get();
-	
-	for ( var i = 0; i < methodIds.length; i++) {
-		if (methodIds[i] == requestId) {
-			return i;
-		}
 	}
 }
 
