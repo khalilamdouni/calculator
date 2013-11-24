@@ -440,6 +440,15 @@ function getScenario(scenarioId) {
 	return false;
 }
 
+function addRequestToScenario(requestId) {
+	$.ajax({
+		type : "GET",
+		url : 'addRequestToScenario/' + selectedScenarioId + '/' + requestId,
+		success : function(response) {
+			$("#scenario-content").html(response);
+		}
+	});
+}
 
 function reorderRequests() {
 	$.ajax({

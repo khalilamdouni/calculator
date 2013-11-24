@@ -10,10 +10,7 @@
 
 <script>
 	$(function() {
-		$("#requests-view").accordion({
-			header : "> div > h3",
-			heightStyle: "content"
-		}).sortable({
+		$("#requests-view").sortable({
 			axis : "y",
 			handle : "h3",
 			stop : function(event, ui) {
@@ -21,12 +18,10 @@
 			}
 		});
 		
-		
-
 	    var name = $("#request-name");
 		var url = $("#request-url");
 		var method = $("#method-type");
-		$("#add-request").dialog({
+		$("#add-request-to-scenario").dialog({
 			autoOpen : false,
 			height : 300,
 			width : 350,
@@ -112,9 +107,6 @@
 		varStatus="webRequestStatus">
 		<div class="request-view" id="${webRequest.id}">
 			<h3 onclick="getRequest('${webRequest.id}')">${webRequest.name} - ${webRequest.url}</h3>
-			<div id="request-content${webRequest.id}">
-				<p>Form</p>
-			</div>
 		</div>
 	</c:forEach>
 
@@ -124,11 +116,10 @@
 	</div>
 	<div class="shadow-conteiner" id="config-scenarios-table">
 	</div>
-	<div id="add-request" title="Create new Web request">
+	<div id="add-request-to-scenario" title="Add Web request">
 		<form>
 			<fieldset>
 				<table>
-
 					<tr>
 						<td><label for="request-name">Web Request name</label></td>
 						<td><input type="text" name="request-name" id="request-name"
@@ -147,10 +138,6 @@
 						</select></td>
 					</tr>
 				</table>
-
-
-
-
 			</fieldset>
 		</form>
 	</div>

@@ -53,6 +53,14 @@ public class WebScenarioController {
 				webRequestManager.populateWebScenario(webScenarioManager.get(scenarioId)));
 	}
 	
+	@RequestMapping(value = "/addRequestToScenario/{scenarioId}/{requestId}", method = RequestMethod.GET)
+	public ModelAndView addRequestToScenario(
+			@PathVariable("scenarioId") long scenarioId,
+			@PathVariable("requestId") long requestId) {
+		webScenarioManager.addWebRequestToWebScenario(scenarioId, requestId);
+		return getScenario(scenarioId);
+	}
+	
 	@RequestMapping(value = "/reorderRequests/{requestsSequence}/{scenarioId}", method = RequestMethod.POST)
 	public @ResponseBody String reorderRequests(@PathVariable("requestsSequence") String requestsSequence, @PathVariable("scenarioId") long scenarioId) {
 		

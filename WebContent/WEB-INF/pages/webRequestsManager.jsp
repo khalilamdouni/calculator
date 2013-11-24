@@ -13,14 +13,8 @@
 <script src="js/jtable/jquery.jtable.min.js" type="text/javascript"></script>
 <script src="js/jtable/json2.js" type="text/javascript"></script>
 
-
-
-
-
 <script type="text/javascript">
-
 	$(document).ready(function() {
-
 		getrequestsList();
 
 	});
@@ -28,5 +22,4 @@
 
 
 <div id="requests-list-view">
-	
 </div>
