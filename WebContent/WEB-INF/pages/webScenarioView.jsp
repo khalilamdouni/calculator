@@ -9,6 +9,7 @@
 <script src="js/jtable/json2.js" type="text/javascript"></script>
 
 <script>
+
 	$(function() {
 		$("#requests-view").sortable({
 			axis : "y",
@@ -17,10 +18,12 @@
 				ui.item.children("h3").triggerHandler("focusout");
 			}
 		});
-		
-	    var name = $("#request-name");
-		var url = $("#request-url");
-		var method = $("#method-type");
+
+		$("#request-name").autocomplete({
+			source : 'getWebRequests'
+		});
+
+		var name = $("#request-name");
 		$("#add-request-to-scenario").dialog({
 			autoOpen : false,
 			height : 300,
@@ -28,7 +31,7 @@
 			modal : true,
 			buttons : {
 				"Add request" : function() {
-					addRequest(name.val(), url.val(), method.find(":selected").val());
+					addRequestToScenario(name.val().split("/")[0]);
 					$(this).dialog("close");
 				},
 				Cancel : function() {
@@ -43,62 +46,63 @@
 		$("#add-request-button").click(function() {
 			$("#add-request").dialog("open");
 		});
-		
+
 		$("#order-request-button").click(function() {
 			reorderRequests();
 		});
-		
-		loadFirstRequest();
-		
-	    $('#config-scenarios-table').jtable({
-	    	 title: 'List Configs',
-	         paging: true,
-	         pageSize: 10, //Set page size (default: 10)
-	         sorting: true,
-	         defaultSorting: 'Title ASC',
-	         selecting: true, 
-	         multiselect: true,
-	         selectingCheckboxes: true, 
-	        actions: {
-	            listAction: 'getWebScenarioConfigs/${webScenarioModel.id}',
-	            createAction: 'addWebScenarioConfig/${webScenarioModel.id}',
-	            updateAction: 'updateCalculationConfig',
-	            deleteAction: 'deleteCalculationConfig'
-	        },
-	        fields: {
-	        	id: {
-	        		title: 'ID',
-	                key: true,
-	                list: true,
-	                edit: false
-	            },
-	            name: {
-	                title: 'Name',
-	                width: '20%'
-	            },
-	            min: {
-	                title: 'MIN',
-	                width: '15%'
-	            },
-	            max: {
-	                title: 'MAX',
-	                width: '15%'
-	            },
-	            step: {
-	                title: 'Step',
-	                width: '15%'
-	            },
-	            active: {
-	                title: 'Active',
-	                width: '15%',
-	                type: 'checkbox',
-	                values: { 'false': 'Disabled', 'true': 'Enabled' },
-	                defaultValue: 'false'
-	            }
-	        }
-	    });
-	    $('#config-scenarios-table').jtable('load');
-		
+
+		$('#config-scenarios-table').jtable({
+			title : 'List Configs',
+			paging : true,
+			pageSize : 10, //Set page size (default: 10)
+			sorting : true,
+			defaultSorting : 'Title ASC',
+			selecting : true,
+			multiselect : true,
+			selectingCheckboxes : true,
+			actions : {
+				listAction : 'getWebScenarioConfigs/${webScenarioModel.id}',
+				createAction : 'addWebScenarioConfig/${webScenarioModel.id}',
+				updateAction : 'updateCalculationConfig',
+				deleteAction : 'deleteCalculationConfig'
+			},
+			fields : {
+				id : {
+					title : 'ID',
+					key : true,
+					list : true,
+					edit : false
+				},
+				name : {
+					title : 'Name',
+					width : '20%'
+				},
+				min : {
+					title : 'MIN',
+					width : '15%'
+				},
+				max : {
+					title : 'MAX',
+					width : '15%'
+				},
+				step : {
+					title : 'Step',
+					width : '15%'
+				},
+				active : {
+					title : 'Active',
+					width : '15%',
+					type : 'checkbox',
+					values : {
+						'false' : 'Disabled',
+						'true' : 'Enabled'
+					},
+					defaultValue : 'false'
+				}
+			}
+		});
+		$('#config-scenarios-table').jtable('load');
+
 	});
 </script>
 
@@ -121,21 +125,9 @@
 			<fieldset>
 				<table>
 					<tr>
-						<td><label for="request-name">Web Request name</label></td>
+						<td><label for="request-name">Web Request</label></td>
 						<td><input type="text" name="request-name" id="request-name"
 							class="text ui-widget-content ui-corner-all" /></td>
-					</tr>
-					<tr>
-						<td><label for="request-url">Web Request URL</label></td>
-						<td><input type="text" name="request-url" id="request-url"
-							class="text ui-widget-content ui-corner-all" /></td>
-					</tr>
-					<tr>
-						<td><label for="method-type">Method type</label></td>
-						<td><select id="method-type">
-								<option value="GET">GET</option>
-								<option value="POST">POST</option>
-						</select></td>
 					</tr>
 				</table>
 			</fieldset>

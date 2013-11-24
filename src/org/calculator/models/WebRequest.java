@@ -108,5 +108,10 @@ public class WebRequest extends AbstractModel {
 	public void setWebParams(List<WebParam> webParams) {
 		this.webParams = webParams;
 	}
-
+	
+	@Override
+	public String toString() {
+		return this.id + "/" + this.name + " - " + this.url;
+	}
+	
 }

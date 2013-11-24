@@ -1,5 +1,7 @@
 package org.calculator.controllers;
 
+import java.util.List;
+
 import org.calculator.business.IWebParamManager;
 import org.calculator.business.IWebRequestManager;
 import org.calculator.models.WebParam;
@@ -43,6 +45,12 @@ public class WebRequestsController {
 		WebRequestsViewModel webRequestsViewModel = new WebRequestsViewModel();
 		webRequestsViewModel.setWebRequests(webRequestManager.getAllWebRequests());
 		return new ModelAndView("webRequestsList", "webRequestsViewModel", webRequestsViewModel);
+	}
+	
+	@RequestMapping(value = "/getWebRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	List<WebRequest> getWebRequests() {
+		return webRequestManager.getAllWebRequests();
 	}
 	
 	@RequestMapping(value = "/addRequest", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
