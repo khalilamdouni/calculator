@@ -7,6 +7,8 @@
 
 <script src="js/jtable/jquery.jtable.min.js" type="text/javascript"></script>
 <script src="js/jtable/json2.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+
 
 <script>
 
@@ -17,10 +19,6 @@
 			stop : function(event, ui) {
 				ui.item.children("h3").triggerHandler("focusout");
 			}
-		});
-
-		$("#request-name").autocomplete({
-			source : 'getWebRequests'
 		});
 
 		var name = $("#request-name");
@@ -37,14 +35,15 @@
 				Cancel : function() {
 					$(this).dialog("close");
 				}
-			},
-			close : function() {
-
 			}
 		});
 
 		$("#add-request-button").click(function() {
-			$("#add-request").dialog("open");
+			$("#add-request-to-scenario").dialog("open");
+			$("#request-name").autocomplete({
+				source : '${pageContext. request. contextPath}/getWebRequests',
+				appendTo: "#copy_dialog"
+			});
 		});
 
 		$("#order-request-button").click(function() {
@@ -109,7 +108,7 @@
 <div id="requests-view" style="width: 800px;">
 	<c:forEach items="${webScenarioModel.webRequests}" var="webRequest"
 		varStatus="webRequestStatus">
-		<div class="request-view" id="${webRequest.id}">
+		<div class="request-view ui-state-default" id="${webRequest.id}">
 			<h3 onclick="getRequest('${webRequest.id}')">${webRequest.name} - ${webRequest.url}</h3>
 		</div>
 	</c:forEach>

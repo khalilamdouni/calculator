@@ -61,7 +61,7 @@
 </script>
 
 <div id="requests-view" style="width: 800px;">
-	<c:forEach items="${webScenarioModel.webRequests}" var="webRequest"
+	<c:forEach items="${webRequestsViewModel.webRequests}" var="webRequest"
 		varStatus="webRequestStatus">
 		<div class="request-view" id="${webRequest.id}">
 			<h3 onclick="getRequest('${webRequest.id}')">${webRequest.name} - ${webRequest.url}</h3>

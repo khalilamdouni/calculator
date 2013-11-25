@@ -490,7 +490,7 @@ function getRequestOrder(requestId) {
 /***********         Web requests management calls          ***********/
 /** ********************************************************************/
 
-function getrequestsList() {
+function getRequestsList() {
 	$.ajax({
 		type : "GET",
 		url : 'getRequestsList',

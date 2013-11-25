@@ -1,5 +1,6 @@
 package org.calculator.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.calculator.business.IWebParamManager;
@@ -47,10 +48,15 @@ public class WebRequestsController {
 		return new ModelAndView("webRequestsList", "webRequestsViewModel", webRequestsViewModel);
 	}
 	
-	@RequestMapping(value = "/getWebRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/getWebRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, headers = "Accept=*/*")
 	public @ResponseBody
-	List<WebRequest> getWebRequests() {
-		return webRequestManager.getAllWebRequests();
+	List<String> getWebRequests() {
+		List<WebRequest> webRequests = webRequestManager.getAllWebRequests();
+		List<String> results = new ArrayList<String>();
+		for (WebRequest webRequest : webRequests) {
+			results.add(webRequest.toString());
+		}
+		return results;
 	}
 	
 	@RequestMapping(value = "/addRequest", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
