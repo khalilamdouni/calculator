@@ -1,5 +1,6 @@
 package org.calculator.business.impl;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,13 @@ public class WebRequestManager extends GenericManager<WebRequest> implements
 		return webRequestDao.getAllWebRequests();
 	}
 	
+	@Override
+	public void convertAndSaveXMLData(InputStream in) {
+		
+		
+		
+	}
+
 	public IWebRequestDao getWebRequestDao() {
 		return webRequestDao;
 	}

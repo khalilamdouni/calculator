@@ -1,5 +1,6 @@
 package org.calculator.business;
 
+import java.io.InputStream;
 import java.util.List;
 
 import org.calculator.models.WebRequest;
@@ -28,4 +29,13 @@ public interface IWebRequestManager extends IGenericManager<WebRequest> {
 	 * @return List of WebRequests
 	 */
 	public List<WebRequest> getAllWebRequests();
+	
+	/**
+	 * Business method used to convert and save XML to webRequests or Web
+	 * scenarios
+	 * 
+	 * @param in
+	 *            the inputStrem from the XML file
+	 */
+	public void convertAndSaveXMLData(InputStream in);
 }

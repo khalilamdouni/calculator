@@ -1,5 +1,6 @@
 package org.calculator.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,6 +121,15 @@ public class WebRequestsController {
 			@RequestParam long webParamId) {
 		webParamManager.delete(webParamId);
 		return new JSONJTableResponseModel<WebParam>("OK");
+	}
+	
+	@RequestMapping(value = "/uploadXML", method = RequestMethod.POST)
+	public ModelAndView uploadXML(
+			@ModelAttribute("webRequestsViewModel") WebRequestsViewModel webRequestsViewModel)
+			throws IOException {
+		webRequestManager.convertAndSaveXMLData(webRequestsViewModel
+				.getXmlFile().getInputStream());
+		return webRequestsManager();
 	}
 
 	public IWebParamManager getWebParamManager() {

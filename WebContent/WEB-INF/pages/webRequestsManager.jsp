@@ -23,3 +23,18 @@
 
 <div id="requests-list-view">
 </div>
+<div>
+	<form:form action="uploadXML" method="POST"
+		enctype="multipart/form-data" modelAttribute="webRequestsViewModel">
+		<table>
+			<tr>
+				<th>XML file :</th>
+				<th><input type="file" name="xmlFile" /></th>
+			</tr>
+			<tr>
+				<th></th>
+				<th><input type="submit" value="Upload" /></th>
+			</tr>
+		</table>
+	</form:form>
+</div>
