@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.calculator.business.IWebParamManager;
 import org.calculator.business.IWebRequestManager;
 import org.calculator.models.WebParam;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.xml.sax.SAXException;
 
 /**
  * Web requests CRUD controller
@@ -126,7 +129,7 @@ public class WebRequestsController {
 	@RequestMapping(value = "/uploadXML", method = RequestMethod.POST)
 	public ModelAndView uploadXML(
 			@ModelAttribute("webRequestsViewModel") WebRequestsViewModel webRequestsViewModel)
-			throws IOException {
+			throws IOException, ParserConfigurationException, SAXException {
 		webRequestManager.convertAndSaveXMLData(webRequestsViewModel
 				.getXmlFile().getInputStream());
 		return webRequestsManager();

@@ -1,10 +1,14 @@
 package org.calculator.business;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.calculator.models.WebRequest;
 import org.calculator.models.WebScenario;
+import org.xml.sax.SAXException;
 
 /**
  * The interface of the Web request manager which is responsible of saving,
@@ -37,5 +41,5 @@ public interface IWebRequestManager extends IGenericManager<WebRequest> {
 	 * @param in
 	 *            the inputStrem from the XML file
 	 */
-	public void convertAndSaveXMLData(InputStream in);
+	public void convertAndSaveXMLData(InputStream in) throws ParserConfigurationException, SAXException, IOException ;
 }
