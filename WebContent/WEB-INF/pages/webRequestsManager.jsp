@@ -24,7 +24,7 @@
 <div id="requests-list-view">
 </div>
 <div>
-	<form:form action="uploadXML" method="POST"
+	<form:form action="uploadXMLRequests" method="POST"
 		enctype="multipart/form-data" modelAttribute="webRequestsViewModel">
 		<table>
 			<tr>

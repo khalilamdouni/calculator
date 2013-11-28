@@ -70,6 +70,21 @@
 			</fieldset>
 		</form>
 	</div>
+	<div>
+	<form:form action="uploadXMLScenarios" method="POST"
+		enctype="multipart/form-data" modelAttribute="WebScenarioViewModel">
+		<table>
+			<tr>
+				<th>XML file :</th>
+				<th><input type="file" name="xmlFile" /></th>
+			</tr>
+			<tr>
+				<th></th>
+				<th><input type="submit" value="Upload" /></th>
+			</tr>
+		</table>
+	</form:form>
+</div>
 </div>
 <div class="rightpanel">
 	<div id="scenario-content" class="rightbody">

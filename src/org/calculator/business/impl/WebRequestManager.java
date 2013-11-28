@@ -1,14 +1,9 @@
 package org.calculator.business.impl;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
+import org.apache.commons.lang3.StringUtils;
 import org.calculator.business.IWebRequestManager;
 import org.calculator.dao.IGenericDao;
 import org.calculator.dao.IWebRequestDao;
@@ -16,11 +11,9 @@ import org.calculator.enums.CalculatorHttpMethods;
 import org.calculator.models.WebParam;
 import org.calculator.models.WebRequest;
 import org.calculator.models.WebScenario;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 /**
  * @see org.calculator.business.IWebRequestManager
@@ -32,6 +25,7 @@ public class WebRequestManager extends GenericManager<WebRequest> implements
 		IWebRequestManager {
 
 	private IWebRequestDao webRequestDao;
+
 
 	@Override
 	public IGenericDao<WebRequest> getDao() {
@@ -59,14 +53,8 @@ public class WebRequestManager extends GenericManager<WebRequest> implements
 	}
 	
 	@Override
-	public void convertAndSaveXMLData(InputStream in)
-			throws ParserConfigurationException, SAXException, IOException {
-
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document document = db.parse(in);
-		document.getDocumentElement().normalize();
-		NodeList requestsNodeList = document.getElementsByTagName("request");
+	public String convertAndSaveXMLRequests(NodeList requestsNodeList) {
+		String[] requestIDs = new String[requestsNodeList.getLength()];
 		WebRequest webRequest = null;
 		List<WebParam> webParams = null;
 		for (int i = 0; i < requestsNodeList.getLength(); i++) {
@@ -99,8 +87,10 @@ public class WebRequestManager extends GenericManager<WebRequest> implements
 				}
 				webRequest.setWebParams(webParams);
 			}
-			webRequestDao.save(webRequest);
+			webRequest = webRequestDao.save(webRequest);
+			requestIDs[i] = Long.toString(webRequest.getId());
 		}
+		return StringUtils.join(requestIDs, "-");
 	}
 
 	public IWebRequestDao getWebRequestDao() {

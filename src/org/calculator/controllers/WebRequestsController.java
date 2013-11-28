@@ -8,6 +8,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.calculator.business.IWebParamManager;
 import org.calculator.business.IWebRequestManager;
+import org.calculator.business.IWebScenarioManager;
 import org.calculator.models.WebParam;
 import org.calculator.models.WebRequest;
 import org.calculator.models.viewmodels.JSONJTableModel;
@@ -39,6 +40,7 @@ public class WebRequestsController {
 	
 	private IWebParamManager webParamManager;
 	private IWebRequestManager webRequestManager;
+	private IWebScenarioManager webScenarioManager;
 	
 	@RequestMapping(value = "/webRequestsManager", method = RequestMethod.GET)
 	public ModelAndView webRequestsManager() {
@@ -126,11 +128,11 @@ public class WebRequestsController {
 		return new JSONJTableResponseModel<WebParam>("OK");
 	}
 	
-	@RequestMapping(value = "/uploadXML", method = RequestMethod.POST)
+	@RequestMapping(value = "/uploadXMLRequests", method = RequestMethod.POST)
 	public ModelAndView uploadXML(
 			@ModelAttribute("webRequestsViewModel") WebRequestsViewModel webRequestsViewModel)
 			throws IOException, ParserConfigurationException, SAXException {
-		webRequestManager.convertAndSaveXMLData(webRequestsViewModel
+		webScenarioManager.convertAndSaveXMLData(webRequestsViewModel
 				.getXmlFile().getInputStream());
 		return webRequestsManager();
 	}
@@ -153,6 +155,16 @@ public class WebRequestsController {
 	@Qualifier(value = "webRequestManager")
 	public void setWebRequestManager(IWebRequestManager webRequestManager) {
 		this.webRequestManager = webRequestManager;
+	}
+
+	public IWebScenarioManager getWebScenarioManager() {
+		return webScenarioManager;
+	}
+
+	@Autowired
+	@Qualifier(value = "webScenarioManager")
+	public void setWebScenarioManager(IWebScenarioManager webScenarioManager) {
+		this.webScenarioManager = webScenarioManager;
 	}
 	
 }

@@ -45,6 +45,7 @@
 	
 	<bean id="webScenarioManager" class="org.calculator.business.impl.WebScenarioManager">
 	    <property name="webScenarioDao" ref="webScenarioDao"></property>
+	    <property name="webRequestManager" ref="webRequestManager"></property>
 	</bean>
 	
 	<bean id="webRequestManager" class="org.calculator.business.impl.WebRequestManager">

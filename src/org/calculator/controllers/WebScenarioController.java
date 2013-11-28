@@ -1,5 +1,9 @@
 package org.calculator.controllers;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.apache.log4j.Logger;
 import org.calculator.business.IWebRequestManager;
 import org.calculator.business.IWebScenarioManager;
@@ -9,11 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.xml.sax.SAXException;
 
 /**
  * Web scenarios CRUD controller
@@ -70,6 +76,15 @@ public class WebScenarioController {
 		return "OK";
 	}
 
+	@RequestMapping(value = "/uploadXMLScenarios", method = RequestMethod.POST)
+	public ModelAndView uploadXML(
+			@ModelAttribute("WebScenarioViewModel") WebScenarioViewModel webScenarioViewModel)
+			throws IOException, ParserConfigurationException, SAXException {
+		webScenarioManager.convertAndSaveXMLData(webScenarioViewModel
+				.getXmlFile().getInputStream());
+		return webScenarioManager();
+	}
+	
 	public IWebScenarioManager getWebScenarioManager() {
 		return webScenarioManager;
 	}
