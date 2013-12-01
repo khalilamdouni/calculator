@@ -73,6 +73,7 @@ public class WebScenarioManager extends GenericManager<WebScenario> implements
 				webScenario.setName(scenarioElement.getAttribute("name"));
 				webScenario.setDescription(scenarioElement.getElementsByTagName("description").item(0).getTextContent());
 				webScenario.setSequence(webRequestManager.convertAndSaveXMLRequests(scenarioElement.getElementsByTagName("request")));
+				webScenarioDao.save(webScenario);
 			}
 		}
 	}

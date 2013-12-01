@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -24,6 +26,7 @@ public class Scenario extends AbstractModel {
 
 	@Id
 	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	@Column(name = "NAME")
