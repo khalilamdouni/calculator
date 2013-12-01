@@ -26,7 +26,6 @@ public class WebRequestManager extends GenericManager<WebRequest> implements
 
 	private IWebRequestDao webRequestDao;
 
-
 	@Override
 	public IGenericDao<WebRequest> getDao() {
 		return (IGenericDao<WebRequest>) webRequestDao;
@@ -82,6 +81,7 @@ public class WebRequestManager extends GenericManager<WebRequest> implements
 							webParam.setName(paramElement.getAttribute("name"));
 							webParam.setValue(paramElement.getTextContent());
 							webParam.setWebRequest(webRequest);
+							webParams.add(webParam);
 						}
 					}
 				}
