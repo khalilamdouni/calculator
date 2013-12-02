@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,22 +18,23 @@ import javax.persistence.Table;
  * JPA entity to encapsulate a calculation report
  * 
  * @author khalil.amdouni
- *
+ * 
  */
 @Entity
 @Table(name = "REPORTING_REPORTS")
+@NamedQueries({ @NamedQuery(name = "Report.getAllReports", query = "SELECT r FROM Report r") })
 public class Report {
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@Column(name = "TITLE")
 	private String title;
-	
+
 	@Column(name = "DESCRIPTION")
 	private String description;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "report", cascade = {
 			CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
 	private List<ReportResult> results;
