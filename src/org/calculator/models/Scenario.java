@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @Table(name = "CORE_SCENARIOS")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "SCENARIO_CATEGORY", discriminatorType = DiscriminatorType.STRING)
-public class Scenario extends AbstractModel {
+public abstract class Scenario extends AbstractModel {
 
 	@Id
 	@Column(name = "ID")

@@ -9,10 +9,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.calculator.models.Scenario;
 
 /**
  * JPA entity to encapsulate a calculation report
@@ -38,6 +42,10 @@ public class Report {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "report", cascade = {
 			CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
 	private List<ReportResult> results;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "SCENARIO_ID", nullable = false, updatable = false)
+	private Scenario scenario;
 
 	public long getId() {
 		return id;
@@ -71,4 +79,12 @@ public class Report {
 		this.results = results;
 	}
 
+	public Scenario getScenario() {
+		return scenario;
+	}
+
+	public void setScenario(Scenario scenario) {
+		this.scenario = scenario;
+	}
+	
 }

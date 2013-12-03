@@ -59,4 +59,8 @@
 	<bean id="reportingManager" class="org.calculator.business.reporting.impl.ReportingManager">
 	    <property name="reportingDao" ref="reportingDao"></property>
 	</bean>
+	
+	<bean id="scenarioManager" class="org.calculator.business.impl.ScenarioManager">
+	    <property name="scenarioDao" ref="scenarioDao"></property>
+	</bean>
 </beans>

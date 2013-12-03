@@ -20,5 +20,6 @@
     <bean id="webRequestDao" class="org.calculator.dao.impl.WebRequestDao"></bean>
     <bean id="webParamDao" class="org.calculator.dao.impl.WebParamDao"></bean>
     <bean id="reportingDao" class="org.calculator.reporting.dao.impl.ReportingDao"></bean>
+    <bean id="scenarioDao" class="org.calculator.dao.impl.ScenarioDao"></bean>
 
 </beans>
