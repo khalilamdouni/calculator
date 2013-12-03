@@ -56,4 +56,7 @@
 	    <property name="webParamDao" ref="webParamDao"></property>
 	</bean>
 
+	<bean id="reportingManager" class="org.calculator.business.reporting.impl.ReportingManager">
+	    <property name="reportingDao" ref="reportingDao"></property>
+	</bean>
 </beans>
