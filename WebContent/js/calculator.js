@@ -20,10 +20,18 @@ var chartTabCount = 0;
 var addRowOrNot = 1;
 var chartIndex = 0;
 
+// Reporting targets 
+var reportIndex = 0;
+var actualTarget;
+var targets = new Array();
+var scenarioIds = new Array();
+var results = new Array();
+
 // Javascript call when item is selected in the console tree
 function selectItem(itemId, itemName, target) {
 	selectedItemId = itemId;
 	selectedItemName = itemName;
+	actualTarget = target;
 	calculationURL = calculationURLs[target];
 	$("#estimateButton").html('Estimate: ' + itemName);
 }
@@ -33,19 +41,39 @@ function calculate() {
 	if (selectedItemId == -1)
 		return false;
 	var url = calculationURL + "/" + selectedItemId;
+	targets[reportIndex] = actualTarget;
+	scenarioIds[reportIndex] = selectedItemId;
 	$.ajax({
 		type : "GET",
 		url : url,
 		dataType : "json",
 		contentType : 'application/json',
 		success : function(data) {
+			var reportingResults = new Array();
 			var resultData = [];
 			for ( var int = 0; int < data.length; int++) {
 				resultData[int] = [];
 				resultData[int][0] = data[int].x;
 				resultData[int][1] = data[int].y;
+				reportingResults[int] = data[int].x + ";" + data[int].y;
 			}
+			results[reportIndex] = reportingResults.join("-");
+			reportIndex++;
 			displayChart(resultData);
+		}
+	});
+
+	return false;
+}
+
+// save report call
+function saveReport(currentReportIndex) {
+	$.ajax({
+		type : "POST",
+		url : 'saveReport/' + scenarioIds[currentReportIndex] + '/'
+				+ results[currentReportIndex],
+		success : function(response) {
+			// TO DO: check text response ...
 		}
 	});
 	return false;
@@ -57,9 +85,11 @@ function addRowToTable() {
 	if (addRowOrNot == 1) {
 		$("#charts > tbody").append(
 				"<tr><td><div class='shadow-conteiner' id='chart"
-						+ chartTabCount + "'></div></td>"
+						+ chartTabCount + "'></div><a href='javascript:saveReport("
+						+ chartTabCount + ")'>Save as report</a></td>"
 						+ "<td><div class='shadow-conteiner' id='chart"
-						+ (chartTabCount + 1) + "'></div></td></tr>");
+						+ (chartTabCount + 1) + "'></div><a href='javascript:saveReport("
+						+ (chartTabCount + 1) + ")'>Save as report</a></td></tr>");
 		chartTabCount = chartTabCount + 2;
 	}
 	addRowOrNot = addRowOrNot * -1;
