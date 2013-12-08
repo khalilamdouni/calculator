@@ -55,7 +55,7 @@ function calculate() {
 				resultData[int] = [];
 				resultData[int][0] = data[int].x;
 				resultData[int][1] = data[int].y;
-				reportingResults[int] = data[int].x + ";" + data[int].y;
+				reportingResults[int] = data[int].x + "_" + data[int].y;
 			}
 			results[reportIndex] = reportingResults.join("-");
 			reportIndex++;
@@ -68,6 +68,7 @@ function calculate() {
 
 // save report call
 function saveReport(currentReportIndex) {
+	alert('report results : ' + results[currentReportIndex]);
 	$.ajax({
 		type : "POST",
 		url : 'saveReport/' + scenarioIds[currentReportIndex] + '/'
@@ -85,10 +86,10 @@ function addRowToTable() {
 	if (addRowOrNot == 1) {
 		$("#charts > tbody").append(
 				"<tr><td><div class='shadow-conteiner' id='chart"
-						+ chartTabCount + "'></div><a href='javascript:saveReport("
+						+ chartTabCount + "'></div><br/><a href='javascript:saveReport("
 						+ chartTabCount + ")'>Save as report</a></td>"
 						+ "<td><div class='shadow-conteiner' id='chart"
-						+ (chartTabCount + 1) + "'></div><a href='javascript:saveReport("
+						+ (chartTabCount + 1) + "'></div><br/><a href='javascript:saveReport("
 						+ (chartTabCount + 1) + ")'>Save as report</a></td></tr>");
 		chartTabCount = chartTabCount + 2;
 	}

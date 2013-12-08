@@ -3,6 +3,7 @@ package org.calculator.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.calculator.business.IScenarioManager;
 import org.calculator.business.reporting.IReportingManager;
 import org.calculator.models.Scenario;
@@ -27,6 +28,8 @@ public class ReportingController {
 	private IReportingManager reportingManager;
 	private IScenarioManager scenarioManager;
 	
+	private final static Logger logger = Logger.getLogger(ReportingController.class);
+	
 	@RequestMapping(value = "/saveReport/{scenarioId}/{resultsAsString}", method = RequestMethod.POST)
 	public String saveReport(@PathVariable("scenarioId") long scenarioId,
 			@PathVariable("resultsAsString") String resultsAsString) {
@@ -37,11 +40,12 @@ public class ReportingController {
 		Report report = new Report();
 		report.setTitle(reportName);
 		report.setScenario(scenario);
+		logger.info("================ >>" + resultsAsString);
 		for (int i = 0; i < results.length; i++) {
 			ReportResult reportResult = new ReportResult();
 			reportResult.setReport(report);
-			reportResult.setX(Double.valueOf(results[i].split(";")[0]));
-			reportResult.setY(Double.valueOf(results[i].split(";")[1]));
+			reportResult.setX(Double.valueOf(results[i].split("_")[0]));
+			reportResult.setY(Double.valueOf(results[i].split("_")[1]));
 			reportResults.add(reportResult);
 		}
 		report.setResults(reportResults);
