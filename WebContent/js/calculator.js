@@ -581,3 +581,21 @@ function deleteRequest(requestId) {
 		}
 	});
 }
+
+
+
+
+
+/********************************************************************/
+/******************** Reporting management **************************/
+/********************************************************************/
+
+function getReport(reportId) {
+	$.ajax({
+		type : "GET",
+		url : 'getReportView/' + reportId,
+		success : function(response) {
+			$("#report-content").html(response);
+		}
+	});
+}

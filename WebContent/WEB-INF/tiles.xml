@@ -38,4 +38,9 @@
 		<put-attribute name="body" value="/WEB-INF/pages/webRequestsManager.jsp" />
 	</definition>
 	
+	<definition name="reportingManager" extends="base.definition">
+		<put-attribute name="title" value="Reporting Manager" />
+		<put-attribute name="body" value="/WEB-INF/pages/reportingManager.jsp" />
+	</definition>
+
 </tiles-definitions>
