@@ -591,11 +591,33 @@ function deleteRequest(requestId) {
 /********************************************************************/
 
 function getReport(reportId) {
+
+	return getAjaxForm('getReportView/' + reportId, 'report-content');
+}
+
+function updateReport() {
+	var id = $('#report-id').val();
+	var title = $('#report-title').val();
+	var description = $('#report-description').val();
+	var json = {
+		"id" : id,
+		"title" : title,
+		"description" : description
+	};
+	postAjaxForm('updateReport', 'report-content', json);
+	$('#' + reportId).html(title);
+}
+
+function deleteReport(reportId) {
 	$.ajax({
-		type : "GET",
-		url : 'getReportView/' + reportId,
+		type : "DELETE",
+		url : 'deleteReport/' + reportId,
 		success : function(response) {
-			$("#report-content").html(response);
+			if (response == 'OK') {
+				$('#' + reportId).remove();
+			} else {
+				alert("erreur lors de la suppression!");
+			}
 		}
 	});
 }

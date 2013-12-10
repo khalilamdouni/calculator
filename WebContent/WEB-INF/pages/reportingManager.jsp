@@ -27,7 +27,7 @@
 	<ol id="reports-list" class="selectable-list">
 		<c:forEach items="${reportingViewModel.reports}"
 			var="report" varStatus="reportStatus">
-			<li onclick="getReport('${reports.id}')"
+			<li id="${reports.id}" onclick="getReport('${reports.id}')"
 				class="ui-widget-content">${reports.title}</li>
 		</c:forEach>
 	</ol>
