@@ -68,7 +68,6 @@ function calculate() {
 
 // save report call
 function saveReport(currentReportIndex) {
-	alert('report results : ' + results[currentReportIndex]);
 	$.ajax({
 		type : "POST",
 		url : 'saveReport/' + scenarioIds[currentReportIndex] + '/'
@@ -605,7 +604,7 @@ function updateReport() {
 		"description" : description
 	};
 	postAjaxForm('updateReport', 'report-content', json);
-	$('#' + reportId).html(title);
+	$('#' + id).html(title);
 }
 
 function deleteReport(reportId) {
@@ -613,11 +612,15 @@ function deleteReport(reportId) {
 		type : "DELETE",
 		url : 'deleteReport/' + reportId,
 		success : function(response) {
+			alert('response : ' + response);
 			if (response == 'OK') {
 				$('#' + reportId).remove();
 			} else {
 				alert("erreur lors de la suppression!");
 			}
+		},
+		error : function(response) {
+			alert("erreur grave lors de la suppression!");
 		}
 	});
 }

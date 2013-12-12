@@ -47,13 +47,8 @@
 								<li><a href="webScenarioManager">Scenarios</a></li>
 								<li><a href="calculateWEB">Web console</a></li>
 							</ul></li>
-						<li><a href="javascript:void(0)">Reporting</a>
-							<ul>
-								<li><a href="javascript:alert('Not yet implemented')">Jar
-										reports</a></li>
-								<li><a href="javascript:alert('Not yet implemented')">Web
-										reports</a></li>
-							</ul></li>
+						<li><a href="getReportingManagerView">Reporting</a>
+						</li>
 						<li><a href="javascript:alert('Not yet implemented')">About
 								Us</a></li>
 					</ul>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -76,8 +77,9 @@ public class ReportingController {
 		return getReportView(report.getId());
 	}
 
-	@RequestMapping(value = "/deleteReport/{reportId}", method = RequestMethod.POST)
-	public String deleteReport(@PathVariable("reportId") long reportId) {
+	@RequestMapping(value = "/deleteReport/{reportId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	String deleteReport(@PathVariable("reportId") long reportId) {
 		reportingManager.delete(reportId);
 		return "OK";
 	}

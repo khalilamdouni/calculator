@@ -5,15 +5,14 @@
 			<td>Title :</td>
 			<td><input id="report-id" type="hidden" name="report.id"
 				value="${report.id}" /> 
-				<input id="report-name" type="hidden"
-				name="report.name" value="${report.name}" />
-				${report.name}</td>
+				<input id="report-title" type="text"
+				name="report.title" value="${report.title}" /></td>
 		</tr>
 		<tr>
 			<td>Description :</td>
-			<td><textarea id="report-description"
-				name="report.description">${report.description}</textarea> </td>
+			<td><textarea id="report-description" name="report.description">${report.description}</textarea>
+			</td>
 		</tr>
 	</table>
 </form:form>
-<a href="javascript:updateReport()">Update Report</a>
+<a href="javascript:updateReport()">Update Report</a> | <a href="javascript:deleteReport(${report.id})">Delete Report</a>
