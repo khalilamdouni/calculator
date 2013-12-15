@@ -1,5 +1,6 @@
 package org.calculator.business.reporting.impl;
 
+import java.io.InputStream;
 import java.util.List;
 
 import org.calculator.business.impl.GenericManager;
@@ -27,6 +28,24 @@ public class ReportingManager extends GenericManager<Report> implements
 	@Override
 	public List<Report> getAllReports() {
 		return reportingDao.getAllReports();
+	}
+
+	@Override
+	public InputStream exportXML(long reportId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InputStream exportExcel(long reportId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InputStream exportPDF(long reportId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public IReportingDao getReportingDao() {

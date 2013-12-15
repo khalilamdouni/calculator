@@ -1,8 +1,13 @@
 package org.calculator.controllers;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.calculator.business.IScenarioManager;
 import org.calculator.business.reporting.IReportingManager;
@@ -83,7 +88,38 @@ public class ReportingController {
 		reportingManager.delete(reportId);
 		return "OK";
 	}
+	
+	@RequestMapping(value = "/exportXML/{reportId}", method = RequestMethod.GET)
+	public void exportXML(@PathVariable("reportId") long reportId,
+			HttpServletResponse response) throws IOException {
+		 InputStream inputStream = reportingManager.exportXML(reportId);
+         response.setContentType("application/force-download");
+         response.setHeader("Content-Disposition", "attachment; filename=report.xml"); 
+         IOUtils.copy(inputStream, response.getOutputStream());
+           response.flushBuffer();
+	}
 
+	@RequestMapping(value = "/exportExcel/{reportId}", method = RequestMethod.GET)
+	public void exportExcel(@PathVariable("reportId") long reportId,
+			HttpServletResponse response) throws IOException {
+		 InputStream inputStream = reportingManager.exportExcel(reportId);
+         response.setContentType("application/force-download");
+         response.setHeader("Content-Disposition", "attachment; filename=report.xlsx"); 
+         IOUtils.copy(inputStream, response.getOutputStream());
+           response.flushBuffer();
+	}
+
+	@RequestMapping(value = "/exportPDF/{reportId}", method = RequestMethod.GET)
+	public void exportPDF(@PathVariable("reportId") long reportId,
+			HttpServletResponse response) throws IOException {
+		 InputStream inputStream = reportingManager.exportPDF(reportId);
+         response.setContentType("application/force-download");
+         response.setHeader("Content-Disposition", "attachment; filename=report.pdf"); 
+         IOUtils.copy(inputStream, response.getOutputStream());
+           response.flushBuffer();
+	}
+	
+	
 	public IReportingManager getReportingManager() {
 		return reportingManager;
 	}
