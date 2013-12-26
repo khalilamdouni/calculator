@@ -15,4 +15,5 @@
 		</tr>
 	</table>
 </form:form>
-<a href="javascript:updateReport()">Update Report</a> | <a href="javascript:deleteReport(${report.id})">Delete Report</a>
+<a href="javascript:updateReport()">Update Report</a> | <a href="javascript:deleteReport(${report.id})">Delete Report</a> |
+<a href="exportXML/${report.id}">Export XML</a> | <a href="exportPDF/${report.id}">Export PDF</a> | <a href="exportExcel/${report.id}">Export Excel</a>

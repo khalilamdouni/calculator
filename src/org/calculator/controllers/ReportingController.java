@@ -118,8 +118,7 @@ public class ReportingController {
          IOUtils.copy(inputStream, response.getOutputStream());
            response.flushBuffer();
 	}
-	
-	
+
 	public IReportingManager getReportingManager() {
 		return reportingManager;
 	}
