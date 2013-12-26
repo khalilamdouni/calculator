@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -91,12 +95,15 @@ public class ReportingController {
 	
 	@RequestMapping(value = "/exportXML/{reportId}", method = RequestMethod.GET)
 	public void exportXML(@PathVariable("reportId") long reportId,
-			HttpServletResponse response) throws IOException {
-		 InputStream inputStream = reportingManager.exportXML(reportId);
-         response.setContentType("application/force-download");
-         response.setHeader("Content-Disposition", "attachment; filename=report.xml"); 
-         IOUtils.copy(inputStream, response.getOutputStream());
-           response.flushBuffer();
+			HttpServletResponse response) throws IOException,
+			ParserConfigurationException, TransformerConfigurationException,
+			TransformerException, TransformerFactoryConfigurationError {
+		InputStream inputStream = reportingManager.exportXML(reportId);
+		response.setContentType("application/force-download");
+		response.setHeader("Content-Disposition",
+				"attachment; filename=report.xml");
+		IOUtils.copy(inputStream, response.getOutputStream());
+		response.flushBuffer();
 	}
 
 	@RequestMapping(value = "/exportExcel/{reportId}", method = RequestMethod.GET)
